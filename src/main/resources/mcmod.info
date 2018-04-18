@@ -1,0 +1,16 @@
+[
+{
+  "modid": "sonos",
+  "name": "Sonos",
+  "description": "A mod for the musically inclined. Instruments, drums, synths, MIDI and more!",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "https://youtube.com/c/orionpl",
+  "updateUrl": "",
+  "authorList": ["MineBartekSA", "Circl3s"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

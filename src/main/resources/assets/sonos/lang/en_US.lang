@@ -1,0 +1,4 @@
+itemGroup.Sonos=Sonos
+
+item.TestItem.name=TestItem
+item.TestBlock.name=TestBlock
