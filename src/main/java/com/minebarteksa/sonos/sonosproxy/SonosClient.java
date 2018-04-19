@@ -1,9 +1,8 @@
 package com.minebarteksa.sonos.sonosproxy;
 
+import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-
 import com.minebarteksa.sonos.Sonos;
-
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
@@ -29,10 +28,15 @@ public class SonosClient extends SonosCommon
   {
     super.PostInit(ev);
   }
-  
+
   @Override
-  public void registerItemRenderer(Item item, int meta, String id) 
+  public void registerItemRenderer(Item item, int meta, String id)
   {
 	  ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(Sonos.ModID + ":" + id, "inventory"));
+  }
+
+  @Override
+  public String localize(String unlocalized, Object... args) {
+    return I18n.format(unlocalized, args);
   }
 }

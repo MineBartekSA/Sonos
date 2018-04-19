@@ -24,11 +24,11 @@ public class Sonos
   public static final String Name = "Sonos";
   public static final String ModID = "sonos";
   public static final String Version = "1.0.0";
-  
+
   public static CreativeTabs cTab = new CreativeTabs("sonos") {
 	@Override
 	public ItemStack getTabIconItem() {
-		return new ItemStack(SonosItems.TestItem);
+		return new ItemStack(SonosItems.sono);
 	}
   };
 
@@ -48,7 +48,7 @@ public class Sonos
   {
     log.info("Hello Sonos here!");
   }
-  
+
   @Mod.EventBusSubscriber
   public static class RegistrationHandler
   {
@@ -58,13 +58,13 @@ public class Sonos
 		  SonosItems.register(event.getRegistry());
 		  SonosBlocks.registerItemBlock(event.getRegistry());
 	  }
-	  
+
 	  @SubscribeEvent
 	  public static void registerBlocks(RegistryEvent.Register<Block> event)
 	  {
 		  SonosBlocks.register(event.getRegistry());
 	  }
-	  
+
 	  @SubscribeEvent
 	  public static void registerItems(ModelRegistryEvent event)
 	  {

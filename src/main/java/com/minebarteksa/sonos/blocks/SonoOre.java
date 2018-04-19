@@ -1,7 +1,19 @@
 package com.minebarteksa.sonos.blocks;
 
-import java.util.Random;
 import com.minebarteksa.sonos.items.SonosItems;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
+import com.minebarteksa.sonos.items.Sono;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.math.BlockPos;
+import com.minebarteksa.sonos.titleEntitys.SonoOreEntity;
+import java.util.Random;
 //import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -9,11 +21,12 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 //import net.minecraft.util.ResourceLocation;
 //import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class SonoOre extends BlockBase
+public class SonoOre extends TitleEntityBlockBase<SonoOreEntity>
 {
+	@ObjectHolder("sonos:sono")
+	public static Sono DropSono;
 	public String note;
 
 	public SonoOre(String name)
@@ -23,33 +36,66 @@ public class SonoOre extends BlockBase
 		setHardness(2f);
 		setResistance(5f);
 	}
-	
+
 	@Override
-	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
+	public SonoOreEntity createTileEntity(World world, IBlockState state)
 	{
 		note = String.valueOf(new Random().nextInt());
+		SonoOreEntity te = new SonoOreEntity(note);
+
+		IItemHandler iHand = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
+		iHand.insertItem(0, new ItemStack(SonosItems.sono, 1), false);
+		/*((Sono)is.getItem()).setNBT(is);
+		((Sono)is.getItem()).updateNBT("note", note);*/
+
+		return te;
 	}
-	
+
 	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
+	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
-		return SonosItems.sono;
+		SonoOreEntity tile = getTileEntity(worldIn, pos);
+		IItemHandler iHand = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
+		ItemStack item = iHand.getStackInSlot(0);
+		if(!item.isEmpty())
+		{
+			EntityItem eItem = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), item);
+			worldIn.spawnEntity(eItem);
+		}
+		super.breakBlock(worldIn, pos, state);
 	}
-	
+
+	@Override
+	public Class<SonoOreEntity> getTitleEntityClass()
+	{
+		return SonoOreEntity.class;
+	}
+
 	@Override
 	public int quantityDropped(Random random)
 	{
-		return 1;
+		return 0;
 	}
-	
+
 	/*@Override
-	public SoundType getSoundType() 
+	public SoundType getSoundType()
 	{
 		SoundEvent se = new SoundEvent(new ResourceLocation(note));
-		
+
 		return new SoundType(10f, 1f, se, se, se, se, null);
 	}*/
-	
+
+	@Override
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	{
+		if(!worldIn.isRemote)
+		{
+			SonoOreEntity te = getTileEntity(worldIn, pos);
+			playerIn.sendMessage(new TextComponentString("Note: " + te.getNote()));
+		}
+		return true;
+	}
+
 	@Override
 	public SonoOre setCreativeTab(CreativeTabs tab) {
 		super.setCreativeTab(tab);
