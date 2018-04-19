@@ -1,4 +1,9 @@
 itemGroup.sonos=Sonos
 
+#Items
 item.test_item.name=TestItem
-item.test_block.name=TestBlock
+item.sono.name=Sono
+
+#Blocks
+tile.test_block.name=TestBlock
+tile.sono_ore.name=Sono Ore
