@@ -1,4 +1,4 @@
-itemGroup.Sonos=Sonos
+itemGroup.sonos=Sonos
 
-item.TestItem.name=TestItem
-item.TestBlock.name=TestBlock
+item.test_item.name=TestItem
+item.test_block.name=TestBlock

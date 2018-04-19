@@ -8,17 +8,17 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class SonosItems 
 {
 	//Items
-	public static ItemBase TestItem = new ItemBase("TestItem").setCreativeTab(Sonos.cTab);
+	public static ItemBase TestItem = new ItemBase("test_item").setCreativeTab(Sonos.cTab);
+	public static Sono sono = new Sono("sono").setCreativeTab(Sonos.cTab);
 	
 	public static void register(IForgeRegistry<Item> registry)
 	{
-		registry.registerAll(
-			TestItem
-		);
+		registry.registerAll(TestItem, sono);
 	}
 	
 	public static void registerModels()
 	{
 		TestItem.registerItemModel();
+		sono.registerItemModel();
 	}
 }

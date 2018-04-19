@@ -25,7 +25,7 @@ public class Sonos
   public static final String ModID = "sonos";
   public static final String Version = "1.0.0";
   
-  public static CreativeTabs cTab = new CreativeTabs("Sonos") {
+  public static CreativeTabs cTab = new CreativeTabs("sonos") {
 	@Override
 	public ItemStack getTabIconItem() {
 		return new ItemStack(SonosItems.TestItem);
