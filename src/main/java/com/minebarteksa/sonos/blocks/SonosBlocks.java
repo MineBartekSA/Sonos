@@ -1,20 +1,21 @@
 package com.minebarteksa.sonos.blocks;
 
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import com.minebarteksa.sonos.Sonos;
+import com.minebarteksa.sonos.sound.SoundEvents.Notes;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class SonosBlocks
 {
 	//Blocks
-	public static SonoOre SO = new SonoOre("sono_ore").setCreativeTab(Sonos.cTab);
+	public static SonoOre SO = new SonoOre("sono_ore", Notes.A).setCreativeTab(Sonos.cTab);
+	public static Block LitSO = new Block(Material.ROCK).setRegistryName("lit_somo_ore");
 
 	public static void register(IForgeRegistry<Block> registry)
 	{
 		registry.registerAll(SO);
-		GameRegistry.registerTileEntity(SO.getTitleEntityClass(), SO.getRegistryName().toString());
 	}
 
 	public static void registerItemBlock(IForgeRegistry<Item> registry)

@@ -53,6 +53,12 @@ public class Sono extends ItemBase
 		nbt.setString(key, value);
 	}
 
+	public void updateNBT(String key, String value, ItemStack item)
+	{
+		nbt = item.getTagCompound();
+		nbt.setString(key, value);
+	}
+
 	@Override
 	public Sono setCreativeTab(CreativeTabs tab)
 	{

@@ -11,6 +11,9 @@
 		},
 		"inventory": {
 			"model": "cube_all"
+		},
+		"lit_af": {
+			"model": "cube_all"
 		}
   }
 }
