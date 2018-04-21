@@ -1,0 +1,18 @@
+{
+  "sonar_c":{
+    "category": "player",
+    "sounds": [ "sonos:sounds/sonar/sonar_c" ]
+  },
+
+
+  "hum_c":{
+    "category": "blocks",
+    "sounds": [ "sonos:sounds/hum/hum_c" ]
+  },
+
+
+  "ring_c":{
+    "category": "blocks",
+    "sounds": [ "sonos:sounds/ring/ring_c" ]
+  }
+}
