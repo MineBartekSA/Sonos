@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
+@SuppressWarnings("deprecation")
 public class SonosCommon
 {
   public void PreInit(FMLPreInitializationEvent ev)

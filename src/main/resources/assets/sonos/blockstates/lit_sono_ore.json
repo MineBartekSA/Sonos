@@ -7,65 +7,67 @@
     }
   },
   "variants": {
-    "lit_af=1": {
-			"textures": {
-				"all": "sonos:blocks/sono_ore/sono_ore_lit_c"
-			}
-		},
-		"lit_af=2": {
-			"textures": {
-				"all": "sonos:blocks/sono_ore/sono_ore_lit_c#"
-			}
-		},
-		"lit_af=3": {
-			"textures": {
-				"all": "sonos:blocks/sono_ore/sono_ore_lit_d"
-			}
-		},
-		"lit_af=4": {
-			"textures": {
-				"all": "sonos:blocks/sono_ore/sono_ore_lit_d#"
-			}
-		},
-		"lit_af=5": {
-			"textures": {
-				"all": "sonos:blocks/sono_ore/sono_ore_lit_e"
-			}
-		},
-		"lit_af=6": {
-			"textures": {
-				"all": "sonos:blocks/sono_ore/sono_ore_lit_f"
-			}
-		},
-		"lit_af=7": {
-			"textures": {
-				"all": "sonos:blocks/sono_ore/sono_ore_lit_f#"
-			}
-		},
-		"lit_af=8": {
-			"textures": {
-				"all": "sonos:blocks/sono_ore/sono_ore_lit_g"
-			}
-		},
-		"lit_af=9": {
-			"textures": {
-				"all": "sonos:blocks/sono_ore/sono_ore_lit_g#"
-			}
-		},
-		"lit_af=10": {
-			"textures": {
-				"all": "sonos:blocks/sono_ore/sono_ore_lit_a"
-			}
-		},
-		"lit_af=11": {
-			"textures": {
-				"all": "sonos:blocks/sono_ore/sono_ore_lit_a#"
-			}
-		},
-		"lit_af=12": {
-			"textures": {
-				"all": "sonos:blocks/sono_ore/sono_ore_lit_b"
-			}
+    "lit_af": {
+      "1": {
+        "textures": {
+  				"all": "sonos:blocks/sono_ore/sono_ore_lit_c"
+  			}
+      },
+      "2": {
+        "textures": {
+  				"all": "sonos:blocks/sono_ore/sono_ore_lit_c#"
+  			}
+      },
+      "3": {
+        "textures": {
+  				"all": "sonos:blocks/sono_ore/sono_ore_lit_d"
+  			}
+      },
+      "4": {
+        "textures": {
+  				"all": "sonos:blocks/sono_ore/sono_ore_lit_d#"
+  			}
+      },
+      "5": {
+        "textures": {
+  				"all": "sonos:blocks/sono_ore/sono_ore_lit_e"
+  			}
+      },
+      "6": {
+        "textures": {
+  				"all": "sonos:blocks/sono_ore/sono_ore_lit_f"
+  			}
+      },
+      "7": {
+        "textures": {
+  				"all": "sonos:blocks/sono_ore/sono_ore_lit_f#"
+  			}
+      },
+      "8": {
+        "textures": {
+  				"all": "sonos:blocks/sono_ore/sono_ore_lit_g"
+  			}
+      },
+      "9": {
+        "textures": {
+  				"all": "sonos:blocks/sono_ore/sono_ore_lit_g#"
+  			}
+      },
+      "10": {
+        "textures": {
+  				"all": "sonos:blocks/sono_ore/sono_ore_lit_a"
+  			}
+      },
+      "11": {
+        "textures": {
+  				"all": "sonos:blocks/sono_ore/sono_ore_lit_a#"
+  			}
+      },
+      "12": {
+        "textures": {
+  				"all": "sonos:blocks/sono_ore/sono_ore_lit_b"
+  			}
+      }
 		}
   }
 }

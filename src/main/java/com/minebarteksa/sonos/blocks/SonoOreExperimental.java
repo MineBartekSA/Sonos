@@ -3,8 +3,8 @@ package com.minebarteksa.sonos.blocks;
 import com.minebarteksa.sonos.items.SonosItems;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.CapabilityItemHandler;
+//import net.minecraftforge.items.IItemHandler;
+//import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import com.minebarteksa.sonos.items.Sono;
 import net.minecraft.util.text.TextComponentString;
@@ -12,18 +12,18 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
-import com.minebarteksa.sonos.titleEntitys.SonoOreEntity;
+import com.minebarteksa.sonos.tileEntitys.SonoOreEntity;
 import java.util.Random;
 //import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
+//import net.minecraft.item.Item;
 //import net.minecraft.util.ResourceLocation;
 //import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class SonoOreExperimental extends TitleEntityBlockBase<SonoOreEntity>
+public class SonoOreExperimental extends TileEntityBlockBase<SonoOreEntity>
 {
 	@ObjectHolder("sonos:sono")
 	public static Sono DropSono;
@@ -48,7 +48,7 @@ public class SonoOreExperimental extends TitleEntityBlockBase<SonoOreEntity>
 		((Sono)is.getItem()).setNBT(is);
 		((Sono)is.getItem()).updateNBT("note", note);*/
 
-		return new SonoOreEntity(note);
+		return new SonoOreEntity();
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class SonoOreExperimental extends TitleEntityBlockBase<SonoOreEntity>
 		//IItemHandler iHand = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
 		ItemStack item = new ItemStack(SonosItems.sono);
 		Sono s = (Sono)item.getItem();
-		s.updateNBT("note", tile.getNote(), item);
+		s.updateNBT("note", "", item);
 		if(!item.isEmpty())
 		{
 			EntityItem eItem = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), item);
@@ -68,7 +68,7 @@ public class SonoOreExperimental extends TitleEntityBlockBase<SonoOreEntity>
 	}
 
 	@Override
-	public Class<SonoOreEntity> getTitleEntityClass()
+	public Class<SonoOreEntity> getTileEntityClass()
 	{
 		return SonoOreEntity.class;
 	}
@@ -93,7 +93,7 @@ public class SonoOreExperimental extends TitleEntityBlockBase<SonoOreEntity>
 		if(!worldIn.isRemote)
 		{
 			SonoOreEntity te = getTileEntity(worldIn, pos);
-			playerIn.sendMessage(new TextComponentString("Note: " + te.getNote()));
+			playerIn.sendMessage(new TextComponentString("Note: LOL"));
 		}
 		return true;
 	}

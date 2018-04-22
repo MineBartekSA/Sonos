@@ -8,6 +8,73 @@
 	},
 	"variants": {
 		"normal": [{}],
-		"inventory": [{}]
+		"inventory": [{}],
+		"lit_af": {
+			"0": {
+				"textures": {
+					"all": "sonos:blocks/sono_ore/sono_ore_normal"
+				}
+			},
+      "1": {
+        "textures": {
+  				"all": "sonos:blocks/sono_ore/sono_ore_lit_c"
+  			}
+      },
+      "2": {
+        "textures": {
+  				"all": "sonos:blocks/sono_ore/sono_ore_lit_c#"
+  			}
+      },
+      "3": {
+        "textures": {
+  				"all": "sonos:blocks/sono_ore/sono_ore_lit_d"
+  			}
+      },
+      "4": {
+        "textures": {
+  				"all": "sonos:blocks/sono_ore/sono_ore_lit_d#"
+  			}
+      },
+      "5": {
+        "textures": {
+  				"all": "sonos:blocks/sono_ore/sono_ore_lit_e"
+  			}
+      },
+      "6": {
+        "textures": {
+  				"all": "sonos:blocks/sono_ore/sono_ore_lit_f"
+  			}
+      },
+      "7": {
+        "textures": {
+  				"all": "sonos:blocks/sono_ore/sono_ore_lit_f#"
+  			}
+      },
+      "8": {
+        "textures": {
+  				"all": "sonos:blocks/sono_ore/sono_ore_lit_g"
+  			}
+      },
+      "9":{
+        "textures": {
+  				"all": "sonos:blocks/sono_ore/sono_ore_lit_g#"
+  			}
+      },
+      "10": {
+        "textures": {
+  				"all": "sonos:blocks/sono_ore/sono_ore_lit_a"
+  			}
+      },
+      "11": {
+        "textures": {
+  				"all": "sonos:blocks/sono_ore/sono_ore_lit_a#"
+  			}
+      },
+      "12": {
+        "textures": {
+  				"all": "sonos:blocks/sono_ore/sono_ore_lit_b"
+  			}
+      }
+		}
 	}
 }

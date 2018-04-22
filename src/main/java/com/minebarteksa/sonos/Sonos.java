@@ -35,7 +35,7 @@ public class Sonos
   @SidedProxy(serverSide = "com.minebarteksa.sonos.sonosproxy.SonosCommon", clientSide = "com.minebarteksa.sonos.sonosproxy.SonosClient")
   public static SonosCommon proxy;
 
-  private static Logger log;
+  public static Logger log;
 
   @EventHandler
   public void preInit(FMLPreInitializationEvent event)

@@ -8,16 +8,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 
-public abstract class TitleEntityBlockBase<TE extends TileEntity> extends BlockBase
+public abstract class TileEntityBlockBase<TE extends TileEntity> extends BlockBase
 {
-  public TitleEntityBlockBase(Material mat, String name)
+  public TileEntityBlockBase(Material mat, String name)
   {
     super(mat, name);
   }
 
-  public abstract Class<TE> getTitleEntityClass();
+  public abstract Class<TE> getTileEntityClass();
 
-  public TE getTileEntity(IBlockAccess world, BlockPos pos)
+  @SuppressWarnings("unchecked")
+public TE getTileEntity(IBlockAccess world, BlockPos pos)
   {
     return (TE)world.getTileEntity(pos);
   }
