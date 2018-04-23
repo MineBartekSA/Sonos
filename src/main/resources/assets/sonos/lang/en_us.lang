@@ -2,7 +2,18 @@ itemGroup.sonos=Sonos
 
 #Items
 item.test_item.name=TestItem
-item.sono.name=Sono
+item.sono_c.name=Sono C
+item.sono_c#.name=Sono C#
+item.sono_d.name=Sono D
+item.sono_d#.name=Sono D#
+item.sono_e.name=Sono E
+item.sono_f.name=Sono F
+item.sono_f#.name=Sono F#
+item.sono_g.name=Sono G
+item.sono_g#.name=Sono G#
+item.sono_a.name=Sono A
+item.sono_a#.name=Sono A#
+item.sono_b.name=Sono B
 
 #Blocks
 tile.test_block.name=TestBlock

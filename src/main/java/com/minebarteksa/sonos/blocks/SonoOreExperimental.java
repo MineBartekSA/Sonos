@@ -56,14 +56,14 @@ public class SonoOreExperimental extends TileEntityBlockBase<SonoOreEntity>
 	{
 		SonoOreEntity tile = getTileEntity(worldIn, pos);
 		//IItemHandler iHand = tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
-		ItemStack item = new ItemStack(SonosItems.sono);
-		Sono s = (Sono)item.getItem();
-		s.updateNBT("note", "", item);
-		if(!item.isEmpty())
+		//ItemStack item = new ItemStack(SonosItems.sono);
+		//Sono s = (Sono)item.getItem();
+		//s.updateNBT("note", "", item);
+		/*if(!item.isEmpty())
 		{
 			EntityItem eItem = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), item);
 			worldIn.spawnEntity(eItem);
-		}
+		}*/
 		super.breakBlock(worldIn, pos, state);
 	}
 

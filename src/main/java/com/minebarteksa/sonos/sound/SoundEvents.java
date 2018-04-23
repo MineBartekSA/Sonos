@@ -4,7 +4,7 @@ public class SoundEvents
 {
 	public static enum Notes
 	{
-		C (1), CSharp (2), D (3), DSharp (4), E (5), F (6), FSharp (7), G (8), GSharp (9), A (10), ASharp (11), B (12);
+		None (0), C (1), CSharp (2), D (3), DSharp (4), E (5), F (6), FSharp (7), G (8), GSharp (9), A (10), ASharp (11), B (12);
 
 		private final int number;
 
@@ -42,7 +42,7 @@ public class SoundEvents
 				case 12:
 					return Notes.B;
 			}
-			return Notes.C;
+			return Notes.None;
 		}
 	}
 }

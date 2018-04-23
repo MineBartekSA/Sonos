@@ -28,7 +28,7 @@ public class Sonos
   public static CreativeTabs cTab = new CreativeTabs("sonos") {
 	@Override
 	public ItemStack getTabIconItem() {
-		return new ItemStack(SonosItems.sono);
+		return new ItemStack(SonosItems.sono_cs);
 	}
   };
 
