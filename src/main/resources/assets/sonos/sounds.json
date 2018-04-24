@@ -4,6 +4,60 @@
     "sounds": [ "sonos:sonar/sonar_c" ]
   },
 
+  "sonar_cs":{
+    "category": "player",
+    "sounds": [ "sonos:sonar/sonar_cs" ]
+  },
+
+  "sonar_d":{
+    "category": "player",
+    "sounds": [ "sonos:sonar/sonar_d" ]
+  },
+
+  "sonar_ds":{
+    "category": "player",
+    "sounds": [ "sonos:sonar/sonar_ds" ]
+  },
+
+  "sonar_e":{
+    "category": "player",
+    "sounds": [ "sonos:sonar/sonar_e" ]
+  },
+
+  "sonar_f":{
+    "category": "player",
+    "sounds": [ "sonos:sonar/sonar_f" ]
+  },
+
+  "sonar_fs":{
+    "category": "player",
+    "sounds": [ "sonos:sonar/sonar_fs" ]
+  },
+
+  "sonar_g":{
+    "category": "player",
+    "sounds": [ "sonos:sonar/sonar_g" ]
+  },
+
+  "sonar_gs":{
+    "category": "player",
+    "sounds": [ "sonos:sonar/sonar_gs" ]
+  },
+
+  "sonar_a":{
+    "category": "player",
+    "sounds": [ "sonos:sonar/sonar_a" ]
+  },
+
+  "sonar_as":{
+    "category": "player",
+    "sounds": [ "sonos:sonar/sonar_as" ]
+  },
+
+  "sonar_b":{
+    "category": "player",
+    "sounds": [ "sonos:sonar/sonar_b" ]
+  },
 
   "hum_c":{
     "category": "blocks",

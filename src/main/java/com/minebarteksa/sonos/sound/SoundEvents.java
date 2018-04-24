@@ -8,12 +8,23 @@ import net.minecraft.util.SoundEvent;
 public class SoundEvents
 {
 	public static SoundEvent sonar_c = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_c")).setRegistryName("sonar_c");
+	public static SoundEvent sonar_cs = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_cs")).setRegistryName("sonar_cs");
+	public static SoundEvent sonar_d = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_d")).setRegistryName("sonar_d");
+	public static SoundEvent sonar_ds = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_ds")).setRegistryName("sonar_ds");
+	public static SoundEvent sonar_e = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_e")).setRegistryName("sonar_e");
+	public static SoundEvent sonar_f = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_f")).setRegistryName("sonar_f");
+	public static SoundEvent sonar_fs = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_fs")).setRegistryName("sonar_fs");
+	public static SoundEvent sonar_g = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_g")).setRegistryName("sonar_g");
+	public static SoundEvent sonar_gs = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_gs")).setRegistryName("sonar_gs");
+	public static SoundEvent sonar_a = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_a")).setRegistryName("sonar_a");
+	public static SoundEvent sonar_as = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_as")).setRegistryName("sonar_as");
+	public static SoundEvent sonar_b = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_b")).setRegistryName("sonar_b");
 	public static SoundEvent hum_c = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_c")).setRegistryName("hum_c");
 	public static SoundEvent ring_c = new SoundEvent(new ResourceLocation(Sonos.ModID, "ring_c")).setRegistryName("ring_c");
 
 	public static void registerSounds(IForgeRegistry<SoundEvent> registry)
 	{
-		registry.registerAll(sonar_c, hum_c, ring_c);
+		registry.registerAll(sonar_c, sonar_cs, sonar_d, sonar_ds, sonar_e, sonar_f, sonar_fs, sonar_g, sonar_gs, sonar_a, sonar_as, sonar_b, hum_c, ring_c);
 	}
 
 	public static SoundEvent getSound(Notes note, String type)
