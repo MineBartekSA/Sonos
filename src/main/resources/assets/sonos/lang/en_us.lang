@@ -1,20 +1,18 @@
 itemGroup.sonos=Sonos
 
 #Items
-item.test_item.name=TestItem
 item.sono_c.name=Sono C
-item.sono_c#.name=Sono C#
+item.sono_cs.name=Sono C#
 item.sono_d.name=Sono D
-item.sono_d#.name=Sono D#
+item.sono_ds.name=Sono D#
 item.sono_e.name=Sono E
 item.sono_f.name=Sono F
-item.sono_f#.name=Sono F#
+item.sono_fs.name=Sono F#
 item.sono_g.name=Sono G
-item.sono_g#.name=Sono G#
+item.sono_gs.name=Sono G#
 item.sono_a.name=Sono A
-item.sono_a#.name=Sono A#
+item.sono_as.name=Sono A#
 item.sono_b.name=Sono B
 
 #Blocks
-tile.test_block.name=TestBlock
 tile.sono_ore.name=Sono Ore
