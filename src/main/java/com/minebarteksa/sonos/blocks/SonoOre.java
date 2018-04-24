@@ -1,5 +1,9 @@
 package com.minebarteksa.sonos.blocks;
 
+import net.minecraft.util.SoundCategory;
+import com.minebarteksa.sonos.sound.SoundEvents;
+import com.minebarteksa.sonos.sound.LoopSound;
+import net.minecraft.client.Minecraft;
 import com.minebarteksa.sonos.items.SonosItems;
 import net.minecraft.item.Item;
 import net.minecraft.entity.Entity;
@@ -59,7 +63,9 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity>
     SonoOreEntity soe = (SonoOreEntity)world.getTileEntity(pos);
     if(world.getBlockState(pos).getValue(LitAF) != soe.getNote())
     {
-      world.setBlockState(pos, this.getBlockState().getBaseState().withProperty(LitAF, soe.getNote()));
+      if(!world.isRemote)
+        world.setBlockState(pos, this.getBlockState().getBaseState().withProperty(LitAF, soe.getNote()));
+      //Minecraft.getMinecraft().getSoundHandler().playSound(new LoopSound(SoundEvents.getSound(Notes.getNote(soe.getNote()), "hum"), SoundCategory.BLOCKS, pos));
     }
   }
 
@@ -77,21 +83,15 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity>
   @Override
   public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn)
   {
-    if(!worldIn.isRemote)
-    {
-      this.activate(worldIn, pos);
-      super.onBlockClicked(worldIn, pos, playerIn);
-    }
+    this.activate(worldIn, pos);
+    super.onBlockClicked(worldIn, pos, playerIn);
   }
 
   @Override
   public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn)
   {
-    if(!worldIn.isRemote)
-    {
-      this.activate(worldIn, pos);
-      super.onEntityWalk(worldIn, pos, entityIn);
-    }
+    this.activate(worldIn, pos);
+    super.onEntityWalk(worldIn, pos, entityIn);
   }
 
   @Override

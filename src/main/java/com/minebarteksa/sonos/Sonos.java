@@ -1,5 +1,6 @@
 package com.minebarteksa.sonos;
 
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import com.minebarteksa.sonos.sound.SoundEvents;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.block.Block;
@@ -43,6 +44,7 @@ public class Sonos
   public void preInit(FMLPreInitializationEvent event)
   {
     log = event.getModLog();
+    GameRegistry.registerWorldGenerator(new WorldGen(), 3);
   }
 
   @EventHandler
