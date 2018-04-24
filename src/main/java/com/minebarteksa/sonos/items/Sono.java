@@ -1,5 +1,8 @@
 package com.minebarteksa.sonos.items;
 
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundCategory;
+import com.minebarteksa.sonos.sound.SoundEvents;
 import net.minecraft.client.util.ITooltipFlag;
 import java.util.List;
 import com.minebarteksa.sonos.sound.SoundEvents.Notes;
@@ -26,7 +29,12 @@ public class Sono extends ItemBase
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
 	{
-		playerIn.sendMessage(new TextComponentString("Note: " + note));
+		if(worldIn.isRemote)
+		{
+			playerIn.sendMessage(new TextComponentString("Note: " + note));
+			SoundEvent e = SoundEvents.getSound(note, "sonar");
+			worldIn.playSound(playerIn, playerIn.posX, playerIn.posY, playerIn.posZ, e, SoundCategory.PLAYERS, 1.0f, 1.0f);
+		}
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}
 

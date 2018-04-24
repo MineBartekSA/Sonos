@@ -1,5 +1,7 @@
 package com.minebarteksa.sonos;
 
+import com.minebarteksa.sonos.sound.SoundEvents;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -71,5 +73,11 @@ public class Sonos
 	  {
 		  SonosBlocks.register(event.getRegistry());
 	  }
+
+    @SubscribeEvent
+    public static void registerSounds(RegistryEvent.Register<SoundEvent> event)
+    {
+      SoundEvents.registerSounds(event.getRegistry());
+    }
   }
 }
