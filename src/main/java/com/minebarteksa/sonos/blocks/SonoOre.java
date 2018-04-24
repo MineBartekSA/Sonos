@@ -103,19 +103,13 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity>
   @Override
   public int getMetaFromState(IBlockState state)
   {
-    if(state == getDefaultState())
-      return 0;
-    else
-      return 1;
+      return state.getValue(LitAF);
   }
 
   @Override
   public IBlockState getStateFromMeta(int meta)
   {
-    if(meta == 0)
-      return getDefaultState();
-    else
-      return getBlockState().getBaseState();
+      return getBlockState().getBaseState().withProperty(LitAF, meta);
   }
 
   @Override
