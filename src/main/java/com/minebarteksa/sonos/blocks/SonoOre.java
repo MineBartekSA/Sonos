@@ -1,16 +1,9 @@
 package com.minebarteksa.sonos.blocks;
 
-import net.minecraft.util.SoundCategory;
-import com.minebarteksa.sonos.sound.SoundEvents;
-import com.minebarteksa.sonos.sound.LoopSound;
-import net.minecraft.client.Minecraft;
 import com.minebarteksa.sonos.items.SonosItems;
 import net.minecraft.item.Item;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import com.minebarteksa.sonos.tileEntitys.SonoOreEntity;
-import net.minecraft.util.text.TextComponentString;
 import com.minebarteksa.sonos.Sonos;
 import java.util.Random;
 import net.minecraft.block.state.IBlockState;
@@ -26,7 +19,6 @@ import net.minecraft.creativetab.CreativeTabs;
 public class SonoOre extends TileEntityBlockBase<SonoOreEntity>
 {
   public static final PropertyInteger LitAF = PropertyInteger.create("lit_af", 0, 12);
-  private Notes note = Notes.None;
 
   public SonoOre(String name, Notes note)
   {
@@ -48,7 +40,6 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity>
         rand = worldIn.rand.nextInt(12);
       while (rand == 0 || rand > 12);
       soe.note = rand;
-      note = Notes.getNote(soe.getNote());
     }
   }
 
@@ -72,7 +63,6 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity>
   @Override
   public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
   {
-    SonoOreEntity soe = (SonoOreEntity)worldIn.getTileEntity(pos);
     Sonos.log.info("SonoOre updateTick!");
     if(state.getValue(LitAF) != 0)
     {
@@ -164,16 +154,4 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity>
         return SonosItems.sono_c;
     }
   }
-
-  /*@Override
-  public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-  {
-    if(!worldIn.isRemote)
-    {
-      SonoOreEntity soe = (SonoOreEntity)worldIn.getTileEntity(pos);
-      Notes n = Notes.getNote(soe.getNote());
-      playerIn.sendMessage(new TextComponentString("Note: " + n));
-    }
-    return true;
-  }*/
 }

@@ -9,7 +9,6 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class SonosBlocks
 {
-	//Blocks
 	public static SonoOre SO = new SonoOre("sono_ore", Notes.A).setCreativeTab(Sonos.cTab);
 
 	public static void register(IForgeRegistry<Block> registry)

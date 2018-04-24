@@ -1,8 +1,8 @@
 package com.minebarteksa.sonos.items;
 
+import net.minecraftforge.oredict.OreDictionary;
 import com.minebarteksa.sonos.sound.SoundEvents.Notes;
 import com.minebarteksa.sonos.Sonos;
-
 import net.minecraft.item.Item;
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -41,5 +41,21 @@ public class SonosItems
 		sono_a.registerItemModel();
 		sono_as.registerItemModel();
 		sono_b.registerItemModel();
+	}
+
+	public static void initOreDictionary()
+	{
+		OreDictionary.registerOre("sono", sono_c);
+		OreDictionary.registerOre("sono", sono_cs);
+		OreDictionary.registerOre("sono", sono_d);
+		OreDictionary.registerOre("sono", sono_ds);
+		OreDictionary.registerOre("sono", sono_e);
+		OreDictionary.registerOre("sono", sono_f);
+		OreDictionary.registerOre("sono", sono_fs);
+		OreDictionary.registerOre("sono", sono_g);
+		OreDictionary.registerOre("sono", sono_gs);
+		OreDictionary.registerOre("sono", sono_a);
+		OreDictionary.registerOre("sono", sono_as);
+		OreDictionary.registerOre("sono", sono_b);
 	}
 }

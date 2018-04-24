@@ -1,14 +1,14 @@
 package com.minebarteksa.sonos;
 
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import com.minebarteksa.sonos.sound.SoundEvents;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.logging.log4j.Logger;
-
+import com.minebarteksa.sonos.sound.SoundEvents;
 import com.minebarteksa.sonos.blocks.SonosBlocks;
 import com.minebarteksa.sonos.items.SonosItems;
 import com.minebarteksa.sonos.sonosproxy.SonosCommon;
@@ -51,6 +51,8 @@ public class Sonos
   public void init(FMLInitializationEvent event)
   {
     log.info("Hello Sonos here!");
+    SonosItems.initOreDictionary();
+    OreDictionary.registerOre("sonoOre", SonosBlocks.SO);
   }
 
   @Mod.EventBusSubscriber

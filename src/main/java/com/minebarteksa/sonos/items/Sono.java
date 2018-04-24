@@ -41,7 +41,8 @@ public class Sono extends ItemBase
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{
-		tooltip.add(info);
+		if(info != "")
+			tooltip.add(info);
 	}
 
 	@Override
