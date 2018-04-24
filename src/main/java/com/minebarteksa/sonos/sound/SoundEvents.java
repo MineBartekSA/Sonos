@@ -41,8 +41,9 @@ public class SoundEvents
 					return Notes.ASharp;
 				case 12:
 					return Notes.B;
+				default:
+					return Notes.None;
 			}
-			return Notes.None;
 		}
 	}
 }

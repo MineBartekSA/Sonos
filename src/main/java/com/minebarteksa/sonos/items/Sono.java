@@ -1,5 +1,7 @@
 package com.minebarteksa.sonos.items;
 
+import net.minecraft.client.util.ITooltipFlag;
+import java.util.List;
 import com.minebarteksa.sonos.sound.SoundEvents.Notes;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,11 +14,13 @@ import net.minecraft.world.World;
 public class Sono extends ItemBase
 {
 	public Notes note;
+	public String info = "";
 
-	public Sono(String name, Notes note)
+	public Sono(String name, Notes note, String info)
 	{
 		super(name);
 		this.note = note;
+		this.info = info;
 	}
 
 	@Override
@@ -24,6 +28,12 @@ public class Sono extends ItemBase
 	{
 		playerIn.sendMessage(new TextComponentString("Note: " + note));
 		return super.onItemRightClick(worldIn, playerIn, handIn);
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+	{
+		tooltip.add(info);
 	}
 
 	@Override

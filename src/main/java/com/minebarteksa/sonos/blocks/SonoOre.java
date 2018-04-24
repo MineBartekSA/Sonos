@@ -166,8 +166,9 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity>
         return SonosItems.sono_as;
       case "B":
         return SonosItems.sono_b;
+      default:
+        return SonosItems.sono_c;
     }
-    return SonosItems.sono_cs;
   }
 
   /*@Override

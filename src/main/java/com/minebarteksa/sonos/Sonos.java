@@ -26,10 +26,10 @@ public class Sonos
   public static final String Version = "1.0.0";
 
   public static CreativeTabs cTab = new CreativeTabs("sonos") {
-	@Override
-	public ItemStack getTabIconItem() {
-		return new ItemStack(SonosItems.sono_cs);
-	}
+	    @Override
+	    public ItemStack getTabIconItem() {
+		      return new ItemStack(SonosItems.sono_cs);
+	    }
   };
 
   @SidedProxy(serverSide = "com.minebarteksa.sonos.sonosproxy.SonosCommon", clientSide = "com.minebarteksa.sonos.sonosproxy.SonosClient")
@@ -59,17 +59,17 @@ public class Sonos
 		  SonosBlocks.registerItemBlock(event.getRegistry());
 	  }
 
-	  @SubscribeEvent
-	  public static void registerBlocks(RegistryEvent.Register<Block> event)
-	  {
-		  SonosBlocks.register(event.getRegistry());
-	  }
-
-	  @SubscribeEvent
+    @SubscribeEvent
 	  public static void registerItems(ModelRegistryEvent event)
 	  {
 		  SonosItems.registerModels();
 		  SonosBlocks.registerModels();
+	  }
+
+	  @SubscribeEvent
+	  public static void registerBlocks(RegistryEvent.Register<Block> event)
+	  {
+		  SonosBlocks.register(event.getRegistry());
 	  }
   }
 }
