@@ -1,5 +1,8 @@
 package com.minebarteksa.sonos.items;
 
+import net.minecraft.util.math.BlockPos;
+import com.minebarteksa.sonos.sound.LoopSound;
+import net.minecraft.client.Minecraft;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundCategory;
 import com.minebarteksa.sonos.sound.SoundEvents;

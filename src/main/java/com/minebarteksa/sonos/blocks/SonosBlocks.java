@@ -10,20 +10,23 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class SonosBlocks
 {
 	public static SonoOre SO = new SonoOre("sono_ore", Notes.A).setCreativeTab(Sonos.cTab);
+	public static Resonator e = new Resonator("resonator").setCreativeTab(Sonos.cTab);
 
 	public static void register(IForgeRegistry<Block> registry)
 	{
-		registry.registerAll(SO);
+		registry.registerAll(SO, e);
 		GameRegistry.registerTileEntity(SO.getTileEntityClass(), SO.getRegistryName().toString());
+		GameRegistry.registerTileEntity(e.getTileEntityClass(), e.getRegistryName().toString());
 	}
 
 	public static void registerItemBlock(IForgeRegistry<Item> registry)
 	{
-		registry.registerAll(SO.getItemBlock());
+		registry.registerAll(SO.getItemBlock(), e.getItemBlock());
 	}
 
 	public static void registerModels()
 	{
 		SO.registerItemModel(Item.getItemFromBlock(SO));
+		e.registerItemModel(Item.getItemFromBlock(e));
 	}
 }

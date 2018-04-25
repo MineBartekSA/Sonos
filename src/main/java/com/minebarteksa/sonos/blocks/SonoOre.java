@@ -32,9 +32,9 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity>
   @Override
   public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
   {
+    SonoOreEntity soe = (SonoOreEntity)worldIn.getTileEntity(pos);
     if(!worldIn.isRemote)
     {
-      SonoOreEntity soe = (SonoOreEntity)worldIn.getTileEntity(pos);
       int rand = 1;
       do
         rand = worldIn.rand.nextInt(12);
@@ -54,19 +54,35 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity>
     SonoOreEntity soe = (SonoOreEntity)world.getTileEntity(pos);
     if(world.getBlockState(pos).getValue(LitAF) != soe.getNote())
     {
-      if(!world.isRemote)
-        world.setBlockState(pos, this.getBlockState().getBaseState().withProperty(LitAF, soe.getNote()));
-      //Minecraft.getMinecraft().getSoundHandler().playSound(new LoopSound(SoundEvents.getSound(Notes.getNote(soe.getNote()), "hum"), SoundCategory.BLOCKS, pos));
+      world.setBlockState(pos, this.getBlockState().getBaseState().withProperty(LitAF, soe.getNote()));
+      if(world.isRemote)
+      {
+        //LoopSound ls = new LoopSound(SoundEvents.getSound(Notes.getNote(soe.getNote()), "hum"), SoundCategory.BLOCKS, pos);
+        //SoundEvents.playingSounds.put(pos, ls);
+        //Minecraft.getMinecraft().getSoundHandler().playSound(ls);
+      }
+
     }
   }
 
   @Override
   public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
   {
+    //SonoOreEntity soe = (SonoOreEntity)worldIn.getTileEntity(pos);
     Sonos.log.info("SonoOre updateTick!");
     if(state.getValue(LitAF) != 0)
     {
       worldIn.setBlockState(pos, this.getDefaultState());
+      if(worldIn.isRemote)
+      {
+        //soe.lopped.stop
+        //Minecraft.getMinecraft().getSoundHandler().stopSound(SoundEvents.playingSounds.get(pos));
+      }
+    }
+    else if(state.getValue(LitAF) == 0 && worldIn.isRemote)
+    {
+      //soe.lopped.stop();
+      //Minecraft.getMinecraft().getSoundHandler().stopSound(SoundEvents.playingSounds.get(pos));
     }
   }
 

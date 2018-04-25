@@ -80,4 +80,8 @@ public class SoundEvents
 			}
 		}
 	}
+
+	/*public static Dictionary<BlockPos, ISound> playingSounds = new Dictionary<BlockPos, ISound>() {
+
+	};*/
 }

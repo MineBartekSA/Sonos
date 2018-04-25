@@ -9,6 +9,7 @@ import net.minecraft.client.audio.PositionedSound;
 
 public class LoopSound extends PositionedSound implements ITickableSound
 {
+  protected boolean isDone = false;
   public LoopSound(SoundEvent ev, SoundCategory cat, BlockPos pos)
   {
     this(ev.getSoundName(), cat, pos);
@@ -26,8 +27,10 @@ public class LoopSound extends PositionedSound implements ITickableSound
   @Override
   public boolean isDonePlaying()
   {
-    return false;
+    return isDone;
   }
+
+  public void stop() { this.isDone = true; this.repeat = false; }
 
   @Override
   public void update() {}

@@ -1,5 +1,6 @@
 package com.minebarteksa.sonos;
 
+import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
@@ -15,11 +16,13 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import org.apache.logging.log4j.Logger;
 import com.minebarteksa.sonos.sound.SoundEvents;
 import com.minebarteksa.sonos.blocks.SonosBlocks;
 import com.minebarteksa.sonos.items.SonosItems;
 import com.minebarteksa.sonos.sonosproxy.SonosCommon;
+import com.minebarteksa.sonos.gui.SonosGUIHandler;
 
 @Mod(modid = Sonos.ModID, name = Sonos.Name, version = Sonos.Version)
 public class Sonos
@@ -27,6 +30,9 @@ public class Sonos
   public static final String Name = "Sonos";
   public static final String ModID = "sonos";
   public static final String Version = "1.0.0";
+
+  @Instance
+  public static final Sonos instance = null;
 
   public static CreativeTabs cTab = new CreativeTabs("sonos") {
 	    @Override
@@ -40,14 +46,15 @@ public class Sonos
 
   public static Logger log;
 
-  @EventHandler
+  @Mod.EventHandler
   public void preInit(FMLPreInitializationEvent event)
   {
     log = event.getModLog();
     GameRegistry.registerWorldGenerator(new WorldGen(), 3);
+    NetworkRegistry.INSTANCE.registerGuiHandler(this, new SonosGUIHandler());
   }
 
-  @EventHandler
+  @Mod.EventHandler
   public void init(FMLInitializationEvent event)
   {
     log.info("Hello Sonos here!");

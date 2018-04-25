@@ -1,5 +1,7 @@
 package com.minebarteksa.sonos.tileEntitys;
 
+import net.minecraft.client.audio.SoundHandler;
+import com.minebarteksa.sonos.sound.LoopSound;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -10,12 +12,9 @@ import net.minecraft.tileentity.TileEntity;
 
 public class SonoOreEntity extends TileEntity
 {
+  public SoundHandler sHand;
+  public LoopSound lopped;
   public int note = 0;
-
-  public void setLightLevel(float value)
-  {
-    this.world.getBlockState(pos).getBlock().setLightLevel(value);
-  }
 
   @Override
   public NBTTagCompound writeToNBT(NBTTagCompound compound)
