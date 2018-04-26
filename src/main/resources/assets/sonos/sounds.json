@@ -59,10 +59,68 @@
     "sounds": [ "sonos:sonar/sonar_b" ]
   },
 
+
+
   "hum_c":{
     "category": "blocks",
     "sounds": [ "sonos:hum/hum_c" ]
   },
+
+  "hum_cs":{
+    "category": "blocks",
+    "sounds": [ "sonos:hum/hum_cs" ]
+  },
+
+  "hum_d":{
+    "category": "blocks",
+    "sounds": [ "sonos:hum/hum_d" ]
+  },
+
+  "hum_ds":{
+    "category": "blocks",
+    "sounds": [ "sonos:hum/hum_ds" ]
+  },
+
+  "hum_e":{
+    "category": "blocks",
+    "sounds": [ "sonos:hum/hum_e" ]
+  },
+
+  "hum_f":{
+    "category": "blocks",
+    "sounds": [ "sonos:hum/hum_f" ]
+  },
+
+  "hum_fs":{
+    "category": "blocks",
+    "sounds": [ "sonos:hum/hum_fs" ]
+  },
+
+  "hum_g":{
+    "category": "blocks",
+    "sounds": [ "sonos:hum/hum_g" ]
+  },
+
+  "hum_gs":{
+    "category": "blocks",
+    "sounds": [ "sonos:hum/hum_gs" ]
+  },
+
+  "hum_a":{
+    "category": "blocks",
+    "sounds": [ "sonos:hum/hum_a" ]
+  },
+
+  "hum_as":{
+    "category": "blocks",
+    "sounds": [ "sonos:hum/hum_as" ]
+  },
+
+  "hum_b":{
+    "category": "blocks",
+    "sounds": [ "sonos:hum/hum_b" ]
+  },
+
 
 
   "ring_c":{

@@ -1,5 +1,8 @@
-package com.minebarteksa.sonos.tileEntitys;
+package com.minebarteksa.sonos.tileentity;
 
+import com.minebarteksa.sonos.items.Sono;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ITickable;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.world.World;
 import net.minecraft.util.math.BlockPos;
@@ -15,10 +18,33 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraft.tileentity.TileEntity;
 
-public class ResonatorEntity extends TileEntity
+public class ResonatorEntity extends TileEntity implements ITickable
 {
   private EnergyStorage energy = new SonosEnergy(1500, 500);
   private ItemStackHandler itemHand = new ItemStackHandler(2);
+  private int processTime = 0;
+  private static final int totalProcessTime = 1000;
+
+  @Override
+  public void update()
+  {
+    if(itemHand.getStackInSlot(0) != ItemStack.EMPTY)
+    {
+      if(itemHand.getStackInSlot(0).getCount() != 64)
+      {
+        processTime++;
+        if(processTime == totalProcessTime)
+        {
+          processTime = 0;
+          ItemStack in = itemHand.extractItem(0, 1, false);
+          itemHand.insertItem(1, in, false);
+          this.markDirty();
+        }
+      }
+    }
+    else if(processTime != 0)
+      processTime = 0;
+  }
 
   @Override
   public NBTTagCompound writeToNBT(NBTTagCompound compound)

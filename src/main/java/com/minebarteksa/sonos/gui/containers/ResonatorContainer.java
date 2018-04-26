@@ -1,10 +1,11 @@
 package com.minebarteksa.sonos.gui.containers;
 
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import com.minebarteksa.sonos.tileEntitys.ResonatorEntity;
+import com.minebarteksa.sonos.tileentity.ResonatorEntity;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -16,20 +17,28 @@ public class ResonatorContainer extends Container
   public ResonatorContainer(InventoryPlayer playerInv, final ResonatorEntity re)
   {
     IItemHandler iHand = re.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
-    addSlotToContainer(new SlotItemHandler(iHand, 0, 80, 35)
+    addSlotToContainer(new SlotItemHandler(iHand, 0, 56, 34)
     {
       @Override
-      public void onSlotChanged() {
-        re.markDirty();
+      public void onSlotChanged() { re.markDirty(); }
+
+      @Override
+      public boolean isItemValid(ItemStack stack)
+      {
+        for(ItemStack s : OreDictionary.getOres("sono"))
+          if(s.getItem() == stack.getItem())
+            return true;
+        return false;
       }
     });
 
-    addSlotToContainer(new SlotItemHandler(iHand, 1, 160, 35)
+    addSlotToContainer(new SlotItemHandler(iHand, 1, 116, 35)
     {
       @Override
-      public void onSlotChanged() {
-        re.markDirty();
-      }
+      public void onSlotChanged() { re.markDirty(); }
+
+      @Override
+      public boolean isItemValid(ItemStack stack) { return false; }
     });
 
     for (int i = 0; i < 3; i++) {
@@ -46,7 +55,7 @@ public class ResonatorContainer extends Container
   @Override
   public boolean canInteractWith(EntityPlayer playerIn)
   {
-    return false;
+    return true;
   }
 
   @Override

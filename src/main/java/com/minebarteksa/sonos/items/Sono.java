@@ -1,8 +1,5 @@
 package com.minebarteksa.sonos.items;
 
-import net.minecraft.util.math.BlockPos;
-import com.minebarteksa.sonos.sound.LoopSound;
-import net.minecraft.client.Minecraft;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundCategory;
 import com.minebarteksa.sonos.sound.SoundEvents;
@@ -34,7 +31,6 @@ public class Sono extends ItemBase
 	{
 		if(worldIn.isRemote)
 		{
-			playerIn.sendMessage(new TextComponentString("Note: " + note));
 			SoundEvent e = SoundEvents.getSound(note, "sonar");
 			worldIn.playSound(playerIn, playerIn.posX, playerIn.posY, playerIn.posZ, e, SoundCategory.PLAYERS, 1.0f, 1.0f);
 		}

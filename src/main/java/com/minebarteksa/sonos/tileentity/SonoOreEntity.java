@@ -1,4 +1,4 @@
-package com.minebarteksa.sonos.tileEntitys;
+package com.minebarteksa.sonos.tileentity;
 
 import net.minecraft.client.audio.SoundHandler;
 import com.minebarteksa.sonos.sound.LoopSound;

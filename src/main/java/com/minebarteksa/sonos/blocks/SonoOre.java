@@ -3,7 +3,7 @@ package com.minebarteksa.sonos.blocks;
 import com.minebarteksa.sonos.items.SonosItems;
 import net.minecraft.item.Item;
 import net.minecraft.entity.Entity;
-import com.minebarteksa.sonos.tileEntitys.SonoOreEntity;
+import com.minebarteksa.sonos.tileentity.SonoOreEntity;
 import com.minebarteksa.sonos.Sonos;
 import java.util.Random;
 import net.minecraft.block.state.IBlockState;

@@ -1,6 +1,5 @@
 package com.minebarteksa.sonos;
 
-import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
@@ -11,7 +10,6 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -31,8 +29,8 @@ public class Sonos
   public static final String ModID = "sonos";
   public static final String Version = "1.0.0";
 
-  @Instance
-  public static final Sonos instance = null;
+  @Mod.Instance(ModID)
+  public static Sonos instance;
 
   public static CreativeTabs cTab = new CreativeTabs("sonos") {
 	    @Override

@@ -1,8 +1,9 @@
 package com.minebarteksa.sonos.gui;
 
+import net.minecraft.inventory.Container;
 import com.minebarteksa.sonos.gui.containers.ResonatorContainer;
 import com.minebarteksa.sonos.gui.ResonatorGui;
-import com.minebarteksa.sonos.tileEntitys.ResonatorEntity;
+import com.minebarteksa.sonos.tileentity.ResonatorEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,7 +31,7 @@ public class SonosGUIHandler implements IGuiHandler
     switch(ID)
     {
       case ResonatorID:
-        return new ResonatorGui(getServerGuiElement(ID, player, world, x, y, z), player.inventory);
+        return new ResonatorGui((Container)getServerGuiElement(ID, player, world, x, y, z), player.inventory);
       default:
         return null;
     }

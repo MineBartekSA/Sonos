@@ -10,7 +10,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.world.World;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.material.Material;
-import com.minebarteksa.sonos.tileEntitys.ResonatorEntity;
+import com.minebarteksa.sonos.tileentity.ResonatorEntity;
 
 public class Resonator extends TileEntityBlockBase<ResonatorEntity>
 {

@@ -20,11 +20,26 @@ public class SoundEvents
 	public static SoundEvent sonar_as = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_as")).setRegistryName("sonar_as");
 	public static SoundEvent sonar_b = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_b")).setRegistryName("sonar_b");
 	public static SoundEvent hum_c = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_c")).setRegistryName("hum_c");
+	public static SoundEvent hum_cs = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_cs")).setRegistryName("hum_cs");
+	public static SoundEvent hum_d = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_d")).setRegistryName("hum_d");
+	public static SoundEvent hum_ds = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_c")).setRegistryName("hum_ds");
+	public static SoundEvent hum_e = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_e")).setRegistryName("hum_e");
+	public static SoundEvent hum_f = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_f")).setRegistryName("hum_f");
+	public static SoundEvent hum_fs = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_c")).setRegistryName("hum_fs");
+	public static SoundEvent hum_g = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_g")).setRegistryName("hum_g");
+	public static SoundEvent hum_gs = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_c")).setRegistryName("hum_gs");
+	public static SoundEvent hum_a = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_a")).setRegistryName("hum_a");
+	public static SoundEvent hum_as = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_c")).setRegistryName("hum_as");
+	public static SoundEvent hum_b = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_b")).setRegistryName("hum_b");
 	public static SoundEvent ring_c = new SoundEvent(new ResourceLocation(Sonos.ModID, "ring_c")).setRegistryName("ring_c");
 
 	public static void registerSounds(IForgeRegistry<SoundEvent> registry)
 	{
-		registry.registerAll(sonar_c, sonar_cs, sonar_d, sonar_ds, sonar_e, sonar_f, sonar_fs, sonar_g, sonar_gs, sonar_a, sonar_as, sonar_b, hum_c, ring_c);
+		registry.registerAll(
+		sonar_c, sonar_cs, sonar_d, sonar_ds, sonar_e, sonar_f, sonar_fs, sonar_g, sonar_gs, sonar_a, sonar_as, sonar_b,
+		hum_c, hum_cs, hum_d, hum_ds, hum_e, hum_f, hum_fs, hum_g, hum_gs, hum_a, hum_as, hum_b,
+		ring_c
+		);
 	}
 
 	public static SoundEvent getSound(Notes note, String type)
