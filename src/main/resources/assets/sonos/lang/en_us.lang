@@ -13,7 +13,18 @@ item.sono_gs.name=Sono G#
 item.sono_a.name=Sono A
 item.sono_as.name=Sono A#
 item.sono_b.name=Sono B
-item.sono_prima_c.name=Sono Prima C
+item.sonos_prima_c=Sono Prima C
+item.sono_prima_cs.name=Sono Prima C#
+item.sono_prima_d.name=Sono Prima D
+item.sono_prima_ds.name=Sono Prima D#
+item.sono_prima_e.name=Sono Prima E
+item.sono_prima_f.name=Sono Prima F
+item.sono_prima_fs.name=Sono Prima F#
+item.sono_prima_g.name=Sono Prima G
+item.sono_prima_gs.name=Sono Prima G#
+item.sono_prima_a.name=Sono Prima A
+item.sono_prima_as.name=Sono Prima A#
+item.sono_prima_b.name=Sono Prima B
 
 #Blocks
 tile.sono_ore.name=Sono Ore

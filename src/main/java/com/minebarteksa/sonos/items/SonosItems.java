@@ -23,13 +23,24 @@ public class SonosItems
 	public static Sono sono_b = new Sono("sono_b", Notes.B, "").setCreativeTab(Sonos.cTab);
 
 	//Sono Primas
-	public static SonoPrima sono_prima_c = new SonoPrima("sono_prima_c", Notes.C).setCreativeTab(Sonos.cTab);
+	public static SonoPrima sono_prima_c = new SonoPrima("sono_prima_c", Notes.C);
+	public static SonoPrima sono_prima_cs = new SonoPrima("sono_prima_cs", Notes.CSharp).setCreativeTab(Sonos.cTab);
+	public static SonoPrima sono_prima_d = new SonoPrima("sono_prima_d", Notes.D).setCreativeTab(Sonos.cTab);
+	public static SonoPrima sono_prima_ds = new SonoPrima("sono_prima_ds", Notes.DSharp).setCreativeTab(Sonos.cTab);
+	public static SonoPrima sono_prima_e = new SonoPrima("sono_prima_e", Notes.E).setCreativeTab(Sonos.cTab);
+	public static SonoPrima sono_prima_f = new SonoPrima("sono_prima_f", Notes.F).setCreativeTab(Sonos.cTab);
+	public static SonoPrima sono_prima_fs = new SonoPrima("sono_prima_fs", Notes.FSharp).setCreativeTab(Sonos.cTab);
+	public static SonoPrima sono_prima_g = new SonoPrima("sono_prima_g", Notes.G).setCreativeTab(Sonos.cTab);
+	public static SonoPrima sono_prima_gs = new SonoPrima("sono_prima_gs", Notes.GSharp).setCreativeTab(Sonos.cTab);
+	public static SonoPrima sono_prima_a = new SonoPrima("sono_prima_a", Notes.A).setCreativeTab(Sonos.cTab);
+	public static SonoPrima sono_prima_as = new SonoPrima("sono_prima_as", Notes.ASharp).setCreativeTab(Sonos.cTab);
+	public static SonoPrima sono_prima_b = new SonoPrima("sono_prima_b", Notes.B).setCreativeTab(Sonos.cTab);
 
 	public static void register(IForgeRegistry<Item> registry)
 	{
 		registry.registerAll(
 		sono_c, sono_cs, sono_d, sono_ds, sono_e, sono_f, sono_fs, sono_g, sono_gs, sono_a, sono_as, sono_b,
-		sono_prima_c
+		sono_prima_c, sono_prima_cs, sono_prima_d, sono_prima_ds, sono_prima_e, sono_prima_f, sono_prima_fs, sono_prima_g, sono_prima_gs, sono_prima_a, sono_prima_as, sono_prima_b
 		);
 	}
 
@@ -48,6 +59,17 @@ public class SonosItems
 		sono_as.registerItemModel();
 		sono_b.registerItemModel();
 		sono_prima_c.registerItemModel();
+		sono_prima_cs.registerItemModel();
+		sono_prima_d.registerItemModel();
+		sono_prima_ds.registerItemModel();
+		sono_prima_e.registerItemModel();
+		sono_prima_f.registerItemModel();
+		sono_prima_fs.registerItemModel();
+		sono_prima_g.registerItemModel();
+		sono_prima_gs.registerItemModel();
+		sono_prima_a.registerItemModel();
+		sono_prima_as.registerItemModel();
+		sono_prima_b.registerItemModel();
 	}
 
 	public static Sono getSonoFormNote(Notes note)
@@ -89,6 +111,28 @@ public class SonosItems
 		{
 			case "C":
 				return sono_prima_c;
+			case "CSharp":
+				return sono_prima_cs;
+			case "D":
+				return sono_prima_d;
+			case "DSharp":
+				return sono_prima_ds;
+			case "E":
+				return sono_prima_e;
+			case "F":
+				return sono_prima_f;
+			case "FSharp":
+				return sono_prima_fs;
+			case "G":
+				return sono_prima_g;
+			case "GSharp":
+				return sono_prima_gs;
+			case "A":
+				return sono_prima_a;
+			case "ASharp":
+				return sono_prima_as;
+			case "B":
+				return sono_prima_b;
 			default:
 				return null;
 		}
