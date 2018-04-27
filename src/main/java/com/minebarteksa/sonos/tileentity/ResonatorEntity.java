@@ -1,5 +1,6 @@
 package com.minebarteksa.sonos.tileentity;
 
+import com.minebarteksa.sonos.items.SonosItems;
 import com.minebarteksa.sonos.items.Sono;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ITickable;
@@ -22,8 +23,8 @@ public class ResonatorEntity extends TileEntity implements ITickable
 {
   private EnergyStorage energy = new SonosEnergy(1500, 500);
   private ItemStackHandler itemHand = new ItemStackHandler(2);
-  private int processTime = 0;
-  private static final int totalProcessTime = 1000;
+  public int processTime = 0;
+  public static final int totalProcessTime = 100;
 
   @Override
   public void update()
@@ -37,7 +38,7 @@ public class ResonatorEntity extends TileEntity implements ITickable
         {
           processTime = 0;
           ItemStack in = itemHand.extractItem(0, 1, false);
-          itemHand.insertItem(1, in, false);
+          itemHand.insertItem(1, new ItemStack(SonosItems.getSonoPrimaFormNote(((Sono)in.getItem()).note), 1), false);
           this.markDirty();
         }
       }
@@ -51,6 +52,7 @@ public class ResonatorEntity extends TileEntity implements ITickable
   {
     compound.setTag("energystorage", ((SonosEnergy)energy).serNBT());
     compound.setTag("items", itemHand.serializeNBT());
+    compound.setInteger("processTime", processTime);
     return super.writeToNBT(compound);
   }
 
@@ -59,6 +61,7 @@ public class ResonatorEntity extends TileEntity implements ITickable
   {
     ((SonosEnergy)energy).deNBT(compound.getCompoundTag("energystorage"));
     itemHand.deserializeNBT(compound.getCompoundTag("items"));
+    processTime = compound.getInteger("processTime");
     super.readFromNBT(compound);
   }
 

@@ -1,5 +1,10 @@
 package com.minebarteksa.sonos.sound;
 
+import javax.annotation.Nullable;
+import net.minecraft.world.World;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.entity.player.EntityPlayer;
 import com.minebarteksa.sonos.Sonos;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraft.util.ResourceLocation;
@@ -49,6 +54,22 @@ public class SoundEvents
 		n = n.toLowerCase();
 		Sonos.log.info("Requested Soudn: " + type + "_" + n);
 		return SoundEvent.REGISTRY.getObject(new ResourceLocation(Sonos.ModID, type + "_" + n));
+	}
+
+	public static void playChords(World world, EntityPlayer play, Notes note, String noteType, int quality)
+	{
+		playChords(world, new BlockPos(play.posX, play.posY, play.posZ), SoundCategory.PLAYERS, note, noteType, quality, play);
+	}
+
+	public static void playChords(World world, BlockPos pos, SoundCategory cat, Notes note, String noteType, int quality, @Nullable EntityPlayer play)
+	{
+		int[] chord = Chords.getChordNotes(note.Number(), quality);
+		SoundEvent e1 = SoundEvents.getSound(Notes.getNote(chord[0]), noteType);
+		SoundEvent e2 = SoundEvents.getSound(Notes.getNote(chord[1]), noteType);
+		SoundEvent e3 = SoundEvents.getSound(Notes.getNote(chord[2]), noteType);
+		world.playSound(play, pos.getX(), pos.getY(), pos.getZ(), e1, cat, 1.0f, 1.0f);
+		world.playSound(play, pos.getX(), pos.getY(), pos.getZ(), e2, cat, 1.0f, 1.0f);
+		world.playSound(play, pos.getX(), pos.getY(), pos.getZ(), e3, cat, 1.0f, 1.0f);
 	}
 
 	public static enum Notes

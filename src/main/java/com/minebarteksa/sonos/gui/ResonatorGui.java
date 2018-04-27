@@ -1,5 +1,6 @@
 package com.minebarteksa.sonos.gui;
 
+import com.minebarteksa.sonos.tileentity.ResonatorEntity;
 import com.minebarteksa.sonos.blocks.SonosBlocks;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.renderer.GlStateManager;
@@ -13,11 +14,14 @@ public class ResonatorGui extends GuiContainer
 {
   private static final ResourceLocation BackGroundImage = new ResourceLocation(Sonos.ModID, "textures/gui/resonator.png");
   private InventoryPlayer playerInv;
+  private ResonatorEntity re;
+  private static final int ProgressBarWidth = 22;
 
-  public ResonatorGui(Container cont, InventoryPlayer pl)
+  public ResonatorGui(Container cont, InventoryPlayer pl, ResonatorEntity te)
   {
     super(cont);
     this.playerInv = pl;
+    this.re = te;
   }
 
   @Override
@@ -28,6 +32,13 @@ public class ResonatorGui extends GuiContainer
     int x = (width - xSize) / 2;
     int y = (height - ySize) / 2;
     drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+    drawTexturedModalRect(x + 80, y + 35, 177, 14, calculateWidth(), 16);
+  }
+
+  private int calculateWidth()
+  {
+    int percentageOfProgress = (re.processTime * 100) / re.totalProcessTime;
+    return (percentageOfProgress * ProgressBarWidth) / 100;
   }
 
   @Override
@@ -36,5 +47,13 @@ public class ResonatorGui extends GuiContainer
     String name = I18n.format(SonosBlocks.e.getUnlocalizedName() + ".name");
 		fontRenderer.drawString(name, xSize / 2 - fontRenderer.getStringWidth(name) / 2, 6, 0x404040);
 		fontRenderer.drawString(playerInv.getDisplayName().getUnformattedText(), 8, ySize - 94, 0x404040);
+  }
+
+  @Override
+  public void drawScreen(int mouseX, int mouseY, float partialTicks)
+  {
+    this.drawDefaultBackground();
+    super.drawScreen(mouseX, mouseY, partialTicks);
+    this.renderHoveredToolTip(mouseX, mouseY);
   }
 }

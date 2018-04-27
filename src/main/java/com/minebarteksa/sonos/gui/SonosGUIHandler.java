@@ -31,7 +31,7 @@ public class SonosGUIHandler implements IGuiHandler
     switch(ID)
     {
       case ResonatorID:
-        return new ResonatorGui((Container)getServerGuiElement(ID, player, world, x, y, z), player.inventory);
+        return new ResonatorGui((Container)getServerGuiElement(ID, player, world, x, y, z), player.inventory, (ResonatorEntity)world.getTileEntity(new BlockPos(x, y, z)));
       default:
         return null;
     }

@@ -23,11 +23,14 @@ public class SonosItems
 	public static Sono sono_b = new Sono("sono_b", Notes.B, "").setCreativeTab(Sonos.cTab);
 
 	//Sono Primas
-	public static SonoPrima sono_prima_c = new SonoPrima("sono_prima_c", Notes.C);
+	public static SonoPrima sono_prima_c = new SonoPrima("sono_prima_c", Notes.C).setCreativeTab(Sonos.cTab);
 
 	public static void register(IForgeRegistry<Item> registry)
 	{
-		registry.registerAll(sono_c, sono_cs, sono_d, sono_ds, sono_e, sono_f, sono_fs, sono_g, sono_gs, sono_a, sono_as, sono_b, sono_prima_c);
+		registry.registerAll(
+		sono_c, sono_cs, sono_d, sono_ds, sono_e, sono_f, sono_fs, sono_g, sono_gs, sono_a, sono_as, sono_b,
+		sono_prima_c
+		);
 	}
 
 	public static void registerModels()
@@ -47,6 +50,50 @@ public class SonosItems
 		sono_prima_c.registerItemModel();
 	}
 
+	public static Sono getSonoFormNote(Notes note)
+	{
+		switch(note.toString())
+		{
+			case "C":
+        return sono_c;
+      case "CSharp":
+        return sono_cs;
+      case "D":
+        return sono_d;
+      case "DSharp":
+        return sono_ds;
+      case "E":
+        return sono_e;
+      case "F":
+        return sono_f;
+      case "FSharp":
+        return sono_fs;
+      case "G":
+        return sono_g;
+      case "GSharp":
+        return sono_gs;
+      case "A":
+        return sono_a;
+      case "ASharp":
+        return sono_as;
+      case "B":
+        return sono_b;
+			default:
+				return null;
+		}
+	}
+
+	public static SonoPrima getSonoPrimaFormNote(Notes note)
+	{
+		switch(note.toString())
+		{
+			case "C":
+				return sono_prima_c;
+			default:
+				return null;
+		}
+	}
+
 	public static void initOreDictionary()
 	{
 		OreDictionary.registerOre("sono", sono_c);
@@ -61,6 +108,21 @@ public class SonosItems
 		OreDictionary.registerOre("sono", sono_a);
 		OreDictionary.registerOre("sono", sono_as);
 		OreDictionary.registerOre("sono", sono_b);
+		OreDictionary.registerOre("sono", sono_prima_c);
+
+		OreDictionary.registerOre("rawSono", sono_c);
+		OreDictionary.registerOre("rawSono", sono_cs);
+		OreDictionary.registerOre("rawSono", sono_d);
+		OreDictionary.registerOre("rawSono", sono_ds);
+		OreDictionary.registerOre("rawSono", sono_e);
+		OreDictionary.registerOre("rawSono", sono_f);
+		OreDictionary.registerOre("rawSono", sono_fs);
+		OreDictionary.registerOre("rawSono", sono_g);
+		OreDictionary.registerOre("rawSono", sono_gs);
+		OreDictionary.registerOre("rawSono", sono_a);
+		OreDictionary.registerOre("rawSono", sono_as);
+		OreDictionary.registerOre("rawSono", sono_b);
+
 		OreDictionary.registerOre("sonoPrima", sono_prima_c);
 	}
 }
