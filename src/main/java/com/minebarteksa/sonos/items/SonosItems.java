@@ -22,9 +22,12 @@ public class SonosItems
 	public static Sono sono_as = new Sono("sono_as", Notes.ASharp, "").setCreativeTab(Sonos.cTab);
 	public static Sono sono_b = new Sono("sono_b", Notes.B, "").setCreativeTab(Sonos.cTab);
 
+	//Sono Primas
+	public static SonoPrima sono_prima_c = new SonoPrima("sono_prima_c", Notes.C);
+
 	public static void register(IForgeRegistry<Item> registry)
 	{
-		registry.registerAll(sono_c, sono_cs, sono_d, sono_ds, sono_e, sono_f, sono_fs, sono_g, sono_gs, sono_a, sono_as, sono_b);
+		registry.registerAll(sono_c, sono_cs, sono_d, sono_ds, sono_e, sono_f, sono_fs, sono_g, sono_gs, sono_a, sono_as, sono_b, sono_prima_c);
 	}
 
 	public static void registerModels()
@@ -41,6 +44,7 @@ public class SonosItems
 		sono_a.registerItemModel();
 		sono_as.registerItemModel();
 		sono_b.registerItemModel();
+		sono_prima_c.registerItemModel();
 	}
 
 	public static void initOreDictionary()
@@ -57,5 +61,6 @@ public class SonosItems
 		OreDictionary.registerOre("sono", sono_a);
 		OreDictionary.registerOre("sono", sono_as);
 		OreDictionary.registerOre("sono", sono_b);
+		OreDictionary.registerOre("sonoPrima", sono_prima_c);
 	}
 }

@@ -96,6 +96,62 @@ public class SoundEvents
 		}
 	}
 
+	public static enum Chords
+	{
+		Root (0), Diminished (1), Minor (2), Major (3), Augmented (4);
+
+		private final int number;
+
+		Chords(int quality)
+		{
+			this.number = quality;
+		}
+
+		public int Number()
+		{
+			return number;
+		}
+
+		public static Chords getChord(int num)
+		{
+			switch(num)
+			{
+				case 0:
+					return Chords.Root;
+				case 1:
+					return Chords.Diminished;
+				case 2:
+					return Chords.Minor;
+				case 3:
+					return Chords.Major;
+				case 4:
+					return Chords.Augmented;
+				default:
+					return Chords.Root;
+			}
+		}
+
+		public static int[] getChordNotes(int note, int quality)
+		{
+			int x;
+			switch(quality)
+			{
+				case 1:
+					x = 2;
+				case 2:
+					x = 3;
+				case 3:
+					x = 4;
+				case 4:
+					x = 5;
+				default:
+					x = 4;
+			}
+			int[] out = {note, note + x, note + 7};
+			return out;
+		}
+	}
+
 	/*public static Dictionary<BlockPos, ISound> playingSounds = new Dictionary<BlockPos, ISound>() {
 
 	};*/
