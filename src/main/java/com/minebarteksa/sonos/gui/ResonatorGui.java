@@ -42,7 +42,7 @@ public class ResonatorGui extends GuiContainer
   private int calculateWidth()
   {
     ResonatorEntity re = (ResonatorEntity)w.getTileEntity(pos);
-    int percentageOfProgress = (re.getProcess() * 100) / re.totalProcessTime;
+    int percentageOfProgress = (re.getProcess() * 100) / ResonatorEntity.totalProcessTime;
     Sonos.log.info("Percentage Of Progress: " + percentageOfProgress + "%");
     return (percentageOfProgress * ProgressBarWidth) / 100;
     //return ProgressBarWidth;

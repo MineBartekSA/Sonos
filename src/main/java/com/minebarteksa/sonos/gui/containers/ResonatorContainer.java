@@ -17,7 +17,7 @@ public class ResonatorContainer extends Container
   public ResonatorContainer(InventoryPlayer playerInv, final ResonatorEntity re)
   {
     IItemHandler iHand = re.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
-    addSlotToContainer(new SlotItemHandler(iHand, 0, 56, 34)
+    addSlotToContainer(new SlotItemHandler(iHand, 0, 56, 35)
     {
       @Override
       public void onSlotChanged() { re.markDirty(); }

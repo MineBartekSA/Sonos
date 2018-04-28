@@ -1,6 +1,5 @@
 package com.minebarteksa.sonos.tileentity;
 
-import com.minebarteksa.sonos.Sonos;
 import com.minebarteksa.sonos.items.SonosItems;
 import com.minebarteksa.sonos.items.Sono;
 import net.minecraft.item.ItemStack;
@@ -64,19 +63,19 @@ public class ResonatorEntity extends TileEntity implements ITickable
   @Override
   public NBTTagCompound writeToNBT(NBTTagCompound compound)
   {
-    Sonos.log.info("Energy stored get: " + energy.getEnergyStored());
-    Sonos.log.info("Energy tag: " + energy.serNBT().toString());
+    //Sonos.log.info("Energy stored get: " + energy.getEnergyStored());
+    //Sonos.log.info("Energy tag: " + energy.serNBT().toString());
     compound.setTag("energystorage", energy.serNBT());
     compound.setTag("items", itemHand.serializeNBT());
     compound.setInteger("processTime", processTime);
-    Sonos.log.info("Full block tag: " + compound.toString());
+    //Sonos.log.info("Full block tag: " + compound.toString());
     return super.writeToNBT(compound);
   }
 
   @Override
   public void readFromNBT(NBTTagCompound compound)
   {
-    Sonos.log.info("Reading Tag: " + compound.toString());
+    //Sonos.log.info("Reading Tag: " + compound.toString());
     energy.deNBT(compound.getCompoundTag("energystorage"));
     itemHand.deserializeNBT(compound.getCompoundTag("items"));
     processTime = compound.getInteger("processTime");
