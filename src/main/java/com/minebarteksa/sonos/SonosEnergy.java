@@ -5,24 +5,19 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class SonosEnergy extends EnergyStorage
 {
-  protected int energy;
-  protected int capacity;
-  protected int maxReceive;
-  protected int maxExtract;
-
   public SonosEnergy(int capacity)
   {
-      this(capacity, capacity, capacity, 0);
+    this(capacity, capacity, capacity, 0);
   }
 
   public SonosEnergy(int capacity, int maxTransfer)
   {
-      this(capacity, maxTransfer, maxTransfer, 0);
+    this(capacity, maxTransfer, maxTransfer, 0);
   }
 
   public SonosEnergy(int capacity, int maxReceive, int maxExtract)
   {
-      this(capacity, maxReceive, maxExtract, 0);
+    this(capacity, maxReceive, maxExtract, 0);
   }
 
   public SonosEnergy(int capacity, int maxReceive, int maxExtract, int energy)
@@ -33,10 +28,10 @@ public class SonosEnergy extends EnergyStorage
   public NBTTagCompound serNBT()
   {
     NBTTagCompound nbt = new NBTTagCompound();
-    nbt.setInteger("capacity", this.capacity);
-    nbt.setInteger("receive", this.maxReceive);
-    nbt.setInteger("extract", this.maxExtract);
-    nbt.setInteger("energy", this.energy);
+    nbt.setInteger("capacity", capacity);
+    nbt.setInteger("receive", maxReceive);
+    nbt.setInteger("extract", maxExtract);
+    nbt.setInteger("energy", energy);
     return nbt;
   }
 

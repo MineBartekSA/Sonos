@@ -1,5 +1,6 @@
 package com.minebarteksa.sonos.tileentity;
 
+import com.minebarteksa.sonos.Sonos;
 import com.minebarteksa.sonos.items.SonosItems;
 import com.minebarteksa.sonos.items.Sono;
 import net.minecraft.item.ItemStack;
@@ -12,7 +13,7 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import com.minebarteksa.sonos.SonosEnergy;
-import net.minecraftforge.energy.EnergyStorage;
+import com.minebarteksa.sonos.items.SonoPrima;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraft.util.EnumFacing;
@@ -21,7 +22,7 @@ import net.minecraft.tileentity.TileEntity;
 
 public class ResonatorEntity extends TileEntity implements ITickable
 {
-  private EnergyStorage energy = new SonosEnergy(1500, 500);
+  private SonosEnergy energy = new SonosEnergy(1500, 100);
   private ItemStackHandler itemHand = new ItemStackHandler(2);
   public int processTime = 0;
   public static final int totalProcessTime = 100;
@@ -31,35 +32,52 @@ public class ResonatorEntity extends TileEntity implements ITickable
   {
     if(itemHand.getStackInSlot(0) != ItemStack.EMPTY)
     {
-      if(itemHand.getStackInSlot(0).getCount() != 64)
+      if(itemHand.getStackInSlot(1).getCount() != 64 && energy.extractEnergy(10, true) == 10 && checkOut())
       {
+        energy.extractEnergy(10, false);
         processTime++;
         if(processTime == totalProcessTime)
         {
           processTime = 0;
           ItemStack in = itemHand.extractItem(0, 1, false);
           itemHand.insertItem(1, new ItemStack(SonosItems.getSonoPrimaFormNote(((Sono)in.getItem()).note), 1), false);
-          this.markDirty();
         }
+        this.markDirty();
       }
     }
     else if(processTime != 0)
       processTime = 0;
   }
 
+  private boolean checkOut()
+  {
+    if(itemHand.getStackInSlot(1) != ItemStack.EMPTY && ((Sono)itemHand.getStackInSlot(0).getItem()).note == ((SonoPrima)itemHand.getStackInSlot(1).getItem()).note)
+      return true;
+    else if(itemHand.getStackInSlot(1) == ItemStack.EMPTY)
+      return true;
+    else
+      return false;
+  }
+
+  public int getProcess() { return this.processTime; }
+
   @Override
   public NBTTagCompound writeToNBT(NBTTagCompound compound)
   {
-    compound.setTag("energystorage", ((SonosEnergy)energy).serNBT());
+    Sonos.log.info("Energy stored get: " + energy.getEnergyStored());
+    Sonos.log.info("Energy tag: " + energy.serNBT().toString());
+    compound.setTag("energystorage", energy.serNBT());
     compound.setTag("items", itemHand.serializeNBT());
     compound.setInteger("processTime", processTime);
+    Sonos.log.info("Full block tag: " + compound.toString());
     return super.writeToNBT(compound);
   }
 
   @Override
   public void readFromNBT(NBTTagCompound compound)
   {
-    ((SonosEnergy)energy).deNBT(compound.getCompoundTag("energystorage"));
+    Sonos.log.info("Reading Tag: " + compound.toString());
+    energy.deNBT(compound.getCompoundTag("energystorage"));
     itemHand.deserializeNBT(compound.getCompoundTag("items"));
     processTime = compound.getInteger("processTime");
     super.readFromNBT(compound);

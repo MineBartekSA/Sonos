@@ -1,5 +1,7 @@
 package com.minebarteksa.sonos.gui;
 
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import com.minebarteksa.sonos.tileentity.ResonatorEntity;
 import com.minebarteksa.sonos.blocks.SonosBlocks;
 import net.minecraft.client.resources.I18n;
@@ -14,14 +16,16 @@ public class ResonatorGui extends GuiContainer
 {
   private static final ResourceLocation BackGroundImage = new ResourceLocation(Sonos.ModID, "textures/gui/resonator.png");
   private InventoryPlayer playerInv;
-  private ResonatorEntity re;
+  private World w;
+  private BlockPos pos;
   private static final int ProgressBarWidth = 22;
 
-  public ResonatorGui(Container cont, InventoryPlayer pl, ResonatorEntity te)
+  public ResonatorGui(Container cont, InventoryPlayer pl, BlockPos pos, World world)
   {
     super(cont);
     this.playerInv = pl;
-    this.re = te;
+    this.pos = pos;
+    this.w = world;
   }
 
   @Override
@@ -37,8 +41,11 @@ public class ResonatorGui extends GuiContainer
 
   private int calculateWidth()
   {
-    int percentageOfProgress = (re.processTime * 100) / re.totalProcessTime;
+    ResonatorEntity re = (ResonatorEntity)w.getTileEntity(pos);
+    int percentageOfProgress = (re.getProcess() * 100) / re.totalProcessTime;
+    Sonos.log.info("Percentage Of Progress: " + percentageOfProgress + "%");
     return (percentageOfProgress * ProgressBarWidth) / 100;
+    //return ProgressBarWidth;
   }
 
   @Override

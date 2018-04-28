@@ -23,7 +23,7 @@ public class SonosItems
 	public static Sono sono_b = new Sono("sono_b", Notes.B, "").setCreativeTab(Sonos.cTab);
 
 	//Sono Primas
-	public static SonoPrima sono_prima_c = new SonoPrima("sono_prima_c", Notes.C);
+	public static SonoPrima sono_prima_c = new SonoPrima("sono_prima_c", Notes.C).setCreativeTab(Sonos.cTab);
 	public static SonoPrima sono_prima_cs = new SonoPrima("sono_prima_cs", Notes.CSharp).setCreativeTab(Sonos.cTab);
 	public static SonoPrima sono_prima_d = new SonoPrima("sono_prima_d", Notes.D).setCreativeTab(Sonos.cTab);
 	public static SonoPrima sono_prima_ds = new SonoPrima("sono_prima_ds", Notes.DSharp).setCreativeTab(Sonos.cTab);
@@ -153,6 +153,17 @@ public class SonosItems
 		OreDictionary.registerOre("sono", sono_as);
 		OreDictionary.registerOre("sono", sono_b);
 		OreDictionary.registerOre("sono", sono_prima_c);
+		OreDictionary.registerOre("sono", sono_prima_cs);
+		OreDictionary.registerOre("sono", sono_prima_d);
+		OreDictionary.registerOre("sono", sono_prima_ds);
+		OreDictionary.registerOre("sono", sono_prima_e);
+		OreDictionary.registerOre("sono", sono_prima_f);
+		OreDictionary.registerOre("sono", sono_prima_fs);
+		OreDictionary.registerOre("sono", sono_prima_g);
+		OreDictionary.registerOre("sono", sono_prima_gs);
+		OreDictionary.registerOre("sono", sono_prima_a);
+		OreDictionary.registerOre("sono", sono_prima_as);
+		OreDictionary.registerOre("sono", sono_prima_b);
 
 		OreDictionary.registerOre("rawSono", sono_c);
 		OreDictionary.registerOre("rawSono", sono_cs);
@@ -168,5 +179,16 @@ public class SonosItems
 		OreDictionary.registerOre("rawSono", sono_b);
 
 		OreDictionary.registerOre("sonoPrima", sono_prima_c);
+		OreDictionary.registerOre("sonoPrima", sono_prima_cs);
+		OreDictionary.registerOre("sonoPrima", sono_prima_d);
+		OreDictionary.registerOre("sonoPrima", sono_prima_ds);
+		OreDictionary.registerOre("sonoPrima", sono_prima_e);
+		OreDictionary.registerOre("sonoPrima", sono_prima_f);
+		OreDictionary.registerOre("sonoPrima", sono_prima_fs);
+		OreDictionary.registerOre("sonoPrima", sono_prima_g);
+		OreDictionary.registerOre("sonoPrima", sono_prima_gs);
+		OreDictionary.registerOre("sonoPrima", sono_prima_a);
+		OreDictionary.registerOre("sonoPrima", sono_prima_as);
+		OreDictionary.registerOre("sonoPrima", sono_prima_b);
 	}
 }

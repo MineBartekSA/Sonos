@@ -25,7 +25,7 @@ public class ResonatorContainer extends Container
       @Override
       public boolean isItemValid(ItemStack stack)
       {
-        for(ItemStack s : OreDictionary.getOres("sono"))
+        for(ItemStack s : OreDictionary.getOres("rawSono"))
           if(s.getItem() == stack.getItem())
             return true;
         return false;

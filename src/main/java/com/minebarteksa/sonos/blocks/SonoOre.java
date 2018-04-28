@@ -140,7 +140,7 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity>
   @Override
   public Item getItemDropped(IBlockState state, Random rand, int fortune)
   {
-    switch(Notes.getNote(state.getValue(LitAF)).toString())
+    switch(Notes.getNote(state.getValue(LitAF) - 1).toString())
     {
       case "C":
         return SonosItems.sono_c;

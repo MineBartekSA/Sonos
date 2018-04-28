@@ -52,7 +52,7 @@ public class SoundEvents
 		String n = note.toString();
 		n = n.replace("harp", "");
 		n = n.toLowerCase();
-		Sonos.log.info("Requested Soudn: " + type + "_" + n);
+		Sonos.log.info("Requested Sound: " + type + "_" + n);
 		return SoundEvent.REGISTRY.getObject(new ResourceLocation(Sonos.ModID, type + "_" + n));
 	}
 
