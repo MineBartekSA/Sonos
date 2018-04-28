@@ -1,0 +1,18 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "sonos:resonator",
+    "textures": {
+  		"0": "blocks/furnace_side",
+  		"1": "blocks/furnace_top",
+  		"2": "blocks/iron_block",
+  		"3": "blocks/glass",
+  		"4": "blocks/stone_slab_top",
+  		"particle": "blocks/furnace_side"
+    }
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}]
+  }
+}

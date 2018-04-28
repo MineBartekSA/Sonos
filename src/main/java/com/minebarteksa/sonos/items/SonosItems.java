@@ -8,7 +8,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class SonosItems
 {
-	//Unworked sono's
+	//Unworked Sonos
 	public static Sono sono_c = new Sono("sono_c", Notes.C, "").setCreativeTab(Sonos.cTab);
 	public static Sono sono_cs = new Sono("sono_cs", Notes.CSharp, "").setCreativeTab(Sonos.cTab);
 	public static Sono sono_d = new Sono("sono_d", Notes.D, "").setCreativeTab(Sonos.cTab);
