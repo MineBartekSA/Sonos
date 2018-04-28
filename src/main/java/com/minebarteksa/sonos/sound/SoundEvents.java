@@ -24,6 +24,7 @@ public class SoundEvents
 	public static SoundEvent sonar_a = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_a")).setRegistryName("sonar_a");
 	public static SoundEvent sonar_as = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_as")).setRegistryName("sonar_as");
 	public static SoundEvent sonar_b = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_b")).setRegistryName("sonar_b");
+
 	public static SoundEvent hum_c = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_c")).setRegistryName("hum_c");
 	public static SoundEvent hum_cs = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_cs")).setRegistryName("hum_cs");
 	public static SoundEvent hum_d = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_d")).setRegistryName("hum_d");
@@ -36,6 +37,7 @@ public class SoundEvents
 	public static SoundEvent hum_a = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_a")).setRegistryName("hum_a");
 	public static SoundEvent hum_as = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_c")).setRegistryName("hum_as");
 	public static SoundEvent hum_b = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_b")).setRegistryName("hum_b");
+
 	public static SoundEvent ring_c = new SoundEvent(new ResourceLocation(Sonos.ModID, "ring_c")).setRegistryName("ring_c");
 
 	public static void registerSounds(IForgeRegistry<SoundEvent> registry)
@@ -52,7 +54,7 @@ public class SoundEvents
 		String n = note.toString();
 		n = n.replace("harp", "");
 		n = n.toLowerCase();
-		Sonos.log.info("Requested Soudn: " + type + "_" + n);
+		Sonos.log.info("Requested Sound: " + type + "_" + n);
 		return SoundEvent.REGISTRY.getObject(new ResourceLocation(Sonos.ModID, type + "_" + n));
 	}
 
@@ -74,7 +76,7 @@ public class SoundEvents
 
 	public static enum Notes
 	{
-		None (0), C (1), CSharp (2), D (3), DSharp (4), E (5), F (6), FSharp (7), G (8), GSharp (9), A (10), ASharp (11), B (12);
+		C (0), CSharp (1), D (2), DSharp (3), E (4), F (5), FSharp (6), G (7), GSharp (8), A (9), ASharp (10), B (11), None (12);
 
 		private final int number;
 
@@ -87,29 +89,29 @@ public class SoundEvents
 		{
 			switch(num)
 			{
-				case 1:
+				case 0:
 					return Notes.C;
-				case 2:
+				case 1:
 					return Notes.CSharp;
-				case 3:
+				case 2:
 					return Notes.D;
-				case 4:
+				case 3:
 					return Notes.DSharp;
-				case 5:
+				case 4:
 					return Notes.E;
-				case 6:
+				case 5:
 					return Notes.F;
-				case 7:
+				case 6:
 					return Notes.FSharp;
-				case 8:
+				case 7:
 					return Notes.G;
-				case 9:
+				case 8:
 					return Notes.GSharp;
-				case 10:
+				case 9:
 					return Notes.A;
-				case 11:
+				case 10:
 					return Notes.ASharp;
-				case 12:
+				case 11:
 					return Notes.B;
 				default:
 					return Notes.None;
@@ -119,7 +121,7 @@ public class SoundEvents
 
 	public static enum Chords
 	{
-		Root (0), Diminished (1), Minor (2), Major (3), Augmented (4);
+		Root (0), Sus2 (1), Minor (2), Major (3), Sus4 (4);
 
 		private final int number;
 
@@ -140,13 +142,13 @@ public class SoundEvents
 				case 0:
 					return Chords.Root;
 				case 1:
-					return Chords.Diminished;
+					return Chords.Sus2;
 				case 2:
 					return Chords.Minor;
 				case 3:
 					return Chords.Major;
 				case 4:
-					return Chords.Augmented;
+					return Chords.Sus4;
 				default:
 					return Chords.Root;
 			}
@@ -168,7 +170,7 @@ public class SoundEvents
 				default:
 					x = 4;
 			}
-			int[] out = {note, note + x, note + 7};
+			int[] out = {note, (note + x) % 12, (note + 7) % 12};
 			return out;
 		}
 	}
