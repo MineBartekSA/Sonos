@@ -56,34 +56,21 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity>
     {
       world.setBlockState(pos, this.getBlockState().getBaseState().withProperty(LitAF, soe.getNote()));
       if(world.isRemote)
-      {
-        //LoopSound ls = new LoopSound(SoundEvents.getSound(Notes.getNote(soe.getNote()), "hum"), SoundCategory.BLOCKS, pos);
-        //SoundEvents.playingSounds.put(pos, ls);
-        //Minecraft.getMinecraft().getSoundHandler().playSound(ls);
-      }
-
+        soe.StartPlaying();
     }
   }
 
   @Override
   public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
   {
-    //SonoOreEntity soe = (SonoOreEntity)worldIn.getTileEntity(pos);
+    SonoOreEntity soe = (SonoOreEntity)worldIn.getTileEntity(pos);
     Sonos.log.info("SonoOre updateTick!");
     if(state.getValue(LitAF) != 0)
     {
       worldIn.setBlockState(pos, this.getDefaultState());
-      if(worldIn.isRemote)
-      {
-        //soe.lopped.stop
-        //Minecraft.getMinecraft().getSoundHandler().stopSound(SoundEvents.playingSounds.get(pos));
-      }
     }
-    else if(state.getValue(LitAF) == 0 && worldIn.isRemote)
-    {
-      //soe.lopped.stop();
-      //Minecraft.getMinecraft().getSoundHandler().stopSound(SoundEvents.playingSounds.get(pos));
-    }
+    if(worldIn.isRemote)
+      soe.StopPlaying();
   }
 
   @Override

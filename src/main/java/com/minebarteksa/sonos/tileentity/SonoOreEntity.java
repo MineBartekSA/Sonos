@@ -1,6 +1,11 @@
 package com.minebarteksa.sonos.tileentity;
 
-import net.minecraft.client.audio.SoundHandler;
+
+import com.minebarteksa.sonos.Sonos;
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.SoundCategory;
+import com.minebarteksa.sonos.sound.SoundEvents.Notes;
+import com.minebarteksa.sonos.sound.SoundEvents;
 import com.minebarteksa.sonos.sound.LoopSound;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
@@ -12,9 +17,22 @@ import net.minecraft.tileentity.TileEntity;
 
 public class SonoOreEntity extends TileEntity
 {
-  public SoundHandler sHand;
-  public LoopSound lopped;
+  public LoopSound ls;
   public int note = 0;
+
+  public void StartPlaying()
+  {
+    LoopSound ls = new LoopSound(SoundEvents.getSound(Notes.getNote(note), "hum"), SoundCategory.BLOCKS, pos);
+    Minecraft.getMinecraft().getSoundHandler().playSound(ls);
+    Sonos.log.info(ls.toString());
+  }
+
+  public void StopPlaying()
+  {
+    Sonos.log.info(ls.toString());
+    Minecraft.getMinecraft().getSoundHandler().stopSound(ls);
+    ls = null;
+  }
 
   @Override
   public NBTTagCompound writeToNBT(NBTTagCompound compound)
