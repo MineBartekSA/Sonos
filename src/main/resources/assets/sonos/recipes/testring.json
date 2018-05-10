@@ -1,0 +1,24 @@
+{
+  "type": "forge:ore_shaped",
+  "pattern": [
+    "#@#",
+    "@ @",
+    "#@#"
+  ],
+  "key":
+  {
+    "#":
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    "@":
+    {
+      "type": "forge:ore_dict",
+      "ore": "sono"
+    }
+  },
+  "result":
+  {
+    "item": "sonos:testring"
+  }
+}
