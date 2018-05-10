@@ -1,5 +1,9 @@
 package com.minebarteksa.sonos.blocks;
 
+import mcjty.theoneprobe.api.IProbeInfoAccessor;
+import mcjty.theoneprobe.api.IProbeHitData;
+import mcjty.theoneprobe.api.IProbeInfo;
+import mcjty.theoneprobe.api.ProbeMode;
 import com.minebarteksa.sonos.items.SonosItems;
 import net.minecraft.item.Item;
 import net.minecraft.entity.Entity;
@@ -15,8 +19,10 @@ import net.minecraft.world.World;
 import com.minebarteksa.sonos.sound.SoundEvents.Notes;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.fml.common.Optional;
 
-public class SonoOre extends TileEntityBlockBase<SonoOreEntity>
+@Optional.Interface(modid="theoneprobe", iface="mcjty.theoneprobe.api.IProbeInfoAccessor")
+public class SonoOre extends TileEntityBlockBase<SonoOreEntity> implements IProbeInfoAccessor
 {
   public static final PropertyInteger LitAF = PropertyInteger.create("lit_af", 0, 12);
 
@@ -38,7 +44,7 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity>
       int rand = 1;
       do
         rand = worldIn.rand.nextInt(12);
-      while (rand == 0 || rand > 12);
+      while (rand >= 12);
       soe.note = rand;
     }
   }
@@ -52,9 +58,9 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity>
   public void activate(World world, BlockPos pos)
   {
     SonoOreEntity soe = (SonoOreEntity)world.getTileEntity(pos);
-    if(world.getBlockState(pos).getValue(LitAF) != soe.getNote())
+    if(world.getBlockState(pos).getValue(LitAF) != soe.getNote() + 1)
     {
-      world.setBlockState(pos, this.getBlockState().getBaseState().withProperty(LitAF, soe.getNote()));
+      world.setBlockState(pos, this.getBlockState().getBaseState().withProperty(LitAF, 1 + soe.getNote()));
       if(world.isRemote)
         soe.StartPlaying();
     }
@@ -71,6 +77,14 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity>
     }
     if(worldIn.isRemote)
       soe.StopPlaying();
+  }
+
+  @Override
+  @Optional.Method(modid = "theoneprobe")
+  public void addProbeInfo(ProbeMode arg0, IProbeInfo probeInfo, EntityPlayer arg2, World worldIn, IBlockState arg4, IProbeHitData data)
+  {
+    SonoOreEntity soe = (SonoOreEntity)worldIn.getTileEntity(data.getPos());
+    probeInfo.text("Note: " + Notes.getNote(soe.getNote()));
   }
 
   @Override

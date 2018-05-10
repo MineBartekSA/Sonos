@@ -36,11 +36,15 @@ public class SonosItems
 	public static SonoPrima sono_prima_as = new SonoPrima("sono_prima_as", Notes.ASharp).setCreativeTab(Sonos.cTab);
 	public static SonoPrima sono_prima_b = new SonoPrima("sono_prima_b", Notes.B).setCreativeTab(Sonos.cTab);
 
+	//Others
+	public static TestRing tRing = new TestRing().setCreativeTab(Sonos.cTab);
+
 	public static void register(IForgeRegistry<Item> registry)
 	{
 		registry.registerAll(
 		sono_c, sono_cs, sono_d, sono_ds, sono_e, sono_f, sono_fs, sono_g, sono_gs, sono_a, sono_as, sono_b,
-		sono_prima_c, sono_prima_cs, sono_prima_d, sono_prima_ds, sono_prima_e, sono_prima_f, sono_prima_fs, sono_prima_g, sono_prima_gs, sono_prima_a, sono_prima_as, sono_prima_b
+		sono_prima_c, sono_prima_cs, sono_prima_d, sono_prima_ds, sono_prima_e, sono_prima_f, sono_prima_fs, sono_prima_g, sono_prima_gs, sono_prima_a, sono_prima_as, sono_prima_b,
+		tRing
 		);
 	}
 
@@ -70,6 +74,7 @@ public class SonosItems
 		sono_prima_a.registerItemModel();
 		sono_prima_as.registerItemModel();
 		sono_prima_b.registerItemModel();
+		tRing.registerItemModel();
 	}
 
 	public static Sono getSonoFormNote(Notes note)

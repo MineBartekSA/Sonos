@@ -1,5 +1,9 @@
 package com.minebarteksa.sonos;
 
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import com.minebarteksa.sonos.gui.SonosGUIHandler;
+import java.util.Random;
+import com.minebarteksa.sonos.sound.SoundEvents.Notes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
@@ -14,20 +18,19 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 import org.apache.logging.log4j.Logger;
 import com.minebarteksa.sonos.sound.SoundEvents;
 import com.minebarteksa.sonos.blocks.SonosBlocks;
 import com.minebarteksa.sonos.items.SonosItems;
 import com.minebarteksa.sonos.sonosproxy.SonosCommon;
-import com.minebarteksa.sonos.gui.SonosGUIHandler;
 
-@Mod(modid = Sonos.ModID, name = Sonos.Name, version = Sonos.Version)
+@Mod(modid = Sonos.ModID, name = Sonos.Name, version = Sonos.Version, dependencies = Sonos.Deps)
 public class Sonos
 {
   public static final String Name = "Sonos";
   public static final String ModID = "sonos";
   public static final String Version = "1.0.0";
+  public static final String Deps = "required-after:baubles;";
 
   @Mod.Instance(ModID)
   public static Sonos instance;
@@ -35,7 +38,8 @@ public class Sonos
   public static CreativeTabs cTab = new CreativeTabs("sonos") {
 	    @Override
 	    public ItemStack getTabIconItem() {
-		      return new ItemStack(SonosItems.sono_cs);
+		      Item i = SonosItems.getSonoFormNote(Notes.getNote(new Random().nextInt(12)));
+          return new ItemStack(i);
 	    }
   };
 
