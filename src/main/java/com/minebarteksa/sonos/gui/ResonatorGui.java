@@ -16,16 +16,14 @@ public class ResonatorGui extends GuiContainer
 {
   private static final ResourceLocation BackGroundImage = new ResourceLocation(Sonos.ModID, "textures/gui/resonator.png");
   private InventoryPlayer playerInv;
-  private World w;
-  private BlockPos pos;
+  private ResonatorEntity re;
   private static final int ProgressBarWidth = 22;
 
   public ResonatorGui(Container cont, InventoryPlayer pl, BlockPos pos, World world)
   {
     super(cont);
     this.playerInv = pl;
-    this.pos = pos;
-    this.w = world;
+    re = (ResonatorEntity)world.getTileEntity(pos);
   }
 
   @Override
@@ -36,16 +34,7 @@ public class ResonatorGui extends GuiContainer
     int x = (width - xSize) / 2;
     int y = (height - ySize) / 2;
     drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
-    drawTexturedModalRect(x + 80, y + 35, 177, 14, calculateWidth(), 16);
-  }
-
-  private int calculateWidth()
-  {
-    ResonatorEntity re = (ResonatorEntity)w.getTileEntity(pos);
-    int percentageOfProgress = (re.getProcess() * 100) / ResonatorEntity.totalProcessTime;
-    Sonos.log.info("Percentage Of Progress: " + percentageOfProgress + "%");
-    return (percentageOfProgress * ProgressBarWidth) / 100;
-    //return ProgressBarWidth;
+    drawTexturedModalRect(x + 80, y + 35, 177, 14, re.getProgressPercantage(ProgressBarWidth), 16);
   }
 
   @Override

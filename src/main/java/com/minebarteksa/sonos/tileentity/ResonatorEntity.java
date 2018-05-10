@@ -1,5 +1,6 @@
 package com.minebarteksa.sonos.tileentity;
 
+import net.minecraft.item.ItemAir;
 import com.minebarteksa.sonos.items.SonosItems;
 import com.minebarteksa.sonos.items.Sono;
 import net.minecraft.item.ItemStack;
@@ -41,6 +42,7 @@ public class ResonatorEntity extends TileEntity implements ITickable
           ItemStack in = itemHand.extractItem(0, 1, false);
           itemHand.insertItem(1, new ItemStack(SonosItems.getSonoPrimaFormNote(((Sono)in.getItem()).note), 1), false);
         }
+        world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
         this.markDirty();
       }
     }
@@ -50,7 +52,9 @@ public class ResonatorEntity extends TileEntity implements ITickable
 
   private boolean checkOut()
   {
-    if(itemHand.getStackInSlot(1) != ItemStack.EMPTY && ((Sono)itemHand.getStackInSlot(0).getItem()).note == ((SonoPrima)itemHand.getStackInSlot(1).getItem()).note)
+    if(itemHand.getStackInSlot(1).getItem() instanceof ItemAir)
+      return true;
+    else if(itemHand.getStackInSlot(1) != ItemStack.EMPTY && ((Sono)itemHand.getStackInSlot(0).getItem()).note == ((SonoPrima)itemHand.getStackInSlot(1).getItem()).note)
       return true;
     else if(itemHand.getStackInSlot(1) == ItemStack.EMPTY)
       return true;
@@ -60,22 +64,24 @@ public class ResonatorEntity extends TileEntity implements ITickable
 
   public int getProcess() { return this.processTime; }
 
+  public int getProgressPercantage(int barWidth)
+  {
+    int percentageOfProgress = (processTime * 100) / ResonatorEntity.totalProcessTime;
+    return (percentageOfProgress * barWidth) / 100;
+  }
+
   @Override
   public NBTTagCompound writeToNBT(NBTTagCompound compound)
   {
-    //Sonos.log.info("Energy stored get: " + energy.getEnergyStored());
-    //Sonos.log.info("Energy tag: " + energy.serNBT().toString());
     compound.setTag("energystorage", energy.serNBT());
     compound.setTag("items", itemHand.serializeNBT());
     compound.setInteger("processTime", processTime);
-    //Sonos.log.info("Full block tag: " + compound.toString());
     return super.writeToNBT(compound);
   }
 
   @Override
   public void readFromNBT(NBTTagCompound compound)
   {
-    //Sonos.log.info("Reading Tag: " + compound.toString());
     energy.deNBT(compound.getCompoundTag("energystorage"));
     itemHand.deserializeNBT(compound.getCompoundTag("items"));
     processTime = compound.getInteger("processTime");
@@ -114,9 +120,9 @@ public class ResonatorEntity extends TileEntity implements ITickable
   @Override
   public NBTTagCompound getUpdateTag()
   {
-    NBTTagCompound nbtTagCompound = new NBTTagCompound();
-    writeToNBT(nbtTagCompound);
-    return nbtTagCompound;
+    NBTTagCompound blockNBT = new NBTTagCompound();
+    writeToNBT(blockNBT);
+    return blockNBT;
   }
 
   @Override
