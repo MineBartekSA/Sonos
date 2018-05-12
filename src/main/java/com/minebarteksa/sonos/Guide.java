@@ -25,40 +25,40 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @GuideBook
-public class Guide implements IGuideBook {
+public class Guide implements IGuideBook
+{
+  public static BookBinder guide;
 
-    public static BookBinder guide;
+  @Nonnull
+  @Override
+  public Book buildBook()
+  {
+    Map<ResourceLocation, EntryAbstract> entries = new LinkedHashMap<ResourceLocation, EntryAbstract>();
 
-    @Nonnull
-    @Override
-    public Book buildBook() 
-    {
-    	Map<ResourceLocation, EntryAbstract> entries = new LinkedHashMap<ResourceLocation, EntryAbstract>();
+    List<IPage> pages1 = new ArrayList<IPage>();
+    pages1.add(new PageText("This is a page in my guide!"));
+    entries.put(new ResourceLocation("example", "entry_one"), new EntryItemStack(pages1, "Entry One", new ItemStack(Blocks.BEACON)));
 
-        List<IPage> pages1 = new ArrayList<IPage>();
-        pages1.add(new PageText("This is a page in my guide!"));
-        entries.put(new ResourceLocation("example", "entry_one"), new EntryItemStack(pages1, "Entry One", new ItemStack(Blocks.BEACON)));
+    List<IPage> pages2 = new ArrayList<IPage>();
+    pages2.add(new PageFurnaceRecipe("oreGold"));
+    entries.put(new ResourceLocation("example", "entry_two"), new EntryItemStack(pages2, "Entry Two", new ItemStack(Items.DIAMOND_SWORD)));
 
-        List<IPage> pages2 = new ArrayList<IPage>();
-        pages2.add(new PageFurnaceRecipe("oreGold"));
-        entries.put(new ResourceLocation("example", "entry_two"), new EntryItemStack(pages2, "Entry Two", new ItemStack(Items.DIAMOND_SWORD)));
-    	
-    	guide = new BookBinder(new ResourceLocation(Sonos.ModID, "guidebook"));
-    	guide.setAuthor("& Circl3s and MineBartekSA");
-    	guide.setColor(Color.BLUE);
-    	guide.setCreativeTab(Sonos.cTab);
-    	guide.setGuideTitle("Sonos guide");
-    	guide.setItemName("Sonos guide");
-    	guide.setSpawnWithBook();
-    	guide.addCategory(new CategoryItemStack(entries, "My Category", new ItemStack(Blocks.COMMAND_BLOCK)));
-    	
-        return guide.build();
-    }
+    guide = new BookBinder(new ResourceLocation(Sonos.ModID, "guidebook"));
+    guide.setAuthor("& Circl3s and MineBartekSA");
+    guide.setColor(Color.BLUE);
+    guide.setCreativeTab(Sonos.cTab);
+    guide.setGuideTitle("Sonos guide");
+    guide.setItemName("Sonos guide");
+    guide.setSpawnWithBook();
+    guide.addCategory(new CategoryItemStack(entries, "My Category", new ItemStack(Blocks.COMMAND_BLOCK)));
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void handleModel(ItemStack bookStack) 
-    {
-        GuideAPI.setModel(guide.build());
-    }
+    return guide.build();
+  }
+
+  @SideOnly(Side.CLIENT)
+  @Override
+  public void handleModel(ItemStack bookStack)
+  {
+    GuideAPI.setModel(guide.build());
+  }
 }
