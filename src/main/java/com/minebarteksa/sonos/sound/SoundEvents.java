@@ -1,5 +1,7 @@
 package com.minebarteksa.sonos.sound;
 
+import net.minecraft.init.MobEffects;
+import net.minecraft.potion.Potion;
 import javax.annotation.Nullable;
 import net.minecraft.world.World;
 import net.minecraft.util.math.BlockPos;
@@ -175,7 +177,36 @@ public class SoundEvents
 		}
 	}
 
-	/*public static Dictionary<BlockPos, ISound> playingSounds = new Dictionary<BlockPos, ISound>() {
-
-	};*/
+	public static Potion getNoteEffect(Notes note)
+	{
+		switch(note.toString())
+		{
+			case "C":
+        return MobEffects.SPEED;
+      case "CSharp":
+        return MobEffects.HASTE;
+      case "D":
+        return MobEffects.STRENGTH;
+      case "DSharp":
+        return MobEffects.RESISTANCE;
+      case "E":
+        return MobEffects.HEALTH_BOOST;
+      case "F":
+        return MobEffects.REGENERATION;
+      case "FSharp":
+        return MobEffects.INSTANT_HEALTH;
+      case "G":
+        return MobEffects.SATURATION;
+      case "GSharp":
+        return MobEffects.LUCK;
+      case "A":
+        return MobEffects.FIRE_RESISTANCE;
+      case "ASharp":
+        return MobEffects.NIGHT_VISION;
+      case "B":
+        return MobEffects.JUMP_BOOST;
+			default:
+				return MobEffects.UNLUCK;
+		}
+	}
 }

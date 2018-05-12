@@ -30,7 +30,11 @@ public class LoopSound extends PositionedSound implements ITickableSound
     return isDone;
   }
 
-  public void stop() { this.isDone = true; this.repeat = false; }
+  public void stop()
+  {
+    this.isDone = true;
+    this.repeat = false;
+  }
 
   @Override
   public void update() {}

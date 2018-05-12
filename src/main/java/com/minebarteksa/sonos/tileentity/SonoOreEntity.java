@@ -30,6 +30,7 @@ public class SonoOreEntity extends TileEntity
   public void StopPlaying()
   {
     Sonos.log.info(ls.toString());
+    ls.stop();
     Minecraft.getMinecraft().getSoundHandler().stopSound(ls);
     ls = null;
   }

@@ -36,15 +36,26 @@ public class SonosItems
 	public static SonoPrima sono_prima_as = new SonoPrima("sono_prima_as", Notes.ASharp).setCreativeTab(Sonos.cTab);
 	public static SonoPrima sono_prima_b = new SonoPrima("sono_prima_b", Notes.B).setCreativeTab(Sonos.cTab);
 
-	//Others
-	public static TestRing tRing = new TestRing().setCreativeTab(Sonos.cTab);
+	//SonoRings
+	public static SonoRing cRing = new SonoRing("sonoring_c", Notes.C).setCreativeTab(Sonos.cTab);
+	public static SonoRing csRing = new SonoRing("sonoring_cs", Notes.CSharp).setCreativeTab(Sonos.cTab);
+	public static SonoRing dRing = new SonoRing("sonoring_d", Notes.D).setCreativeTab(Sonos.cTab);
+	public static SonoRing dsRing = new SonoRing("sonoring_ds", Notes.DSharp).setCreativeTab(Sonos.cTab);
+	public static SonoRing eRing = new SonoRing("sonoring_e", Notes.E).setCreativeTab(Sonos.cTab);
+	public static SonoRing fRing = new SonoRing("sonoring_f", Notes.F).setCreativeTab(Sonos.cTab);
+	public static SonoRing fsRing = new SonoRing("sonoring_fs", Notes.FSharp).setCreativeTab(Sonos.cTab);
+	public static SonoRing gRing = new SonoRing("sonoring_g", Notes.G).setCreativeTab(Sonos.cTab);
+	public static SonoRing gsRing = new SonoRing("sonoring_gs", Notes.GSharp).setCreativeTab(Sonos.cTab);
+	public static SonoRing aRing = new SonoRing("sonoring_a", Notes.A).setCreativeTab(Sonos.cTab);
+	public static SonoRing asRing = new SonoRing("sonoring_as", Notes.ASharp).setCreativeTab(Sonos.cTab);
+	public static SonoRing bRing = new SonoRing("sonoring_b", Notes.B).setCreativeTab(Sonos.cTab);
 
 	public static void register(IForgeRegistry<Item> registry)
 	{
 		registry.registerAll(
 		sono_c, sono_cs, sono_d, sono_ds, sono_e, sono_f, sono_fs, sono_g, sono_gs, sono_a, sono_as, sono_b,
 		sono_prima_c, sono_prima_cs, sono_prima_d, sono_prima_ds, sono_prima_e, sono_prima_f, sono_prima_fs, sono_prima_g, sono_prima_gs, sono_prima_a, sono_prima_as, sono_prima_b,
-		tRing
+		cRing, csRing, dRing, dsRing, eRing, fRing, fsRing, gRing, gsRing, aRing, asRing, bRing
 		);
 	}
 
@@ -74,7 +85,18 @@ public class SonosItems
 		sono_prima_a.registerItemModel();
 		sono_prima_as.registerItemModel();
 		sono_prima_b.registerItemModel();
-		tRing.registerItemModel();
+		cRing.registerItemModel();
+		csRing.registerItemModel();
+		dRing.registerItemModel();
+		dsRing.registerItemModel();
+		eRing.registerItemModel();
+		fRing.registerItemModel();
+		fsRing.registerItemModel();
+		gRing.registerItemModel();
+		gsRing.registerItemModel();
+		aRing.registerItemModel();
+		asRing.registerItemModel();
+		bRing.registerItemModel();
 	}
 
 	public static Sono getSonoFormNote(Notes note)
