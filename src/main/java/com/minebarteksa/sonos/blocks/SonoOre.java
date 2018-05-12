@@ -1,5 +1,7 @@
 package com.minebarteksa.sonos.blocks;
 
+import net.minecraft.entity.player.EntityPlayerMP;
+import com.minebarteksa.sonos.criterions.SonosCriterions;
 import mcjty.theoneprobe.api.IProbeInfoAccessor;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
@@ -29,10 +31,10 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity> implements IProb
   public SonoOre(String name, Notes note)
   {
     super(Material.ROCK, name);
-    setHardness(2f);
-		setResistance(5f);
-    setTickRandomly(true);
-    setDefaultState(this.getBlockState().getBaseState().withProperty(LitAF, 0));
+    this.setHardness(3f);
+		this.setResistance(5f);
+    this.setTickRandomly(true);
+    this.setDefaultState(this.getBlockState().getBaseState().withProperty(LitAF, 0));
   }
 
   @Override
@@ -99,6 +101,13 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity> implements IProb
   {
     this.activate(worldIn, pos);
     super.onEntityWalk(worldIn, pos, entityIn);
+  }
+
+  @Override
+  public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
+  {
+    if(!worldIn.isRemote)
+      SonosCriterions.MSO.trigger((EntityPlayerMP)player, state);
   }
 
   @Override

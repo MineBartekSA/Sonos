@@ -1,0 +1,15 @@
+{
+    "display": {
+        "title": "Starting Sound",
+        "description": "Find and mine your first Sono Ore!",
+        "icon": {
+            "item": "sonos:sono_ore"
+        },
+        "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
+    },
+    "criteria": {
+        "mine_sono_ore": {
+            "trigger": "sonos:mined_sono_ore"
+        }
+    }
+}

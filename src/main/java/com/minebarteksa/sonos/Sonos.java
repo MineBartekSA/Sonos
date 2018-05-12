@@ -1,5 +1,6 @@
 package com.minebarteksa.sonos;
 
+import com.minebarteksa.sonos.criterions.SonosCriterions;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import com.minebarteksa.sonos.gui.SonosGUIHandler;
 import java.util.Random;
@@ -62,6 +63,7 @@ public class Sonos
     log.info("Hello Sonos here!");
     SonosItems.initOreDictionary();
     OreDictionary.registerOre("sonoOre", SonosBlocks.SO);
+    SonosCriterions.registerCriterions();
   }
 
   @Mod.EventBusSubscriber
