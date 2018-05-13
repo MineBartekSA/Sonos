@@ -42,12 +42,40 @@ public class SoundEvents
 
 	public static SoundEvent ring_c = new SoundEvent(new ResourceLocation(Sonos.ModID, "ring_c")).setRegistryName("ring_c");
 
+	public static SoundEvent ghost_c = new SoundEvent(new ResourceLocation(Sonos.ModID, "ghost_c")).setRegistryName("ghost_c");
+	public static SoundEvent ghost_cs = new SoundEvent(new ResourceLocation(Sonos.ModID, "ghost_cs")).setRegistryName("ghost_cs");
+	public static SoundEvent ghost_d = new SoundEvent(new ResourceLocation(Sonos.ModID, "ghost_d")).setRegistryName("ghost_d");
+	public static SoundEvent ghost_ds = new SoundEvent(new ResourceLocation(Sonos.ModID, "ghost_ds")).setRegistryName("ghost_ds");
+	public static SoundEvent ghost_e = new SoundEvent(new ResourceLocation(Sonos.ModID, "ghost_e")).setRegistryName("ghost_e");
+	public static SoundEvent ghost_f = new SoundEvent(new ResourceLocation(Sonos.ModID, "ghost_f")).setRegistryName("ghost_f");
+	public static SoundEvent ghost_fs = new SoundEvent(new ResourceLocation(Sonos.ModID, "ghost_fs")).setRegistryName("ghost_fs");
+	public static SoundEvent ghost_g = new SoundEvent(new ResourceLocation(Sonos.ModID, "ghost_g")).setRegistryName("ghost_g");
+	public static SoundEvent ghost_gs = new SoundEvent(new ResourceLocation(Sonos.ModID, "ghost_gs")).setRegistryName("ghost_gs");
+	public static SoundEvent ghost_a = new SoundEvent(new ResourceLocation(Sonos.ModID, "ghost_a")).setRegistryName("ghost_a");
+	public static SoundEvent ghost_as = new SoundEvent(new ResourceLocation(Sonos.ModID, "ghost_as")).setRegistryName("ghost_as");
+	public static SoundEvent ghost_b = new SoundEvent(new ResourceLocation(Sonos.ModID, "ghost_b")).setRegistryName("ghost_b");
+
+	public static SoundEvent machine_c = new SoundEvent(new ResourceLocation(Sonos.ModID, "machine_c")).setRegistryName("machine_c");
+	public static SoundEvent machine_cs = new SoundEvent(new ResourceLocation(Sonos.ModID, "machine_cs")).setRegistryName("machine_cs");
+	public static SoundEvent machine_d = new SoundEvent(new ResourceLocation(Sonos.ModID, "machine_d")).setRegistryName("machine_d");
+	public static SoundEvent machine_ds = new SoundEvent(new ResourceLocation(Sonos.ModID, "machine_ds")).setRegistryName("machine_ds");
+	public static SoundEvent machine_e = new SoundEvent(new ResourceLocation(Sonos.ModID, "machine_e")).setRegistryName("machine_e");
+	public static SoundEvent machine_f = new SoundEvent(new ResourceLocation(Sonos.ModID, "machine_f")).setRegistryName("machine_f");
+	public static SoundEvent machine_fs = new SoundEvent(new ResourceLocation(Sonos.ModID, "machine_fs")).setRegistryName("machine_fs");
+	public static SoundEvent machine_g = new SoundEvent(new ResourceLocation(Sonos.ModID, "machine_g")).setRegistryName("machine_g");
+	public static SoundEvent machine_gs = new SoundEvent(new ResourceLocation(Sonos.ModID, "machine_gs")).setRegistryName("machine_gs");
+	public static SoundEvent machine_a = new SoundEvent(new ResourceLocation(Sonos.ModID, "machine_a")).setRegistryName("machine_a");
+	public static SoundEvent machine_as = new SoundEvent(new ResourceLocation(Sonos.ModID, "machine_as")).setRegistryName("machine_as");
+	public static SoundEvent machine_b = new SoundEvent(new ResourceLocation(Sonos.ModID, "machine_b")).setRegistryName("machine_b");
+
 	public static void registerSounds(IForgeRegistry<SoundEvent> registry)
 	{
 		registry.registerAll(
 		sonar_c, sonar_cs, sonar_d, sonar_ds, sonar_e, sonar_f, sonar_fs, sonar_g, sonar_gs, sonar_a, sonar_as, sonar_b,
 		hum_c, hum_cs, hum_d, hum_ds, hum_e, hum_f, hum_fs, hum_g, hum_gs, hum_a, hum_as, hum_b,
-		ring_c
+		ring_c,
+		ghost_c, ghost_cs, ghost_d, ghost_ds, ghost_e, ghost_f, ghost_fs, ghost_g, ghost_gs, ghost_a, ghost_as, ghost_b,
+		machine_c, machine_cs, machine_d, machine_ds, machine_e, machine_f, machine_fs, machine_g, machine_gs, machine_a, machine_as, machine_b
 		);
 	}
 
