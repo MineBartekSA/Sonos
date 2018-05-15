@@ -7,6 +7,8 @@ public class TuningFork extends ItemBase
   public TuningFork(String name)
   {
     super(name);
+    this.setMaxStackSize(1);
+    this.setMaxDamage(0);
   }
 
   @Override
