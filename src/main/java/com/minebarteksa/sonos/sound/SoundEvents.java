@@ -14,69 +14,28 @@ import net.minecraft.util.SoundEvent;
 
 public class SoundEvents
 {
-	public static SoundEvent sonar_c = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_c")).setRegistryName("sonar_c");
-	public static SoundEvent sonar_cs = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_cs")).setRegistryName("sonar_cs");
-	public static SoundEvent sonar_d = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_d")).setRegistryName("sonar_d");
-	public static SoundEvent sonar_ds = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_ds")).setRegistryName("sonar_ds");
-	public static SoundEvent sonar_e = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_e")).setRegistryName("sonar_e");
-	public static SoundEvent sonar_f = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_f")).setRegistryName("sonar_f");
-	public static SoundEvent sonar_fs = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_fs")).setRegistryName("sonar_fs");
-	public static SoundEvent sonar_g = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_g")).setRegistryName("sonar_g");
-	public static SoundEvent sonar_gs = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_gs")).setRegistryName("sonar_gs");
-	public static SoundEvent sonar_a = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_a")).setRegistryName("sonar_a");
-	public static SoundEvent sonar_as = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_as")).setRegistryName("sonar_as");
-	public static SoundEvent sonar_b = new SoundEvent(new ResourceLocation(Sonos.ModID, "sonar_b")).setRegistryName("sonar_b");
-
-	public static SoundEvent hum_c = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_c")).setRegistryName("hum_c");
-	public static SoundEvent hum_cs = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_cs")).setRegistryName("hum_cs");
-	public static SoundEvent hum_d = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_d")).setRegistryName("hum_d");
-	public static SoundEvent hum_ds = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_c")).setRegistryName("hum_ds");
-	public static SoundEvent hum_e = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_e")).setRegistryName("hum_e");
-	public static SoundEvent hum_f = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_f")).setRegistryName("hum_f");
-	public static SoundEvent hum_fs = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_c")).setRegistryName("hum_fs");
-	public static SoundEvent hum_g = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_g")).setRegistryName("hum_g");
-	public static SoundEvent hum_gs = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_c")).setRegistryName("hum_gs");
-	public static SoundEvent hum_a = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_a")).setRegistryName("hum_a");
-	public static SoundEvent hum_as = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_c")).setRegistryName("hum_as");
-	public static SoundEvent hum_b = new SoundEvent(new ResourceLocation(Sonos.ModID, "hum_b")).setRegistryName("hum_b");
-
 	public static SoundEvent ring_c = new SoundEvent(new ResourceLocation(Sonos.ModID, "ring_c")).setRegistryName("ring_c");
-
-	public static SoundEvent ghost_c = new SoundEvent(new ResourceLocation(Sonos.ModID, "ghost_c")).setRegistryName("ghost_c");
-	public static SoundEvent ghost_cs = new SoundEvent(new ResourceLocation(Sonos.ModID, "ghost_cs")).setRegistryName("ghost_cs");
-	public static SoundEvent ghost_d = new SoundEvent(new ResourceLocation(Sonos.ModID, "ghost_d")).setRegistryName("ghost_d");
-	public static SoundEvent ghost_ds = new SoundEvent(new ResourceLocation(Sonos.ModID, "ghost_ds")).setRegistryName("ghost_ds");
-	public static SoundEvent ghost_e = new SoundEvent(new ResourceLocation(Sonos.ModID, "ghost_e")).setRegistryName("ghost_e");
-	public static SoundEvent ghost_f = new SoundEvent(new ResourceLocation(Sonos.ModID, "ghost_f")).setRegistryName("ghost_f");
-	public static SoundEvent ghost_fs = new SoundEvent(new ResourceLocation(Sonos.ModID, "ghost_fs")).setRegistryName("ghost_fs");
-	public static SoundEvent ghost_g = new SoundEvent(new ResourceLocation(Sonos.ModID, "ghost_g")).setRegistryName("ghost_g");
-	public static SoundEvent ghost_gs = new SoundEvent(new ResourceLocation(Sonos.ModID, "ghost_gs")).setRegistryName("ghost_gs");
-	public static SoundEvent ghost_a = new SoundEvent(new ResourceLocation(Sonos.ModID, "ghost_a")).setRegistryName("ghost_a");
-	public static SoundEvent ghost_as = new SoundEvent(new ResourceLocation(Sonos.ModID, "ghost_as")).setRegistryName("ghost_as");
-	public static SoundEvent ghost_b = new SoundEvent(new ResourceLocation(Sonos.ModID, "ghost_b")).setRegistryName("ghost_b");
-
-	public static SoundEvent machine_c = new SoundEvent(new ResourceLocation(Sonos.ModID, "machine_c")).setRegistryName("machine_c");
-	public static SoundEvent machine_cs = new SoundEvent(new ResourceLocation(Sonos.ModID, "machine_cs")).setRegistryName("machine_cs");
-	public static SoundEvent machine_d = new SoundEvent(new ResourceLocation(Sonos.ModID, "machine_d")).setRegistryName("machine_d");
-	public static SoundEvent machine_ds = new SoundEvent(new ResourceLocation(Sonos.ModID, "machine_ds")).setRegistryName("machine_ds");
-	public static SoundEvent machine_e = new SoundEvent(new ResourceLocation(Sonos.ModID, "machine_e")).setRegistryName("machine_e");
-	public static SoundEvent machine_f = new SoundEvent(new ResourceLocation(Sonos.ModID, "machine_f")).setRegistryName("machine_f");
-	public static SoundEvent machine_fs = new SoundEvent(new ResourceLocation(Sonos.ModID, "machine_fs")).setRegistryName("machine_fs");
-	public static SoundEvent machine_g = new SoundEvent(new ResourceLocation(Sonos.ModID, "machine_g")).setRegistryName("machine_g");
-	public static SoundEvent machine_gs = new SoundEvent(new ResourceLocation(Sonos.ModID, "machine_gs")).setRegistryName("machine_gs");
-	public static SoundEvent machine_a = new SoundEvent(new ResourceLocation(Sonos.ModID, "machine_a")).setRegistryName("machine_a");
-	public static SoundEvent machine_as = new SoundEvent(new ResourceLocation(Sonos.ModID, "machine_as")).setRegistryName("machine_as");
-	public static SoundEvent machine_b = new SoundEvent(new ResourceLocation(Sonos.ModID, "machine_b")).setRegistryName("machine_b");
 
 	public static void registerSounds(IForgeRegistry<SoundEvent> registry)
 	{
-		registry.registerAll(
-		sonar_c, sonar_cs, sonar_d, sonar_ds, sonar_e, sonar_f, sonar_fs, sonar_g, sonar_gs, sonar_a, sonar_as, sonar_b,
-		hum_c, hum_cs, hum_d, hum_ds, hum_e, hum_f, hum_fs, hum_g, hum_gs, hum_a, hum_as, hum_b,
-		ring_c,
-		ghost_c, ghost_cs, ghost_d, ghost_ds, ghost_e, ghost_f, ghost_fs, ghost_g, ghost_gs, ghost_a, ghost_as, ghost_b,
-		machine_c, machine_cs, machine_d, machine_ds, machine_e, machine_f, machine_fs, machine_g, machine_gs, machine_a, machine_as, machine_b
-		);
+		registry.registerAll(ring_c);
+		registerSoundsForNotes("sonar", registry);
+		registerSoundsForNotes("hum", registry);
+		registerSoundsForNotes("ghost", registry);
+		registerSoundsForNotes("machine", registry);
+	}
+
+	public static void registerSoundsForNotes(String name, IForgeRegistry<SoundEvent> reg)
+	{
+		for(Notes n : Notes.values())
+		{
+			if(n != Notes.None)
+			{
+				String note = n.toString().replace("harp", "").toLowerCase();
+				Sonos.log.info("Registering " + name + "_" + note + " sound");
+				reg.register(new SoundEvent(new ResourceLocation(Sonos.ModID, name + "_" + note)).setRegistryName(name + "_" + note));
+			}
+		}
 	}
 
 	public static SoundEvent getSound(Notes note, String type)
