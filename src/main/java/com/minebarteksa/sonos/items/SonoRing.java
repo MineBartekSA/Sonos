@@ -46,12 +46,12 @@ public class SonoRing extends ItemBase implements IBauble
   @Override
   public void onEquipped(ItemStack itemstack, EntityLivingBase player)
   {
-    player.playSound(SoundEvents.getSound(note, "sonar"), .75F, 1.9f);
+    player.playSound(SoundEvents.getSound(note, "sonar"), .75F, 2f);
   }
 
   @Override
   public void onUnequipped(ItemStack itemstack, EntityLivingBase player)
   {
-    player.playSound(SoundEvents.getSound(note, "sonar"), .75F, 2f);
+    player.playSound(SoundEvents.getSound(note, "sonar"), .75F, 1.9f);
   }
 }

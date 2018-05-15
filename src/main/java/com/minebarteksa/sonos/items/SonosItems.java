@@ -1,5 +1,9 @@
 package com.minebarteksa.sonos.items;
 
+import net.minecraft.client.renderer.color.IItemColor;
+import net.minecraft.item.ItemStack;
+import net.minecraft.client.renderer.color.ItemColors;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.oredict.OreDictionary;
 import com.minebarteksa.sonos.sound.SoundEvents.Notes;
 import com.minebarteksa.sonos.Sonos;
@@ -9,18 +13,18 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class SonosItems
 {
 	//Unworked Sonos
-	public static Sono sono_c = new Sono("sono_c", Notes.C, "").setCreativeTab(Sonos.cTab);
-	public static Sono sono_cs = new Sono("sono_cs", Notes.CSharp, "").setCreativeTab(Sonos.cTab);
-	public static Sono sono_d = new Sono("sono_d", Notes.D, "").setCreativeTab(Sonos.cTab);
-	public static Sono sono_ds = new Sono("sono_ds", Notes.DSharp, "").setCreativeTab(Sonos.cTab);
-	public static Sono sono_e = new Sono("sono_e", Notes.E, "").setCreativeTab(Sonos.cTab);
-	public static Sono sono_f = new Sono("sono_f", Notes.F, "").setCreativeTab(Sonos.cTab);
-	public static Sono sono_fs = new Sono("sono_fs", Notes.FSharp, "").setCreativeTab(Sonos.cTab);
-	public static Sono sono_g = new Sono("sono_g", Notes.G, "").setCreativeTab(Sonos.cTab);
-	public static Sono sono_gs = new Sono("sono_gs", Notes.GSharp, "").setCreativeTab(Sonos.cTab);
-	public static Sono sono_a = new Sono("sono_a", Notes.A, "").setCreativeTab(Sonos.cTab);
-	public static Sono sono_as = new Sono("sono_as", Notes.ASharp, "").setCreativeTab(Sonos.cTab);
-	public static Sono sono_b = new Sono("sono_b", Notes.B, "").setCreativeTab(Sonos.cTab);
+	public static Sono sono_c = new Sono("sono_c", Notes.C, "").setCreativeTab(Sonos.cTab);       //Color HEX int value: 01e603
+	public static Sono sono_cs = new Sono("sono_cs", Notes.CSharp, "").setCreativeTab(Sonos.cTab);//Color HEX int value: 01e7a9
+	public static Sono sono_d = new Sono("sono_d", Notes.D, "").setCreativeTab(Sonos.cTab);       //Color HEX int value: 018ee7
+	public static Sono sono_ds = new Sono("sono_ds", Notes.DSharp, "").setCreativeTab(Sonos.cTab);//Color HEX int value: 0111e7
+	public static Sono sono_e = new Sono("sono_e", Notes.E, "").setCreativeTab(Sonos.cTab);       //Color HEX int value: 8e01e7
+	public static Sono sono_f = new Sono("sono_f", Notes.F, "").setCreativeTab(Sonos.cTab);       //Color HEX int value: e701df
+	public static Sono sono_fs = new Sono("sono_fs", Notes.FSharp, "").setCreativeTab(Sonos.cTab);//Color HEX int value: e7017d
+	public static Sono sono_g = new Sono("sono_g", Notes.G, "").setCreativeTab(Sonos.cTab);       //Color HEX int value: e70601
+	public static Sono sono_gs = new Sono("sono_gs", Notes.GSharp, "").setCreativeTab(Sonos.cTab);//Color HEX int value: e74d01
+	public static Sono sono_a = new Sono("sono_a", Notes.A, "").setCreativeTab(Sonos.cTab);       //Color HEX int value: e7a901
+	public static Sono sono_as = new Sono("sono_as", Notes.ASharp, "").setCreativeTab(Sonos.cTab);//Color HEX int value: ecef01
+	public static Sono sono_b = new Sono("sono_b", Notes.B, "").setCreativeTab(Sonos.cTab);       //Color HEX int value: 9eef01
 
 	//Sono Primas
 	public static SonoPrima sono_prima_c = new SonoPrima("sono_prima_c", Notes.C).setCreativeTab(Sonos.cTab);
@@ -97,6 +101,95 @@ public class SonosItems
 		aRing.registerItemModel();
 		asRing.registerItemModel();
 		bRing.registerItemModel();
+	}
+
+	public static void registerItemColors()
+	{
+		ItemColors ic = Minecraft.getMinecraft().getItemColors();
+
+		ic.registerItemColorHandler(new IItemColor(){
+			public int colorMultiplier(ItemStack stack, int tintIndex)
+			{
+				return tintIndex == 0 ? -1 : 0x01e603;
+			}
+		}, cRing);
+
+		ic.registerItemColorHandler(new IItemColor(){
+			public int colorMultiplier(ItemStack stack, int tintIndex)
+			{
+				return tintIndex == 0 ? -1 : 0x01e7a9;
+			}
+		}, csRing);
+
+		ic.registerItemColorHandler(new IItemColor(){
+			public int colorMultiplier(ItemStack stack, int tintIndex)
+			{
+				return tintIndex == 0 ? -1 : 0x018ee7;
+			}
+		}, dRing);
+
+		ic.registerItemColorHandler(new IItemColor(){
+			public int colorMultiplier(ItemStack stack, int tintIndex)
+			{
+				return tintIndex == 0 ? -1 : 0x0111e7;
+			}
+		}, dsRing);
+
+		ic.registerItemColorHandler(new IItemColor(){
+			public int colorMultiplier(ItemStack stack, int tintIndex)
+			{
+				return tintIndex == 0 ? -1 : 0x8e01e7;
+			}
+		}, eRing);
+
+		ic.registerItemColorHandler(new IItemColor(){
+			public int colorMultiplier(ItemStack stack, int tintIndex)
+			{
+				return tintIndex == 0 ? -1 : 0xe701df;
+			}
+		}, fRing);
+
+		ic.registerItemColorHandler(new IItemColor(){
+			public int colorMultiplier(ItemStack stack, int tintIndex)
+			{
+				return tintIndex == 0 ? -1 : 0xe7017d;
+			}
+		}, fsRing);
+
+		ic.registerItemColorHandler(new IItemColor(){
+			public int colorMultiplier(ItemStack stack, int tintIndex)
+			{
+				return tintIndex == 0 ? -1 : 0xe70601;
+			}
+		}, gRing);
+
+		ic.registerItemColorHandler(new IItemColor(){
+			public int colorMultiplier(ItemStack stack, int tintIndex)
+			{
+				return tintIndex == 0 ? -1 : 0xe74d01;
+			}
+		}, gsRing);
+
+		ic.registerItemColorHandler(new IItemColor(){
+			public int colorMultiplier(ItemStack stack, int tintIndex)
+			{
+				return tintIndex == 0 ? -1 : 0xe7a901;
+			}
+		}, aRing);
+
+		ic.registerItemColorHandler(new IItemColor(){
+			public int colorMultiplier(ItemStack stack, int tintIndex)
+			{
+				return tintIndex == 0 ? -1 : 0xecef01;
+			}
+		}, asRing);
+
+		ic.registerItemColorHandler(new IItemColor(){
+			public int colorMultiplier(ItemStack stack, int tintIndex)
+			{
+				return tintIndex == 0 ? -1 : 0x9eef01;
+			}
+		}, bRing);
 	}
 
 	public static Sono getSonoFormNote(Notes note)

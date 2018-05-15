@@ -1,5 +1,6 @@
 package com.minebarteksa.sonos.items;
 
+import com.minebarteksa.sonos.Sonos;
 import net.minecraft.entity.Entity;
 import net.minecraft.client.util.ITooltipFlag;
 import java.util.List;
@@ -67,7 +68,10 @@ public class SonoPrima extends ItemBase
       if(!item.hasTagCompound())
         SoundEvents.playChords(worldIn, playerIn, note, "sonar", 2);
       else
+      {
+        Sonos.log.info("Playing chord with quality: " + item.getTagCompound().getInteger("quality") + " and soundType: " + item.getTagCompound().getString("soundType").toLowerCase());
         SoundEvents.playChords(worldIn, playerIn, note, item.getTagCompound().getString("soundType").toLowerCase(), item.getTagCompound().getInteger("quality"));
+      }
     }
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}

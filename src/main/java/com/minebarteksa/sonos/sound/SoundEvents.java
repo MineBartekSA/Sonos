@@ -55,13 +55,19 @@ public class SoundEvents
 
 	public static void playChords(World world, BlockPos pos, SoundCategory cat, Notes note, String noteType, int quality, @Nullable EntityPlayer play)
 	{
-		int[] chord = Chords.getChordNotes(note.Number(), quality);
-		SoundEvent e1 = SoundEvents.getSound(Notes.getNote(chord[0]), noteType);
-		SoundEvent e2 = SoundEvents.getSound(Notes.getNote(chord[1]), noteType);
-		SoundEvent e3 = SoundEvents.getSound(Notes.getNote(chord[2]), noteType);
-		world.playSound(play, pos.getX(), pos.getY(), pos.getZ(), e1, cat, 1.0f, 1.0f);
-		world.playSound(play, pos.getX(), pos.getY(), pos.getZ(), e2, cat, 1.0f, 1.0f);
-		world.playSound(play, pos.getX(), pos.getY(), pos.getZ(), e3, cat, 1.0f, 1.0f);
+		if(quality == 0)
+			world.playSound(play, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.getSound(note, noteType), cat, 1.0f, 1.0f);
+		else
+		{
+			Sonos.log.info("Trying to play chord " + Chords.getChord(quality));
+			int[] chord = Chords.getChordNotes(note.Number(), quality);
+			SoundEvent e1 = SoundEvents.getSound(Notes.getNote(chord[0]), noteType);
+			SoundEvent e2 = SoundEvents.getSound(Notes.getNote(chord[1]), noteType);
+			SoundEvent e3 = SoundEvents.getSound(Notes.getNote(chord[2]), noteType);
+			world.playSound(play, pos.getX(), pos.getY(), pos.getZ(), e1, cat, 1.0f, 1.0f);
+			world.playSound(play, pos.getX(), pos.getY(), pos.getZ(), e2, cat, 1.0f, 1.0f);
+			world.playSound(play, pos.getX(), pos.getY(), pos.getZ(), e3, cat, 1.0f, 1.0f);
+		}
 	}
 
 	public static enum Notes
@@ -127,6 +133,7 @@ public class SoundEvents
 
 		public static Chords getChord(int num)
 		{
+			Sonos.log.info("GetChord " + num);
 			switch(num)
 			{
 				case 0:
@@ -147,19 +154,15 @@ public class SoundEvents
 		public static int[] getChordNotes(int note, int quality)
 		{
 			int x;
-			switch(quality)
-			{
-				case 1:
-					x = 2;
-				case 2:
-					x = 3;
-				case 3:
-					x = 4;
-				case 4:
-					x = 5;
-				default:
-					x = 4;
-			}
+			if(quality == 1)
+				x = 2;
+			else if(quality == 2)
+				x = 3;
+			else if(quality == 3)
+				x = 4;
+			else
+				x = 4;
+			Sonos.log.info("getChordNotes x = " + x + " for quality = " + quality);
 			int[] out = {note, (note + x) % 12, (note + 7) % 12};
 			return out;
 		}
