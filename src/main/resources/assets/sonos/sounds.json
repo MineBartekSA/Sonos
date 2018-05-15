@@ -1,283 +1,283 @@
 {
   "sonar_c":{
     "category": "player",
-    "sounds": [ "sonos:sonar/sonar_c" ]
+    "sounds": [ { "name": "sonos:sonar/sonar_c", "stream": true } ]
   },
 
   "sonar_cs":{
     "category": "player",
-    "sounds": [ "sonos:sonar/sonar_cs" ]
+    "sounds": [ { "name": "sonos:sonar/sonar_cs", "stream": true } ]
   },
 
   "sonar_d":{
     "category": "player",
-    "sounds": [ "sonos:sonar/sonar_d" ]
+    "sounds": [ { "name": "sonos:sonar/sonar_d", "stream": true } ]
   },
 
   "sonar_ds":{
     "category": "player",
-    "sounds": [ "sonos:sonar/sonar_ds" ]
+    "sounds": [ { "name": "sonos:sonar/sonar_ds", "stream": true } ]
   },
 
   "sonar_e":{
     "category": "player",
-    "sounds": [ "sonos:sonar/sonar_e" ]
+    "sounds": [ { "name": "sonos:sonar/sonar_e", "stream": true } ]
   },
 
   "sonar_f":{
     "category": "player",
-    "sounds": [ "sonos:sonar/sonar_f" ]
+    "sounds": [ { "name": "sonos:sonar/sonar_f", "stream": true } ]
   },
 
   "sonar_fs":{
     "category": "player",
-    "sounds": [ "sonos:sonar/sonar_fs" ]
+    "sounds": [ { "name": "sonos:sonar/sonar_fs", "stream": true } ]
   },
 
   "sonar_g":{
     "category": "player",
-    "sounds": [ "sonos:sonar/sonar_g" ]
+    "sounds": [ { "name": "sonos:sonar/sonar_g", "stream": true } ]
   },
 
   "sonar_gs":{
     "category": "player",
-    "sounds": [ "sonos:sonar/sonar_gs" ]
+    "sounds": [ { "name": "sonos:sonar/sonar_gs", "stream": true } ]
   },
 
   "sonar_a":{
     "category": "player",
-    "sounds": [ "sonos:sonar/sonar_a" ]
+    "sounds": [ { "name": "sonos:sonar/sonar_a", "stream": true } ]
   },
 
   "sonar_as":{
     "category": "player",
-    "sounds": [ "sonos:sonar/sonar_as" ]
+    "sounds": [ { "name": "sonos:sonar/sonar_as", "stream": true } ]
   },
 
   "sonar_b":{
     "category": "player",
-    "sounds": [ "sonos:sonar/sonar_b" ]
+    "sounds": [ { "name": "sonos:sonar/sonar_b", "stream": true } ]
   },
 
 
 
   "hum_c":{
     "category": "blocks",
-    "sounds": [ "sonos:hum/hum_c" ]
+    "sounds": [ { "name": "sonos:hum/hum_c", "stream": true } ]
   },
 
   "hum_cs":{
     "category": "blocks",
-    "sounds": [ "sonos:hum/hum_cs" ]
+    "sounds": [ { "name": "sonos:hum/hum_cs", "stream": true } ]
   },
 
   "hum_d":{
     "category": "blocks",
-    "sounds": [ "sonos:hum/hum_d" ]
+    "sounds": [ { "name": "sonos:hum/hum_d", "stream": true } ]
   },
 
   "hum_ds":{
     "category": "blocks",
-    "sounds": [ "sonos:hum/hum_ds" ]
+    "sounds": [ { "name": "sonos:hum/hum_ds", "stream": true } ]
   },
 
   "hum_e":{
     "category": "blocks",
-    "sounds": [ "sonos:hum/hum_e" ]
+    "sounds": [ { "name": "sonos:hum/hum_e", "stream": true } ]
   },
 
   "hum_f":{
     "category": "blocks",
-    "sounds": [ "sonos:hum/hum_f" ]
+    "sounds": [ { "name": "sonos:hum/hum_f", "stream": true } ]
   },
 
   "hum_fs":{
     "category": "blocks",
-    "sounds": [ "sonos:hum/hum_fs" ]
+    "sounds": [ { "name": "sonos:hum/hum_fs", "stream": true } ]
   },
 
   "hum_g":{
     "category": "blocks",
-    "sounds": [ "sonos:hum/hum_g" ]
+    "sounds": [ { "name": "sonos:hum/hum_g", "stream": true } ]
   },
 
   "hum_gs":{
     "category": "blocks",
-    "sounds": [ "sonos:hum/hum_gs" ]
+    "sounds": [ { "name": "sonos:hum/hum_gs", "stream": true } ]
   },
 
   "hum_a":{
     "category": "blocks",
-    "sounds": [ "sonos:hum/hum_a" ]
+    "sounds": [ { "name": "sonos:hum/hum_a", "stream": true } ]
   },
 
   "hum_as":{
     "category": "blocks",
-    "sounds": [ "sonos:hum/hum_as" ]
+    "sounds": [ { "name": "sonos:hum/hum_as", "stream": true } ]
   },
 
   "hum_b":{
     "category": "blocks",
-    "sounds": [ "sonos:hum/hum_b" ]
+    "sounds": [ { "name": "sonos:hum/hum_b", "stream": true } ]
   },
 
 
 
   "ring_c":{
     "category": "blocks",
-    "sounds": [ "sonos:ring/ring_c" ]
+    "sounds": [ { "name": "sonos:ring/ring_c", "stream": true } ]
   },
 
 
 
   "ghost_c":{
     "category": "blocks",
-    "sounds": [ "sonos:ghost/ghost_c" ]
+    "sounds": [ { "name": "sonos:ghost/ghost_c", "stream": true } ]
   },
   "ghost_cs":{
     "category": "blocks",
-    "sounds": [ "sonos:ghost/ghost_cs" ]
+    "sounds": [ { "name": "sonos:ghost/ghost_cs", "stream": true } ]
   },
   "ghost_d":{
     "category": "blocks",
-    "sounds": [ "sonos:ghost/ghost_d" ]
+    "sounds": [ { "name": "sonos:ghost/ghost_d", "stream": true } ]
   },
   "ghost_ds":{
     "category": "blocks",
-    "sounds": [ "sonos:ghost/ghost_ds" ]
+    "sounds": [ { "name": "sonos:ghost/ghost_ds", "stream": true } ]
   },
   "ghost_e":{
     "category": "blocks",
-    "sounds": [ "sonos:ghost/ghost_e" ]
+    "sounds": [ { "name": "sonos:ghost/ghost_e", "stream": true } ]
   },
   "ghost_f":{
     "category": "blocks",
-    "sounds": [ "sonos:ghost/ghost_f" ]
+    "sounds": [ { "name": "sonos:ghost/ghost_f", "stream": true } ]
   },
   "ghost_fs":{
     "category": "blocks",
-    "sounds": [ "sonos:ghost/ghost_fs" ]
+    "sounds": [ { "name": "sonos:ghost/ghost_fs", "stream": true } ]
   },
   "ghost_g":{
     "category": "blocks",
-    "sounds": [ "sonos:ghost/ghost_g" ]
+    "sounds": [ { "name": "sonos:ghost/ghost_g", "stream": true } ]
   },
   "ghost_gs":{
     "category": "blocks",
-    "sounds": [ "sonos:ghost/ghost_gs" ]
+    "sounds": [ { "name": "sonos:ghost/ghost_gs", "stream": true } ]
   },
   "ghost_a":{
     "category": "blocks",
-    "sounds": [ "sonos:ghost/ghost_a" ]
+    "sounds": [ { "name": "sonos:ghost/ghost_a", "stream": true } ]
   },
   "ghost_as":{
     "category": "blocks",
-    "sounds": [ "sonos:ghost/ghost_as" ]
+    "sounds": [ { "name": "sonos:ghost/ghost_as", "stream": true } ]
   },
   "ghost_b":{
     "category": "blocks",
-    "sounds": [ "sonos:ghost/ghost_b" ]
+    "sounds": [ { "name": "sonos:ghost/ghost_b", "stream": true } ]
   },
 
 
 
   "machine_c":{
     "category": "blocks",
-    "sounds": [ "sonos:machine/machine_c" ]
+    "sounds": [ { "name": "sonos:machine/machine_c", "stream": true } ]
   },
   "machine_cs":{
     "category": "blocks",
-    "sounds": [ "sonos:machine/machine_c" ]
+    "sounds": [ { "name": "sonos:machine/machine_c", "stream": true } ]
   },
   "machine_d":{
     "category": "blocks",
-    "sounds": [ "sonos:machine/machine_d" ]
+    "sounds": [ { "name": "sonos:machine/machine_d", "stream": true } ]
   },
   "machine_ds":{
     "category": "blocks",
-    "sounds": [ "sonos:machine/machine_ds" ]
+    "sounds": [ { "name": "sonos:machine/machine_ds", "stream": true } ]
   },
   "machine_e":{
     "category": "blocks",
-    "sounds": [ "sonos:machine/machine_e" ]
+    "sounds": [ { "name": "sonos:machine/machine_e", "stream": true } ]
   },
   "machine_f":{
     "category": "blocks",
-    "sounds": [ "sonos:machine/machine_f" ]
+    "sounds": [ { "name": "sonos:machine/machine_f", "stream": true } ]
   },
   "machine_fs":{
     "category": "blocks",
-    "sounds": [ "sonos:machine/machine_fs" ]
+    "sounds": [ { "name": "sonos:machine/machine_fs", "stream": true } ]
   },
   "machine_g":{
     "category": "blocks",
-    "sounds": [ "sonos:machine/machine_g" ]
+    "sounds": [ { "name": "sonos:machine/machine_g", "stream": true } ]
   },
   "machine_gs":{
     "category": "blocks",
-    "sounds": [ "sonos:machine/machine_gs" ]
+    "sounds": [ { "name": "sonos:machine/machine_gs", "stream": true } ]
   },
   "machine_a":{
     "category": "blocks",
-    "sounds": [ "sonos:machine/machine_a" ]
+    "sounds": [ { "name": "sonos:machine/machine_a", "stream": true } ]
   },
   "machine_as":{
     "category": "blocks",
-    "sounds": [ "sonos:machine/machine_as" ]
+    "sounds": [ { "name": "sonos:machine/machine_as", "stream": true } ]
   },
   "machine_b":{
     "category": "blocks",
-    "sounds": [ "sonos:machine/machine_b" ]
+    "sounds": [ { "name": "sonos:machine/machine_b", "stream": true } ]
   },
 
 
 
   "magic_c":{
     "category": "player",
-    "sounds": [ "sonos:magic/magic_c" ]
+    "sounds": [ { "name": "sonos:magic/magic_c", "stream": true } ]
   },
   "magic_cs":{
     "category": "player",
-    "sounds": [ "sonos:magic/magic_cs" ]
+    "sounds": [ { "name": "sonos:magic/magic_cs", "stream": true } ]
   },
   "magic_d":{
     "category": "player",
-    "sounds": [ "sonos:magic/magic_d" ]
+    "sounds": [ { "name": "sonos:magic/magic_d", "stream": true } ]
   },
   "magic_ds":{
     "category": "player",
-    "sounds": [ "sonos:magic/magic_ds" ]
+    "sounds": [ { "name": "sonos:magic/magic_ds", "stream": true } ]
   },
   "magic_e":{
     "category": "player",
-    "sounds": [ "sonos:magic/magic_e" ]
+    "sounds": [ { "name": "sonos:magic/magic_e", "stream": true } ]
   },
   "magic_f":{
     "category": "player",
-    "sounds": [ "sonos:magic/magic_f" ]
+    "sounds": [ { "name": "sonos:magic/magic_f", "stream": true } ]
   },
   "magic_fs":{
     "category": "player",
-    "sounds": [ "sonos:magic/magic_fs" ]
+    "sounds": [ { "name": "sonos:magic/magic_fs", "stream": true } ]
   },
   "magic_g":{
     "category": "player",
-    "sounds": [ "sonos:magic/magic_g" ]
+    "sounds": [ { "name": "sonos:magic/magic_g", "stream": true } ]
   },
   "magic_gs":{
     "category": "player",
-    "sounds": [ "sonos:magic/magic_gs" ]
+    "sounds": [ { "name": "sonos:magic/magic_gs", "stream": true } ]
   },
   "magic_a":{
     "category": "player",
-    "sounds": [ "sonos:magic/magic_a" ]
+    "sounds": [ { "name": "sonos:magic/magic_a", "stream": true } ]
   },
   "magic_as":{
     "category": "player",
-    "sounds": [ "sonos:magic/magic_as" ]
+    "sounds": [ { "name": "sonos:magic/magic_as", "stream": true } ]
   },
   "magic_b":{
     "category": "player",
-    "sounds": [ "sonos:magic/magic_b" ]
+    "sounds": [ { "name": "sonos:magic/magic_b", "stream": true } ]
   }
 }
