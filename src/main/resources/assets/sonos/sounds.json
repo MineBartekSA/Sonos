@@ -228,5 +228,56 @@
   "machine_b":{
     "category": "blocks",
     "sounds": [ "sonos:machine/machine_b" ]
+  },
+
+
+
+  "magic_c":{
+    "category": "player",
+    "sounds": [ "sonos:magic/magic_c" ]
+  },
+  "magic_cs":{
+    "category": "player",
+    "sounds": [ "sonos:magic/magic_cs" ]
+  },
+  "magic_d":{
+    "category": "player",
+    "sounds": [ "sonos:magic/magic_d" ]
+  },
+  "magic_ds":{
+    "category": "player",
+    "sounds": [ "sonos:magic/magic_ds" ]
+  },
+  "magic_e":{
+    "category": "player",
+    "sounds": [ "sonos:magic/magic_e" ]
+  },
+  "magic_f":{
+    "category": "player",
+    "sounds": [ "sonos:magic/magic_f" ]
+  },
+  "magic_fs":{
+    "category": "player",
+    "sounds": [ "sonos:magic/magic_fs" ]
+  },
+  "magic_g":{
+    "category": "player",
+    "sounds": [ "sonos:magic/magic_g" ]
+  },
+  "magic_gs":{
+    "category": "player",
+    "sounds": [ "sonos:magic/magic_gs" ]
+  },
+  "magic_a":{
+    "category": "player",
+    "sounds": [ "sonos:magic/magic_a" ]
+  },
+  "magic_as":{
+    "category": "player",
+    "sounds": [ "sonos:magic/magic_as" ]
+  },
+  "magic_b":{
+    "category": "player",
+    "sounds": [ "sonos:magic/magic_b" ]
   }
 }

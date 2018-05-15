@@ -23,6 +23,7 @@ public class SoundEvents
 		registerSoundsForNotes("hum", registry);
 		registerSoundsForNotes("ghost", registry);
 		registerSoundsForNotes("machine", registry);
+		registerSoundsForNotes("magic", registry);
 	}
 
 	public static void registerSoundsForNotes(String name, IForgeRegistry<SoundEvent> reg)
