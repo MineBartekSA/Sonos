@@ -1,0 +1,7 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "sonos:items/ring_base",
+    "layer1": "sonos:items/ring_sono"
+	}
+}

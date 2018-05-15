@@ -1,5 +1,6 @@
 package com.minebarteksa.sonos.items;
 
+import com.minebarteksa.sonos.blocks.SonosBlocks;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.client.renderer.color.ItemColors;
@@ -260,6 +261,8 @@ public class SonosItems
 
 	public static void initOreDictionary()
 	{
+		OreDictionary.registerOre("sonoOre", SonosBlocks.SO);
+
 		OreDictionary.registerOre("sono", sono_c);
 		OreDictionary.registerOre("sono", sono_cs);
 		OreDictionary.registerOre("sono", sono_d);

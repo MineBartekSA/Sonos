@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import java.util.Random;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
-class WorldGen implements IWorldGenerator
+public class WorldGen implements IWorldGenerator
 {
   @Override
   public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)

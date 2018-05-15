@@ -1,0 +1,17 @@
+{
+    "display": {
+        "title": "Sonos",
+        "description": "A placeholder for now",
+        "icon": {
+            "item": "guideapi:sonos-guidebook"
+        },
+        "background": "minecraft:textures/gui/advancements/backgrounds/stone.png",
+        "show_toast": false,
+        "announce_to_chat": false
+    },
+    "criteria": {
+        "placeholder": {
+            "trigger": "minecraft:tick"
+        }
+    }
+}

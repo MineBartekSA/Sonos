@@ -7,6 +7,7 @@
         },
         "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
     },
+    "parent": "sonos:sonos",
     "criteria": {
         "mine_sono_ore": {
             "trigger": "sonos:mined_sono_ore"

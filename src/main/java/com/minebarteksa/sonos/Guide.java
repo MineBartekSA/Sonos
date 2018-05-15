@@ -1,5 +1,10 @@
 package com.minebarteksa.sonos;
 
+import net.minecraft.util.ActionResult;
+import net.minecraft.world.World;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumHand;
+import net.minecraft.item.Item;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -25,7 +30,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @GuideBook
-public class Guide implements IGuideBook
+public class Guide extends Item implements IGuideBook
 {
   public static BookBinder guide;
 
@@ -60,5 +65,12 @@ public class Guide implements IGuideBook
   public void handleModel(ItemStack bookStack)
   {
     GuideAPI.setModel(guide.build());
+  }
+
+  @Override
+  public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
+  {
+    Sonos.log.info("Guide");
+    return super.onItemRightClick(worldIn, playerIn, handIn);
   }
 }
