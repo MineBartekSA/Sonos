@@ -1,5 +1,7 @@
 package com.minebarteksa.sonos.tileentity;
 
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -16,6 +18,7 @@ import net.minecraft.tileentity.TileEntity;
 public class GeneratorEntity extends TileEntity implements ITickable
 {
   protected SonosEnergy energy = new SonosEnergy(10000, 0, 500);
+  private ItemStackHandler itemHand = new ItemStackHandler(1);
 
   @Override
   public void update()
@@ -27,6 +30,7 @@ public class GeneratorEntity extends TileEntity implements ITickable
   public NBTTagCompound writeToNBT(NBTTagCompound compound)
   {
     compound.setTag("energystorage", energy.serNBT());
+    compound.setTag("items", itemHand.serializeNBT());
     return super.writeToNBT(compound);
   }
 
@@ -34,6 +38,7 @@ public class GeneratorEntity extends TileEntity implements ITickable
   public void readFromNBT(NBTTagCompound compound)
   {
     energy.deNBT(compound.getCompoundTag("energystorage"));
+    itemHand.deserializeNBT(compound.getCompoundTag("items"));
     super.readFromNBT(compound);
   }
 
@@ -41,6 +46,8 @@ public class GeneratorEntity extends TileEntity implements ITickable
   public boolean hasCapability(Capability<?> capability, EnumFacing facing)
   {
     if(capability == CapabilityEnergy.ENERGY)
+      return true;
+    if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
       return true;
     return super.hasCapability(capability, facing);
   }
@@ -50,6 +57,8 @@ public class GeneratorEntity extends TileEntity implements ITickable
   {
     if(capability == CapabilityEnergy.ENERGY)
       return (T)energy;
+    if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+      return (T)itemHand;
     return super.getCapability(capability, facing);
   }
 
