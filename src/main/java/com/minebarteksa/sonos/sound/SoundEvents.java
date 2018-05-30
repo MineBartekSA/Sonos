@@ -14,6 +14,12 @@ import net.minecraft.util.SoundEvent;
 
 public class SoundEvents
 {
+	public static final int humLength = 14; // Value in seconds!
+	public static final int ghostLength = 3;
+	public static final int sonarLength = 7;
+	public static final int magicLength = 4;
+	public static final int machineLength = 12;
+
 	public static SoundEvent ring_c = new SoundEvent(new ResourceLocation(Sonos.ModID, "ring_c")).setRegistryName("ring_c");
 
 	public static void registerSounds(IForgeRegistry<SoundEvent> registry)

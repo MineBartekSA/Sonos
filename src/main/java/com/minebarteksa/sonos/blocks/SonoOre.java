@@ -1,6 +1,5 @@
 package com.minebarteksa.sonos.blocks;
 
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.entity.player.EntityPlayerMP;
 import com.minebarteksa.sonos.criteria.SonosCriteria;
 import mcjty.theoneprobe.api.IProbeInfoAccessor;
@@ -53,10 +52,7 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity> implements IProb
   }
 
   @Override
-  public int tickRate(World worldIn)
-  {
-    return 30;
-  }
+  public int tickRate(World worldIn) { return 30; }
 
   public void activate(World world, BlockPos pos)
   {
@@ -64,7 +60,7 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity> implements IProb
     if(world.getBlockState(pos).getValue(LitAF) != soe.getNote() + 1)
     {
       world.setBlockState(pos, this.getBlockState().getBaseState().withProperty(LitAF, 1 + soe.getNote()));
-      if(world.isRemote)
+      if(!world.isRemote)
         soe.StartPlaying();
     }
   }
@@ -86,9 +82,9 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity> implements IProb
     if(state.getValue(LitAF) != 0)
     {
       worldIn.setBlockState(pos, this.getDefaultState());
+      if(!worldIn.isRemote)
+        soe.StopPlaying();
     }
-    if(worldIn.isRemote)
-      soe.StopPlaying();
   }
 
   @Override

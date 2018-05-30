@@ -1,8 +1,8 @@
 package com.minebarteksa.sonos.tileentity;
 
-
-import com.minebarteksa.sonos.Sonos;
 import net.minecraft.client.Minecraft;
+import scala.actors.threadpool.TimeUnit;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundCategory;
 import com.minebarteksa.sonos.sound.SoundEvents.Notes;
 import com.minebarteksa.sonos.sound.SoundEvents;
@@ -20,21 +20,42 @@ public class SonoOreEntity extends TileEntity
   protected LoopSound<SonoOreEntity> ls;
   public int note = 0;
   protected boolean isPlaying = false;
+  protected boolean isPaused = false;
+  private SoundThread thread;
 
   public void StartPlaying()
   {
-    LoopSound<SonoOreEntity> ls = new LoopSound<SonoOreEntity>(SoundEvents.getSound(Notes.getNote(note), "hum"), SoundCategory.BLOCKS, pos, this);
-    Minecraft.getMinecraft().getSoundHandler().playSound(ls);
+    if(thread == null)
+      thread = new SoundThread(world, Notes.getNote(note), pos, Minecraft.getMinecraft());
+    else
+      thread.run();
     isPlaying = true;
-    Sonos.log.info(ls.toString());
   }
 
+  @SuppressWarnings("deprecation")
   public void StopPlaying()
   {
-    Sonos.log.info(ls.toString());
-    Minecraft.getMinecraft().getSoundHandler().stopSound(ls);
+    if(thread != null)
+      thread.stop();
     isPlaying = false;
-    ls = null;
+  }
+
+  @Override
+  public void onLoad()
+  {
+    if(isPlaying && thread == null && !world.isRemote)
+      StartPlaying();
+    /*if(world.isRemote)
+      new PauseChecker();*/
+  }
+
+  @Override
+  @SuppressWarnings("deprecation")
+  public void onChunkUnload()
+  {
+    if(thread != null)
+      thread.stop();
+    thread = null;
   }
 
   @Override
@@ -42,6 +63,7 @@ public class SonoOreEntity extends TileEntity
   {
     if(!compound.hasKey("note"))
       compound.setInteger("note", note);
+    compound.setBoolean("isPlaying", isPlaying);
     return super.writeToNBT(compound);
   }
 
@@ -49,13 +71,11 @@ public class SonoOreEntity extends TileEntity
   public void readFromNBT(NBTTagCompound compound)
   {
     note = compound.getInteger("note");
+    isPlaying = compound.getBoolean("isPlaying");
     super.readFromNBT(compound);
   }
 
-  public int getNote()
-  {
-    return note;
-  }
+  public int getNote() { return note; }
 
   public boolean isPlaying() { return isPlaying; }
 
@@ -86,5 +106,50 @@ public class SonoOreEntity extends TileEntity
   public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newSate)
   {
     return (oldState.getBlock() != newSate.getBlock());
+  }
+
+  class SoundThread extends Thread
+  {
+    World wo;
+    Notes nn;
+    SoundEvent e;
+    BlockPos pp;
+    Minecraft mm;
+
+    SoundThread(World w, Notes n, BlockPos p, Minecraft m)
+    {
+      this.wo = w;
+      this.nn = n;
+      this.pp = p;
+      this.mm = m;
+      this.start();
+    }
+
+    public void run()
+    {
+      if(true)
+      {
+        wo.playSound(null, pp, e, SoundCategory.BLOCKS, 1.0f, 1.0f);
+        try { TimeUnit.SECONDS.sleep(SoundEvents.humLength); }
+        catch(InterruptedException ex) {}
+      }
+      this.run();
+    }
+  }
+
+  class PauseChecker extends Thread
+  {
+    PauseChecker()
+    {
+      this.start();
+    }
+    public void run()
+    {
+      if(Minecraft.getMinecraft().isGamePaused())
+        isPaused = true;
+      else
+        isPaused = false;
+      this.run();
+    }
   }
 }
