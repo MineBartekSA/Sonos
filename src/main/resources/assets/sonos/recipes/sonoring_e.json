@@ -1,0 +1,16 @@
+{
+  "type": "crafting_shaped",
+
+  "patern": [
+    "gsg",
+    "g g",
+    "ggg"
+  ],
+
+  "key": {
+    "g": { "item": "minecraft:gold_ingot" },
+    "s": { "item": "sonos:sono_e" }
+  },
+
+  "result": { "item": "sonos:sonoring_e" }
+}

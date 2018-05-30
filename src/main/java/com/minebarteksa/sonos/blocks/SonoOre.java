@@ -2,7 +2,7 @@ package com.minebarteksa.sonos.blocks;
 
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.entity.player.EntityPlayerMP;
-import com.minebarteksa.sonos.criterions.SonosCriterions;
+import com.minebarteksa.sonos.criteria.SonosCriteria;
 import mcjty.theoneprobe.api.IProbeInfoAccessor;
 import mcjty.theoneprobe.api.IProbeHitData;
 import mcjty.theoneprobe.api.IProbeInfo;
@@ -117,7 +117,7 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity> implements IProb
   public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
   {
     if(!worldIn.isRemote)
-      SonosCriterions.MSON.trigger((EntityPlayerMP)player, state);
+      SonosCriteria.MSON.trigger((EntityPlayerMP)player, state);
   }
 
   @Override

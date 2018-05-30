@@ -22,7 +22,7 @@ import com.minebarteksa.sonos.blocks.SonosBlocks;
 import com.minebarteksa.sonos.items.SonosItems;
 import com.minebarteksa.sonos.gui.SonosGUIHandler;
 import com.minebarteksa.sonos.sonosproxy.SonosCommon;
-import com.minebarteksa.sonos.criterions.SonosCriterions;
+import com.minebarteksa.sonos.criteria.SonosCriteria;
 
 @Mod(modid = Sonos.ModID, name = Sonos.Name, version = Sonos.Version, dependencies = Sonos.Deps)
 public class Sonos
@@ -62,7 +62,7 @@ public class Sonos
     log.info("Hello Sonos here!");
     SonosItems.initOreDictionary();
     SonosItems.registerItemColors();
-    SonosCriterions.registerCriterions();
+    SonosCriteria.registerCriteria();
   }
 
   @Mod.EventBusSubscriber

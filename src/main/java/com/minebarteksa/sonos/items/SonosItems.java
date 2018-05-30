@@ -13,13 +13,26 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class SonosItems
 {
+	public static final int color_c = 0x01ff03;
+	public static final int color_cs = 0x01ffbb;
+	public static final int color_d = 0x019dff;
+	public static final int color_ds = 0x0113ff;
+	public static final int color_e = 0x9d01ff;
+	public static final int color_f = 0xff01ff;
+	public static final int color_fs = 0xff018a;
+	public static final int color_g = 0xff0701;
+	public static final int color_gs = 0xff5501;
+	public static final int color_a = 0xffbb01;
+	public static final int color_as = 0xfcff01;
+	public static final int color_b = 0xa9ff01;
+
 	//Unworked Sonos
 	public static Sono sono_c = new Sono("sono_c", Notes.C, "").setCreativeTab(Sonos.cTab);       //Color HEX int value: 01e603
 	public static Sono sono_cs = new Sono("sono_cs", Notes.CSharp, "").setCreativeTab(Sonos.cTab);//Color HEX int value: 01e7a9
 	public static Sono sono_d = new Sono("sono_d", Notes.D, "").setCreativeTab(Sonos.cTab);       //Color HEX int value: 018ee7
 	public static Sono sono_ds = new Sono("sono_ds", Notes.DSharp, "").setCreativeTab(Sonos.cTab);//Color HEX int value: 0111e7
 	public static Sono sono_e = new Sono("sono_e", Notes.E, "").setCreativeTab(Sonos.cTab);       //Color HEX int value: 8e01e7
-	public static Sono sono_f = new Sono("sono_f", Notes.F, "").setCreativeTab(Sonos.cTab);       //Color HEX int value: e701df
+	public static Sono sono_f = new Sono("sono_f", Notes.F, "").setCreativeTab(Sonos.cTab);       //Color HEX int value: e701e7
 	public static Sono sono_fs = new Sono("sono_fs", Notes.FSharp, "").setCreativeTab(Sonos.cTab);//Color HEX int value: e7017d
 	public static Sono sono_g = new Sono("sono_g", Notes.G, "").setCreativeTab(Sonos.cTab);       //Color HEX int value: e70601
 	public static Sono sono_gs = new Sono("sono_gs", Notes.GSharp, "").setCreativeTab(Sonos.cTab);//Color HEX int value: e74d01
@@ -111,84 +124,84 @@ public class SonosItems
 		ic.registerItemColorHandler(new IItemColor(){
 			public int colorMultiplier(ItemStack stack, int tintIndex)
 			{
-				return tintIndex == 0 ? -1 : 0x01e603;
+				return tintIndex == 0 ? -1 : color_c;
 			}
 		}, cRing);
 
 		ic.registerItemColorHandler(new IItemColor(){
 			public int colorMultiplier(ItemStack stack, int tintIndex)
 			{
-				return tintIndex == 0 ? -1 : 0x01e7a9;
+				return tintIndex == 0 ? -1 : color_cs;
 			}
 		}, csRing);
 
 		ic.registerItemColorHandler(new IItemColor(){
 			public int colorMultiplier(ItemStack stack, int tintIndex)
 			{
-				return tintIndex == 0 ? -1 : 0x018ee7;
+				return tintIndex == 0 ? -1 : color_d;
 			}
 		}, dRing);
 
 		ic.registerItemColorHandler(new IItemColor(){
 			public int colorMultiplier(ItemStack stack, int tintIndex)
 			{
-				return tintIndex == 0 ? -1 : 0x0111e7;
+				return tintIndex == 0 ? -1 : color_ds;
 			}
 		}, dsRing);
 
 		ic.registerItemColorHandler(new IItemColor(){
 			public int colorMultiplier(ItemStack stack, int tintIndex)
 			{
-				return tintIndex == 0 ? -1 : 0x8e01e7;
+				return tintIndex == 0 ? -1 : color_e;
 			}
 		}, eRing);
 
 		ic.registerItemColorHandler(new IItemColor(){
 			public int colorMultiplier(ItemStack stack, int tintIndex)
 			{
-				return tintIndex == 0 ? -1 : 0xe701df;
+				return tintIndex == 0 ? -1 : color_f;
 			}
 		}, fRing);
 
 		ic.registerItemColorHandler(new IItemColor(){
 			public int colorMultiplier(ItemStack stack, int tintIndex)
 			{
-				return tintIndex == 0 ? -1 : 0xe7017d;
+				return tintIndex == 0 ? -1 : color_fs;
 			}
 		}, fsRing);
 
 		ic.registerItemColorHandler(new IItemColor(){
 			public int colorMultiplier(ItemStack stack, int tintIndex)
 			{
-				return tintIndex == 0 ? -1 : 0xe70601;
+				return tintIndex == 0 ? -1 : color_g;
 			}
 		}, gRing);
 
 		ic.registerItemColorHandler(new IItemColor(){
 			public int colorMultiplier(ItemStack stack, int tintIndex)
 			{
-				return tintIndex == 0 ? -1 : 0xe74d01;
+				return tintIndex == 0 ? -1 : color_gs;
 			}
 		}, gsRing);
 
 		ic.registerItemColorHandler(new IItemColor(){
 			public int colorMultiplier(ItemStack stack, int tintIndex)
 			{
-				return tintIndex == 0 ? -1 : 0xe7a901;
+				return tintIndex == 0 ? -1 : color_a;
 			}
 		}, aRing);
 
 		ic.registerItemColorHandler(new IItemColor(){
 			public int colorMultiplier(ItemStack stack, int tintIndex)
 			{
-				return tintIndex == 0 ? -1 : 0xecef01;
+				return tintIndex == 0 ? -1 : color_as;
 			}
 		}, asRing);
 
 		ic.registerItemColorHandler(new IItemColor(){
 			public int colorMultiplier(ItemStack stack, int tintIndex)
 			{
-				return tintIndex == 0 ? -1 : 0x9eef01;
+				return tintIndex == 0 ? -1 : color_b;
 			}
 		}, bRing);
 	}
