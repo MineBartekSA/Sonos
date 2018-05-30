@@ -17,21 +17,23 @@ import net.minecraft.tileentity.TileEntity;
 
 public class SonoOreEntity extends TileEntity
 {
-  public LoopSound ls;
+  protected LoopSound<SonoOreEntity> ls;
   public int note = 0;
+  protected boolean isPlaying = false;
 
   public void StartPlaying()
   {
-    LoopSound ls = new LoopSound(SoundEvents.getSound(Notes.getNote(note), "hum"), SoundCategory.BLOCKS, pos);
+    LoopSound<SonoOreEntity> ls = new LoopSound<SonoOreEntity>(SoundEvents.getSound(Notes.getNote(note), "hum"), SoundCategory.BLOCKS, pos, this);
     Minecraft.getMinecraft().getSoundHandler().playSound(ls);
+    isPlaying = true;
     Sonos.log.info(ls.toString());
   }
 
   public void StopPlaying()
   {
     Sonos.log.info(ls.toString());
-    ls.stop();
     Minecraft.getMinecraft().getSoundHandler().stopSound(ls);
+    isPlaying = false;
     ls = null;
   }
 
@@ -54,6 +56,8 @@ public class SonoOreEntity extends TileEntity
   {
     return note;
   }
+
+  public boolean isPlaying() { return isPlaying; }
 
   @Override
   public SPacketUpdateTileEntity getUpdatePacket()

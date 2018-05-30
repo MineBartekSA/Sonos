@@ -1,7 +1,7 @@
 {
   "sonar_c":{
     "category": "player",
-    "sounds": [ { "name": "sonos:sonar/sonar_c", "stream": true } ]
+    "sounds": [ { "name": "sonos:sonar/sonar_c" } ]
   },
 
   "sonar_cs":{

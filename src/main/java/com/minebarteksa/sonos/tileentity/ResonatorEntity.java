@@ -47,7 +47,11 @@ public class ResonatorEntity extends TileEntity implements ITickable
       }
     }
     else if(processTime != 0)
+    {
       processTime = 0;
+      world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
+      this.markDirty();
+    }
   }
 
   private boolean checkOut()
@@ -113,6 +117,7 @@ public class ResonatorEntity extends TileEntity implements ITickable
   {
     NBTTagCompound nbtTagCompound = new NBTTagCompound();
 		writeToNBT(nbtTagCompound);
+    nbtTagCompound.setInteger("pr", processTime);
 		int metadata = 0;
     return new SPacketUpdateTileEntity(this.pos, metadata, nbtTagCompound);
   }
@@ -122,6 +127,7 @@ public class ResonatorEntity extends TileEntity implements ITickable
   {
     NBTTagCompound blockNBT = new NBTTagCompound();
     writeToNBT(blockNBT);
+    blockNBT.setInteger("pr", processTime);
     return blockNBT;
   }
 
@@ -129,6 +135,7 @@ public class ResonatorEntity extends TileEntity implements ITickable
 	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
   {
 		readFromNBT(pkt.getNbtCompound());
+    processTime = pkt.getNbtCompound().getInteger("pr");
   }
 
   @Override

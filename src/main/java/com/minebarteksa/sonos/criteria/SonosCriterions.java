@@ -1,4 +1,4 @@
-package com.minebarteksa.sonos.criterions;
+package com.minebarteksa.sonos.criteria;
 
 import net.minecraft.advancements.CriteriaTriggers;
 

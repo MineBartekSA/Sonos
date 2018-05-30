@@ -1,5 +1,7 @@
 package com.minebarteksa.sonos.gui;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import com.minebarteksa.sonos.tileentity.ResonatorEntity;
@@ -12,6 +14,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.client.gui.inventory.GuiContainer;
 
+@SideOnly(Side.CLIENT)
 public class ResonatorGui extends GuiContainer
 {
   private static final ResourceLocation BackGroundImage = new ResourceLocation(Sonos.ModID, "textures/gui/resonator.png");
@@ -34,7 +37,7 @@ public class ResonatorGui extends GuiContainer
     int x = (width - xSize) / 2;
     int y = (height - ySize) / 2;
     drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
-    drawTexturedModalRect(x + 80, y + 35, 177, 14, re.getProgressPercantage(ProgressBarWidth), 16);
+    drawTexturedModalRect(x + 80, y + 35, 177, 14, re.getProgressPercantage(ProgressBarWidth + 1), 16);
   }
 
   @Override

@@ -1,4 +1,4 @@
-package com.minebarteksa.sonos.criterions;
+package com.minebarteksa.sonos.criteria;
 
 import com.minebarteksa.sonos.Sonos;
 import com.google.common.collect.Lists;

@@ -1,4 +1,4 @@
-package com.minebarteksa.sonos.criterions;
+package com.minebarteksa.sonos.criteria;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import java.util.Map;
@@ -18,6 +18,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.advancements.PlayerAdvancements;
 import net.minecraft.advancements.ICriterionTrigger;
 
+@Deprecated
 public class MinedSonoOre implements ICriterionTrigger<MinedSonoOre.Instance>
 {
   private static final ResourceLocation ID = new ResourceLocation(Sonos.ModID, "mined_sono_ore");

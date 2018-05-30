@@ -1,5 +1,6 @@
 package com.minebarteksa.sonos.blocks;
 
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.entity.player.EntityPlayerMP;
 import com.minebarteksa.sonos.criterions.SonosCriterions;
 import mcjty.theoneprobe.api.IProbeInfoAccessor;
@@ -66,6 +67,15 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity> implements IProb
       if(world.isRemote)
         soe.StartPlaying();
     }
+  }
+
+  @Override
+  public int getLightValue(IBlockState state)
+  {
+    if(state.getValue(LitAF) != 0)
+      return 5;
+    else
+      return 0;
   }
 
   @Override

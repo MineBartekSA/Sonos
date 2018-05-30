@@ -1,5 +1,8 @@
 package com.minebarteksa.sonos.tileentity;
 
+import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraft.tileentity.TileEntityFurnace;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraft.util.EnumFacing;
@@ -17,13 +20,83 @@ import net.minecraft.tileentity.TileEntity;
 
 public class GeneratorEntity extends TileEntity implements ITickable
 {
-  protected SonosEnergy energy = new SonosEnergy(10000, 0, 500);
+  protected SonosEnergy energy = new SonosEnergy(50000, 0, 500);
   private ItemStackHandler itemHand = new ItemStackHandler(1);
+  private int BurnTime;
+  private int bTime;
+  private boolean canGenerate = true;
 
   @Override
   public void update()
   {
-    //
+    if(itemHand.getStackInSlot(0) != ItemStack.EMPTY && bTime == 0 && canGenerate)
+    {
+      if(getBurnTime(itemHand.getStackInSlot(0)) != 0)
+      {
+        BurnTime = getBurnTime(itemHand.getStackInSlot(0));
+        itemHand.extractItem(0, 1, false);
+        bTime++;
+        energy.insertEnergy(20, false);
+        world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
+        this.markDirty();
+      }
+    }
+    else if(bTime != BurnTime && canGenerate)
+    {
+      bTime++;
+      if(energy.insertEnergy(20, true) > 0)
+        canGenerate = false;
+      energy.insertEnergy(20, false);
+      world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
+      this.markDirty();
+    }
+    else if(bTime == BurnTime)
+    {
+      BurnTime = 0;
+      bTime = 0;
+      world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
+      this.markDirty();
+    }
+    else if(!canGenerate && energy.getEnergyStored() <= 9500)
+    {
+      canGenerate = true;
+    }
+    sendEnergy();
+  }
+
+  int getBurnTime(ItemStack is)
+  {
+    return TileEntityFurnace.getItemBurnTime(is);
+  }
+
+  public int getBTime()
+  {
+    return bTime;
+  }
+
+  void sendEnergy()
+  {
+    if(energy.getEnergyStored() == 0)
+      return;
+    for(EnumFacing f : EnumFacing.values())
+    {
+      BlockPos pos = new BlockPos(this.pos.getX() + f.getFrontOffsetX(), this.pos.getY() + f.getFrontOffsetY(), this.pos.getZ() + f.getFrontOffsetZ());
+      final TileEntity tile = this.world.getTileEntity(pos);
+
+      if(tile != null && tile.hasCapability(CapabilityEnergy.ENERGY, f.getOpposite()))
+      {
+        IEnergyStorage es = tile.getCapability(CapabilityEnergy.ENERGY, f.getOpposite());
+        if(es.canReceive() && es.getEnergyStored() < es.getMaxEnergyStored())
+        {
+          if(es.receiveEnergy(500, true) > 0)
+          {
+            es.receiveEnergy(energy.extractEnergy(500, false), false);
+            world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
+            this.markDirty();
+          }
+        }
+      }
+    }
   }
 
   @Override
@@ -31,6 +104,8 @@ public class GeneratorEntity extends TileEntity implements ITickable
   {
     compound.setTag("energystorage", energy.serNBT());
     compound.setTag("items", itemHand.serializeNBT());
+    compound.setInteger("bTiem", bTime);
+    compound.setInteger("BurnTime", BurnTime);
     return super.writeToNBT(compound);
   }
 
@@ -39,6 +114,8 @@ public class GeneratorEntity extends TileEntity implements ITickable
   {
     energy.deNBT(compound.getCompoundTag("energystorage"));
     itemHand.deserializeNBT(compound.getCompoundTag("items"));
+    BurnTime = compound.getInteger("BurnTime");
+    bTime = compound.getInteger("bTime");
     super.readFromNBT(compound);
   }
 

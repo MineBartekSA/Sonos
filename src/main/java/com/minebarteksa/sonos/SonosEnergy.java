@@ -25,6 +25,31 @@ public class SonosEnergy extends EnergyStorage
     super(capacity, maxReceive, maxExtract, energy);
   }
 
+  public int insertEnergy(int amount, boolean simulate)
+  {
+    if(simulate)
+    {
+      if((energy + amount) - capacity > 0)
+        return ((energy + amount) - capacity);
+      else
+        return 0;
+    }
+    else
+    {
+      if((energy + amount) - capacity > 0)
+      {
+        int over = ((energy + amount) - capacity);
+        energy += amount - over;
+        return over;
+      }
+      else
+      {
+        energy += amount;
+        return 0;
+      }
+    }
+  }
+
   public NBTTagCompound serNBT()
   {
     NBTTagCompound nbt = new NBTTagCompound();

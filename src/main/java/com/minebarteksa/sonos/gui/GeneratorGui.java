@@ -1,5 +1,8 @@
 package com.minebarteksa.sonos.gui;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import com.minebarteksa.sonos.tileentity.GeneratorEntity;
 import com.minebarteksa.sonos.blocks.SonosBlocks;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.renderer.GlStateManager;
@@ -11,15 +14,18 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.inventory.Container;
 import net.minecraft.client.gui.inventory.GuiContainer;
 
+@SideOnly(Side.CLIENT)
 public class GeneratorGui extends GuiContainer
 {
   private static final ResourceLocation BackGroundImage = new ResourceLocation(Sonos.ModID, "textures/gui/generator.png");
   private InventoryPlayer playerInv;
+  private GeneratorEntity ge;
 
   public GeneratorGui(Container arg0, InventoryPlayer pl, BlockPos pos, World world)
   {
     super(arg0);
     this.playerInv = pl;
+    ge = (GeneratorEntity)world.getTileEntity(pos);
   }
 
   @Override
@@ -35,9 +41,11 @@ public class GeneratorGui extends GuiContainer
   @Override
   protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
   {
-    String name = I18n.format(SonosBlocks.e.getUnlocalizedName() + ".name");
+    String name = I18n.format(SonosBlocks.rf.getUnlocalizedName() + ".name");
 		fontRenderer.drawString(name, xSize / 2 - fontRenderer.getStringWidth(name) / 2, 6, 0x404040);
 		fontRenderer.drawString(playerInv.getDisplayName().getUnformattedText(), 8, ySize - 94, 0x404040);
+    String text = "Burn time: " + ge.getBTime();
+    fontRenderer.drawString(text, xSize / 2 - fontRenderer.getStringWidth(text) / 2, 20, 0x404040);
   }
 
   @Override
