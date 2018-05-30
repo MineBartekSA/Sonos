@@ -26,7 +26,7 @@ public class SonoOreEntity extends TileEntity
   public void StartPlaying()
   {
     if(thread == null)
-      thread = new SoundThread(world, Notes.getNote(note), pos, Minecraft.getMinecraft());
+      thread = new SoundThread(world, Notes.getNote(note), pos);
     else
       thread.run();
     isPlaying = true;
@@ -111,28 +111,22 @@ public class SonoOreEntity extends TileEntity
   class SoundThread extends Thread
   {
     World wo;
-    Notes nn;
     SoundEvent e;
     BlockPos pp;
-    Minecraft mm;
 
-    SoundThread(World w, Notes n, BlockPos p, Minecraft m)
+    SoundThread(World w, Notes n, BlockPos p)
     {
       this.wo = w;
-      this.nn = n;
       this.pp = p;
-      this.mm = m;
+      this.e = SoundEvents.getSound(n, "hum");
       this.start();
     }
 
     public void run()
     {
-      if(true)
-      {
-        wo.playSound(null, pp, e, SoundCategory.BLOCKS, 1.0f, 1.0f);
-        try { TimeUnit.SECONDS.sleep(SoundEvents.humLength); }
-        catch(InterruptedException ex) {}
-      }
+      wo.playSound(null, pp, e, SoundCategory.BLOCKS, 1.0f, 1.0f);
+      try { TimeUnit.SECONDS.sleep(SoundEvents.humLength); }
+      catch(InterruptedException ex) {}
       this.run();
     }
   }
