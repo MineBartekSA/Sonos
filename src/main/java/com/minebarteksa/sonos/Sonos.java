@@ -1,5 +1,6 @@
 package com.minebarteksa.sonos;
 
+import com.minebarteksa.sonos.packets.SonosPacketHandler;
 import java.util.Random;
 import com.minebarteksa.sonos.sound.SoundEvents.Notes;
 import net.minecraft.util.SoundEvent;
@@ -54,6 +55,7 @@ public class Sonos
     log = event.getModLog();
     GameRegistry.registerWorldGenerator(new WorldGen(), 3);
     NetworkRegistry.INSTANCE.registerGuiHandler(this, new SonosGUIHandler());
+    SonosPacketHandler.registerPackets();
   }
 
   @Mod.EventHandler

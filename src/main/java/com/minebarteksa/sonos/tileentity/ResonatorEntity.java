@@ -1,5 +1,7 @@
 package com.minebarteksa.sonos.tileentity;
 
+import com.minebarteksa.sonos.packets.ProgressUpdatePacket;
+import com.minebarteksa.sonos.packets.SonosPacketHandler;
 import net.minecraft.item.ItemAir;
 import com.minebarteksa.sonos.items.SonosItems;
 import com.minebarteksa.sonos.items.Sono;
@@ -43,6 +45,7 @@ public class ResonatorEntity extends TileEntity implements ITickable
           itemHand.insertItem(1, new ItemStack(SonosItems.getSonoPrimaFormNote(((Sono)in.getItem()).note), 1), false);
         }
         world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
+        this.sendGuiInfo();
         this.markDirty();
       }
     }
@@ -50,6 +53,7 @@ public class ResonatorEntity extends TileEntity implements ITickable
     {
       processTime = 0;
       world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
+      this.sendGuiInfo();
       this.markDirty();
     }
   }
@@ -143,4 +147,8 @@ public class ResonatorEntity extends TileEntity implements ITickable
   {
     return (oldState.getBlock() != newSate.getBlock());
   }
+
+  void sendGuiInfo() { SonosPacketHandler.INSTANCE.sendToAll(new ProgressUpdatePacket(processTime, totalProcessTime, pos)); }
+
+  public void updateGuiInfo(int progress) { this.processTime = progress; }
 }
