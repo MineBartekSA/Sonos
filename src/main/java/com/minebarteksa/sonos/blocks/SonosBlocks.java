@@ -1,11 +1,11 @@
 package com.minebarteksa.sonos.blocks;
 
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import com.minebarteksa.sonos.Sonos;
-import com.minebarteksa.sonos.sound.SoundEvents.Notes;
-import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.block.Block;
+import com.minebarteksa.sonos.Sonos;
 import net.minecraftforge.registries.IForgeRegistry;
+import com.minebarteksa.sonos.sound.SoundEvents.Notes;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class SonosBlocks
 {

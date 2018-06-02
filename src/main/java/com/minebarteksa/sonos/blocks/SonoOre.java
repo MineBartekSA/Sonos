@@ -113,7 +113,11 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity> implements IProb
   public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
   {
     if(!worldIn.isRemote)
+    {
       SonosCriteria.MSON.trigger((EntityPlayerMP)player, state);
+      SonoOreEntity soe = (SonoOreEntity)worldIn.getTileEntity(pos);
+      soe.StopPlaying();
+    }
   }
 
   @Override

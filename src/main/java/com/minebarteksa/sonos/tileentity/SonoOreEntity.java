@@ -1,12 +1,9 @@
 package com.minebarteksa.sonos.tileentity;
 
 import net.minecraft.client.Minecraft;
-import scala.actors.threadpool.TimeUnit;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundCategory;
 import com.minebarteksa.sonos.sound.SoundEvents.Notes;
 import com.minebarteksa.sonos.sound.SoundEvents;
-import com.minebarteksa.sonos.sound.LoopSound;
+import com.minebarteksa.sonos.sound.SoundSource;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -17,45 +14,36 @@ import net.minecraft.tileentity.TileEntity;
 
 public class SonoOreEntity extends TileEntity
 {
-  protected LoopSound<SonoOreEntity> ls;
+  protected SoundSource sound;
   public int note = 0;
   protected boolean isPlaying = false;
-  protected boolean isPaused = false;
-  private SoundThread thread;
 
   public void StartPlaying()
   {
-    if(thread == null)
-      thread = new SoundThread(world, Notes.getNote(note), pos);
-    else
-      thread.run();
+    sound = new SoundSource(this, SoundEvents.getSound(Notes.getNote(note), "hum"), 1.0f, 1.0f, true);
+    Minecraft.getMinecraft().getSoundHandler().playSound(sound);
     isPlaying = true;
   }
 
-  @SuppressWarnings("deprecation")
   public void StopPlaying()
   {
-    if(thread != null)
-      thread.stop();
+    sound.stop();
+    Minecraft.getMinecraft().getSoundHandler().stopSound(sound);
     isPlaying = false;
   }
 
   @Override
   public void onLoad()
   {
-    if(isPlaying && thread == null && !world.isRemote)
+    if(isPlaying && !world.isRemote)
       StartPlaying();
-    /*if(world.isRemote)
-      new PauseChecker();*/
   }
 
   @Override
-  @SuppressWarnings("deprecation")
   public void onChunkUnload()
   {
-    if(thread != null)
-      thread.stop();
-    thread = null;
+    if(!world.isRemote)
+      StopPlaying();
   }
 
   @Override
@@ -106,44 +94,5 @@ public class SonoOreEntity extends TileEntity
   public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newSate)
   {
     return (oldState.getBlock() != newSate.getBlock());
-  }
-
-  class SoundThread extends Thread
-  {
-    World wo;
-    SoundEvent e;
-    BlockPos pp;
-
-    SoundThread(World w, Notes n, BlockPos p)
-    {
-      this.wo = w;
-      this.pp = p;
-      this.e = SoundEvents.getSound(n, "hum");
-      this.start();
-    }
-
-    public void run()
-    {
-      wo.playSound(null, pp, e, SoundCategory.BLOCKS, 1.0f, 1.0f);
-      try { TimeUnit.SECONDS.sleep(SoundEvents.humLength); }
-      catch(InterruptedException ex) {}
-      this.run();
-    }
-  }
-
-  class PauseChecker extends Thread
-  {
-    PauseChecker()
-    {
-      this.start();
-    }
-    public void run()
-    {
-      if(Minecraft.getMinecraft().isGamePaused())
-        isPaused = true;
-      else
-        isPaused = false;
-      this.run();
-    }
   }
 }
