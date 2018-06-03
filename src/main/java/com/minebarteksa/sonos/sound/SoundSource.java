@@ -1,5 +1,8 @@
 package com.minebarteksa.sonos.sound;
 
+import com.minebarteksa.sonos.tileentity.SonoOreEntity;
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.tileentity.TileEntity;
@@ -10,18 +13,20 @@ public class SoundSource extends PositionedSound implements ITickableSound
 {
   boolean donePlaying;
   boolean stop = false;
+  TileEntity te;
 
   public SoundSource(TileEntity te, SoundEvent sound, float volume, float pitch, boolean repeat)
   {
-    this(te.getPos().getX(), te.getPos().getY(), te.getPos().getZ(), sound, volume, pitch, repeat);
+    this(te.getPos(), sound, volume, pitch, repeat);
+    this.te = te;
   }
 
-  public SoundSource(int x, int y, int z, SoundEvent sound, float volume, float pitch, boolean repeat)
+  SoundSource(BlockPos pos, SoundEvent sound, float volume, float pitch, boolean repeat)
   {
     super(sound, SoundCategory.AMBIENT);
-    this.xPosF = x;
-    this.yPosF = y;
-    this.zPosF = z;
+    this.xPosF = pos.getX();
+    this.yPosF = pos.getY();
+    this.zPosF = pos.getZ();
     this.volume = volume;
     this.pitch = pitch;
     this.repeat = repeat;
@@ -33,8 +38,23 @@ public class SoundSource extends PositionedSound implements ITickableSound
   @Override
   public void update()
   {
+    /*if(te instanceof SonoOreEntity)
+    {
+      if(!(((SonoOreEntity)te).isPlaying()))
+      {
+        stop = true;
+        donePlaying = true;
+        volume = 0;
+      }
+    }*/
     if(stop)
     {
+      donePlaying = true;
+      volume = 0;
+    }
+    if(Minecraft.getMinecraft().world.isAirBlock(new BlockPos(this.xPosF, this.yPosF, this.zPosF)))
+    {
+      stop = true;
       donePlaying = true;
       volume = 0;
     }

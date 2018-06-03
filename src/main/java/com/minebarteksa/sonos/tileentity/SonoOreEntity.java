@@ -1,5 +1,7 @@
 package com.minebarteksa.sonos.tileentity;
 
+import com.minebarteksa.sonos.packets.SoundSSPacket;
+import com.minebarteksa.sonos.packets.SonosPacketHandler;
 import net.minecraft.client.Minecraft;
 import com.minebarteksa.sonos.sound.SoundEvents.Notes;
 import com.minebarteksa.sonos.sound.SoundEvents;
@@ -20,30 +22,31 @@ public class SonoOreEntity extends TileEntity
 
   public void StartPlaying()
   {
+    isPlaying = true;
     sound = new SoundSource(this, SoundEvents.getSound(Notes.getNote(note), "hum"), 1.0f, 1.0f, true);
     Minecraft.getMinecraft().getSoundHandler().playSound(sound);
-    isPlaying = true;
   }
 
   public void StopPlaying()
   {
+    if(sound == null)
+      return;
+    isPlaying = false;
     sound.stop();
     Minecraft.getMinecraft().getSoundHandler().stopSound(sound);
-    isPlaying = false;
+  }
+
+  public void SSSound(boolean switchTo)
+  {
+    SonosPacketHandler.INSTANCE.sendToDimension(new SoundSSPacket(switchTo, pos), world.provider.getDimension());
+    isPlaying = switchTo;
   }
 
   @Override
   public void onLoad()
   {
-    if(isPlaying && !world.isRemote)
-      StartPlaying();
-  }
-
-  @Override
-  public void onChunkUnload()
-  {
-    if(!world.isRemote)
-      StopPlaying();
+    if(isPlaying)
+      SSSound(true);
   }
 
   @Override

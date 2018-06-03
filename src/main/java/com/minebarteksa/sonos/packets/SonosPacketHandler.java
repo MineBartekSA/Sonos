@@ -1,5 +1,6 @@
 package com.minebarteksa.sonos.packets;
 
+import com.minebarteksa.sonos.packets.SoundSSPacket.SoundSSPacketHandler;
 import com.minebarteksa.sonos.packets.ProgressUpdatePacket.ProgressUpdatePacketHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -12,5 +13,6 @@ public class SonosPacketHandler
   public static void registerPackets()
   {
     INSTANCE.registerMessage(ProgressUpdatePacketHandler.class, ProgressUpdatePacket.class, 0, Side.CLIENT);
+    //INSTANCE.registerMessage(SoundSSPacketHandler.class, SoundSSPacket.class, 1, Side.CLIENT);
   }
 }

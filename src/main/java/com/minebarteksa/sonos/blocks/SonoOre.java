@@ -40,9 +40,9 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity> implements IProb
   @Override
   public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
   {
-    SonoOreEntity soe = (SonoOreEntity)worldIn.getTileEntity(pos);
     if(!worldIn.isRemote)
     {
+      SonoOreEntity soe = (SonoOreEntity)worldIn.getTileEntity(pos);
       int rand = 1;
       do
         rand = worldIn.rand.nextInt(12);
@@ -56,12 +56,14 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity> implements IProb
 
   public void activate(World world, BlockPos pos)
   {
-    SonoOreEntity soe = (SonoOreEntity)world.getTileEntity(pos);
-    if(world.getBlockState(pos).getValue(LitAF) != soe.getNote() + 1)
+    if(!world.isRemote)
     {
-      world.setBlockState(pos, this.getBlockState().getBaseState().withProperty(LitAF, 1 + soe.getNote()));
-      if(!world.isRemote)
+      SonoOreEntity soe = (SonoOreEntity)world.getTileEntity(pos);
+      if(world.getBlockState(pos).getValue(LitAF) != soe.getNote() + 1)
+      {
+        world.setBlockState(pos, this.getBlockState().getBaseState().withProperty(LitAF, 1 + soe.getNote()));
         soe.StartPlaying();
+      }
     }
   }
 
@@ -77,14 +79,20 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity> implements IProb
   @Override
   public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
   {
-    SonoOreEntity soe = (SonoOreEntity)worldIn.getTileEntity(pos);
-    Sonos.log.info("SonoOre updateTick!");
-    if(state.getValue(LitAF) != 0)
+    if(state.getValue(LitAF) != 0 && !worldIn.isRemote)
     {
+      SonoOreEntity soe = (SonoOreEntity)worldIn.getTileEntity(pos);
+      Sonos.log.info("SonoOre updateTick! OnSide: " + (worldIn.isRemote ? "Client" : "Server"));
       worldIn.setBlockState(pos, this.getDefaultState());
-      if(!worldIn.isRemote)
-        soe.StopPlaying();
+      soe.StopPlaying();
     }
+  }
+
+  @Override
+  public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
+  {
+    if(!worldIn.isRemote)
+      SonosCriteria.MSON.trigger((EntityPlayerMP)player, state);
   }
 
   @Override
@@ -93,6 +101,7 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity> implements IProb
   {
     SonoOreEntity soe = (SonoOreEntity)worldIn.getTileEntity(data.getPos());
     probeInfo.text("Note: " + Notes.getNote(soe.getNote()));
+    probeInfo.text("IsPlaying: " + soe.isPlaying());
   }
 
   @Override
@@ -107,17 +116,6 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity> implements IProb
   {
     this.activate(worldIn, pos);
     super.onEntityWalk(worldIn, pos, entityIn);
-  }
-
-  @Override
-  public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
-  {
-    if(!worldIn.isRemote)
-    {
-      SonosCriteria.MSON.trigger((EntityPlayerMP)player, state);
-      SonoOreEntity soe = (SonoOreEntity)worldIn.getTileEntity(pos);
-      soe.StopPlaying();
-    }
   }
 
   @Override
