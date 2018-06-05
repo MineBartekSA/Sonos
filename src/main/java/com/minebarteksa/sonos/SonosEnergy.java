@@ -67,4 +67,6 @@ public class SonosEnergy extends EnergyStorage
     this.maxExtract = nbt.getInteger("extract");
     this.energy = nbt.getInteger("energy");
   }
+
+  public int getEnergyProcentage() { return (energy * 100) / capacity; }
 }

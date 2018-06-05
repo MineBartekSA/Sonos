@@ -27,6 +27,7 @@ public class ResonatorEntity extends TileEntity implements ITickable
   private SonosEnergy energy = new SonosEnergy(1500, 100);
   private ItemStackHandler itemHand = new ItemStackHandler(2);
   public int processTime = 0;
+  public int energyPercentage = 0;
   public static final int totalProcessTime = 100;
 
   @Override
@@ -77,6 +78,8 @@ public class ResonatorEntity extends TileEntity implements ITickable
     int percentageOfProgress = (processTime * 100) / ResonatorEntity.totalProcessTime;
     return (percentageOfProgress * barWidth) / 100;
   }
+
+  public int getEnergy(int barHeight) { return (energyPercentage * barHeight) / 100; }
 
   @Override
   public NBTTagCompound writeToNBT(NBTTagCompound compound)
@@ -148,7 +151,11 @@ public class ResonatorEntity extends TileEntity implements ITickable
     return (oldState.getBlock() != newSate.getBlock());
   }
 
-  void sendGuiInfo() { SonosPacketHandler.INSTANCE.sendToAll(new ProgressUpdatePacket(processTime, totalProcessTime, pos)); }
+  void sendGuiInfo() { SonosPacketHandler.INSTANCE.sendToAll(new ProgressUpdatePacket(processTime, totalProcessTime, energy.getEnergyProcentage(), pos)); }
 
-  public void updateGuiInfo(int progress) { this.processTime = progress; }
+  public void updateGuiInfo(int progress, int ep)
+  {
+    this.processTime = progress;
+    this.energyPercentage = ep;
+  }
 }

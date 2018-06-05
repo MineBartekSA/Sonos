@@ -65,7 +65,7 @@ public class SoundEvents
 			world.playSound(play, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.getSound(note, noteType), cat, 1.0f, 1.0f);
 		else
 		{
-			Sonos.log.info("Trying to play chord " + Chords.getChord(quality));
+			Sonos.log.info("Trying to play " + note + " " + Chords.getChord(quality) + " chord");
 			int[] chord = Chords.getChordNotes(note.Number(), quality);
 			SoundEvent e1 = SoundEvents.getSound(Notes.getNote(chord[0]), noteType);
 			SoundEvent e2 = SoundEvents.getSound(Notes.getNote(chord[1]), noteType);
@@ -139,7 +139,6 @@ public class SoundEvents
 
 		public static Chords getChord(int num)
 		{
-			Sonos.log.info("GetChord " + num);
 			switch(num)
 			{
 				case 0:
@@ -168,7 +167,6 @@ public class SoundEvents
 				x = 4;
 			else
 				x = 4;
-			Sonos.log.info("getChordNotes x = " + x + " for quality = " + quality);
 			int[] out = {note, (note + x) % 12, (note + 7) % 12};
 			return out;
 		}

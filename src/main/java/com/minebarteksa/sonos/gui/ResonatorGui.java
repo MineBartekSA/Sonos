@@ -1,5 +1,6 @@
 package com.minebarteksa.sonos.gui;
 
+import org.lwjgl.opengl.GL11;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.util.math.BlockPos;
@@ -38,6 +39,20 @@ public class ResonatorGui extends GuiContainer
     int y = (height - ySize) / 2;
     drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
     drawTexturedModalRect(x + 80, y + 35, 177, 14, re.getProgressPercantage(ProgressBarWidth + 1), 16);
+
+    GL11.glPushMatrix();
+    GL11.glColor3f(1.0f, 0.0f, 0.0f);
+    GL11.glTranslatef(x + 15, y + 51, 0);
+    GL11.glRotatef(180, 0, 0, 1);
+    GL11.glBegin(GL11.GL_QUADS);
+    {
+      GL11.glVertex2f(0, 0);
+      GL11.glVertex2f(0, re.getEnergy(31));
+      GL11.glVertex2f(10, re.getEnergy(31));
+      GL11.glVertex2f(10, 0);
+    }
+    GL11.glEnd();
+    GL11.glPopMatrix();
   }
 
   @Override

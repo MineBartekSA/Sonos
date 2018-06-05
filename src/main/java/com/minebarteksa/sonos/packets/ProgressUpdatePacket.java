@@ -1,7 +1,6 @@
 package com.minebarteksa.sonos.packets;
 
 import com.minebarteksa.sonos.tileentity.ResonatorEntity;
-import com.minebarteksa.sonos.gui.ResonatorGui;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.math.BlockPos;
@@ -14,10 +13,11 @@ public class ProgressUpdatePacket implements IMessage
 {
   public ProgressUpdatePacket() {}
 
-  public ProgressUpdatePacket(int progress, int totalProgress, BlockPos pos)
+  public ProgressUpdatePacket(int progress, int totalProgress, int ePro, BlockPos pos)
   {
     this.prog = progress;
     this.tProg = totalProgress;
+    this.energyPro = ePro;
     this.x = pos.getX();
     this.y = pos.getY();
     this.z = pos.getZ();
@@ -25,6 +25,7 @@ public class ProgressUpdatePacket implements IMessage
 
   private int prog;
   private int tProg;
+  private int energyPro;
   private int x, y, z;
 
   @Override
@@ -32,6 +33,7 @@ public class ProgressUpdatePacket implements IMessage
   {
     buf.writeInt(prog);
     buf.writeInt(tProg);
+    buf.writeInt(energyPro);
     buf.writeInt(x);
     buf.writeInt(y);
     buf.writeInt(z);
@@ -42,6 +44,7 @@ public class ProgressUpdatePacket implements IMessage
   {
     prog = buf.readInt();
     tProg = buf.readInt();
+    energyPro = buf.readInt();
     x = buf.readInt();
     y = buf.readInt();
     z = buf.readInt();
@@ -59,7 +62,7 @@ public class ProgressUpdatePacket implements IMessage
 
       if(te instanceof ResonatorEntity)
       {
-        ((ResonatorEntity)te).updateGuiInfo(message.prog);
+        ((ResonatorEntity)te).updateGuiInfo(message.prog, message.energyPro);
       }
 
       return null;
