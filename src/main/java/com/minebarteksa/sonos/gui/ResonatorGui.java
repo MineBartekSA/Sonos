@@ -1,5 +1,8 @@
 package com.minebarteksa.sonos.gui;
 
+import net.minecraftforge.energy.IEnergyStorage;
+import cofh.core.init.CoreProps;
+import net.minecraft.client.Minecraft;
 import org.lwjgl.opengl.GL11;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -40,19 +43,25 @@ public class ResonatorGui extends GuiContainer
     drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
     drawTexturedModalRect(x + 80, y + 35, 177, 14, re.getProgressPercantage(ProgressBarWidth + 1), 16);
 
-    GL11.glPushMatrix();
-    GL11.glColor3f(1.0f, 0.0f, 0.0f);
-    GL11.glTranslatef(x + 15, y + 51, 0);
-    GL11.glRotatef(180, 0, 0, 1);
-    GL11.glBegin(GL11.GL_QUADS);
-    {
-      GL11.glVertex2f(0, 0);
-      GL11.glVertex2f(0, re.getEnergy(31));
-      GL11.glVertex2f(10, re.getEnergy(31));
-      GL11.glVertex2f(10, 0);
-    }
-    GL11.glEnd();
-    GL11.glPopMatrix();
+    GlStateManager.pushMatrix();
+    //GlStateManager.translate(x, y, 0);
+    //drawEnergyBar(x, y);
+    GlStateManager.popMatrix();
+  }
+
+  private void drawEnergyBar(int x, int y)
+  {
+    int a = getScaledEnergy();
+    //mc.getTextureManager().bindTexture(new ResourceLocation(CoreProps.PATH_ELEMENTS + "energy.png"));
+    mc.renderEngine.bindTexture(new ResourceLocation("cofh", "textures/gui/elements/energy.png"));
+    drawTexturedModalRect(x, y, 0, 0, 16, 42);
+    drawTexturedModalRect(x, y, 16 + 42 - a, 16, 42 - a, a);
+  }
+
+  private int getScaledEnergy()
+  {
+    IEnergyStorage e = re.getEnergyStorage();
+    return (((e.getEnergyStored() * 100) / 1500) * 42) / 100;
   }
 
   @Override

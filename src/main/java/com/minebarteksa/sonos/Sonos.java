@@ -31,7 +31,7 @@ public class Sonos
   public static final String Name = "Sonos";
   public static final String ModID = "sonos";
   public static final String Version = "1.0.0";
-  public static final String Deps = "required-after:baubles; before:guideapi;";
+  public static final String Deps = "required-after:baubles; before:guideapi; before:cofhcore;";
 
   @Mod.Instance(ModID)
   public static Sonos instance;

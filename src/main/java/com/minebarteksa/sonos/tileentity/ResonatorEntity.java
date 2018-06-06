@@ -1,5 +1,6 @@
 package com.minebarteksa.sonos.tileentity;
 
+import net.minecraftforge.energy.IEnergyStorage;
 import com.minebarteksa.sonos.packets.ProgressUpdatePacket;
 import com.minebarteksa.sonos.packets.SonosPacketHandler;
 import net.minecraft.item.ItemAir;
@@ -27,35 +28,45 @@ public class ResonatorEntity extends TileEntity implements ITickable
   private SonosEnergy energy = new SonosEnergy(1500, 100);
   private ItemStackHandler itemHand = new ItemStackHandler(2);
   public int processTime = 0;
-  public int energyPercentage = 0;
+  private int lastEnergy = 0;
   public static final int totalProcessTime = 100;
 
   @Override
   public void update()
   {
-    if(itemHand.getStackInSlot(0) != ItemStack.EMPTY)
+    if(!world.isRemote)
     {
-      if(itemHand.getStackInSlot(1).getCount() != 64 && energy.extractEnergy(10, true) == 10 && checkOut())
+      if(itemHand.getStackInSlot(0) != ItemStack.EMPTY)
       {
-        energy.extractEnergy(10, false);
-        processTime++;
-        if(processTime == totalProcessTime)
+        if(itemHand.getStackInSlot(1).getCount() != 64 && energy.extractEnergy(10, true) == 10 && checkOut())
         {
-          processTime = 0;
-          ItemStack in = itemHand.extractItem(0, 1, false);
-          itemHand.insertItem(1, new ItemStack(SonosItems.getSonoPrimaFormNote(((Sono)in.getItem()).note), 1), false);
+          energy.extractEnergy(10, false);
+          processTime++;
+          if(processTime == totalProcessTime)
+          {
+            processTime = 0;
+            ItemStack in = itemHand.extractItem(0, 1, false);
+            itemHand.insertItem(1, new ItemStack(SonosItems.getSonoPrimaFormNote(((Sono)in.getItem()).note), 1), false);
+          }
+          world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
+          this.sendGuiInfo();
+          this.markDirty();
         }
+      }
+      else if(processTime != 0)
+      {
+        processTime = 0;
         world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
         this.sendGuiInfo();
         this.markDirty();
       }
-    }
-    else if(processTime != 0)
-    {
-      processTime = 0;
-      world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
-      this.sendGuiInfo();
-      this.markDirty();
+      if(lastEnergy != energy.getEnergyStored())
+      {
+        world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
+        this.sendGuiInfo();
+        this.markDirty();
+        lastEnergy = energy.getEnergyStored();
+      }
     }
   }
 
@@ -79,7 +90,9 @@ public class ResonatorEntity extends TileEntity implements ITickable
     return (percentageOfProgress * barWidth) / 100;
   }
 
-  public int getEnergy(int barHeight) { return (energyPercentage * barHeight) / 100; }
+  //public int getEnergy(int barHeight) { return (energyPercentage * barHeight) / 100; }
+
+  public IEnergyStorage getEnergyStorage() { return energy; }
 
   @Override
   public NBTTagCompound writeToNBT(NBTTagCompound compound)
@@ -151,11 +164,11 @@ public class ResonatorEntity extends TileEntity implements ITickable
     return (oldState.getBlock() != newSate.getBlock());
   }
 
-  void sendGuiInfo() { SonosPacketHandler.INSTANCE.sendToAll(new ProgressUpdatePacket(processTime, totalProcessTime, energy.getEnergyProcentage(), pos)); }
+  void sendGuiInfo() { SonosPacketHandler.INSTANCE.sendToAll(new ProgressUpdatePacket(processTime, totalProcessTime, 1500, energy.getEnergyStored(), pos)); }
 
-  public void updateGuiInfo(int progress, int ep)
+  public void updateGuiInfo(int progress, int eCap, int eStor)
   {
     this.processTime = progress;
-    this.energyPercentage = ep;
+    this.energy = new SonosEnergy(eCap, 100, 100, eStor);
   }
 }

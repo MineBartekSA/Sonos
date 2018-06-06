@@ -1,6 +1,5 @@
 package com.minebarteksa.sonos.gui;
 
-import org.lwjgl.opengl.GL11;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import com.minebarteksa.sonos.tileentity.GeneratorEntity;
@@ -37,19 +36,7 @@ public class GeneratorGui extends GuiContainer
     int x = (width - xSize) / 2;
     int y = (height - ySize) / 2;
     drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
-    GL11.glPushMatrix();
-    GL11.glColor3f(1.0f, 0.0f, 0.0f);
-    GL11.glTranslatef(x, y, 0);
-    GL11.glRotatef(180, 0, 0, 1);
-    GL11.glBegin(GL11.GL_QUADS);
-    {
-      GL11.glVertex2f(0, 0);
-      GL11.glVertex2f(0, 30);
-      GL11.glVertex2f(10, 30);
-      GL11.glVertex2f(10, 0);
-    }
-    GL11.glEnd();
-    GL11.glPopMatrix();
+    drawTexturedModalRect(x + 80, y + 45 + (14 - ge.getPercentage(14)), 176, (14 - ge.getPercentage(14)), 14, ge.getPercentage(14));
   }
 
   @Override
@@ -58,8 +45,6 @@ public class GeneratorGui extends GuiContainer
     String name = I18n.format(SonosBlocks.rf.getUnlocalizedName() + ".name");
 		fontRenderer.drawString(name, xSize / 2 - fontRenderer.getStringWidth(name) / 2, 6, 0x404040);
 		fontRenderer.drawString(playerInv.getDisplayName().getUnformattedText(), 8, ySize - 94, 0x404040);
-    String text = "Burn time: " + ge.getBTime();
-    fontRenderer.drawString(text, xSize / 2 - fontRenderer.getStringWidth(text) / 2, 20, 0x404040);
   }
 
   @Override

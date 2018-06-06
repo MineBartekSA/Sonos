@@ -1,5 +1,8 @@
 package com.minebarteksa.sonos.tileentity;
 
+import net.minecraft.init.Items;
+import com.minebarteksa.sonos.packets.ProgressUpdatePacket;
+import com.minebarteksa.sonos.packets.SonosPacketHandler;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.item.ItemStack;
@@ -29,39 +32,51 @@ public class GeneratorEntity extends TileEntity implements ITickable
   @Override
   public void update()
   {
-    if(itemHand.getStackInSlot(0) != ItemStack.EMPTY && bTime == 0 && canGenerate)
+    if(!world.isRemote)
     {
-      if(getBurnTime(itemHand.getStackInSlot(0)) != 0)
+      if(itemHand.getStackInSlot(0) != ItemStack.EMPTY && bTime == 0 && canGenerate)
       {
-        BurnTime = getBurnTime(itemHand.getStackInSlot(0));
-        itemHand.extractItem(0, 1, false);
+        if(getBurnTime(itemHand.getStackInSlot(0)) != 0)
+        {
+          BurnTime = getBurnTime(itemHand.getStackInSlot(0));
+          if(itemHand.getStackInSlot(0).getItem() == Items.LAVA_BUCKET)
+          {
+            itemHand.extractItem(0, 1, false);
+            itemHand.insertItem(0, new ItemStack(Items.BUCKET), false);
+          }
+          else
+            itemHand.extractItem(0, 1, false);
+          bTime++;
+          energy.insertEnergy(20, false);
+          world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
+          this.markDirty();
+          this.sendGuiInfo();
+        }
+      }
+      else if(bTime != BurnTime && canGenerate)
+      {
         bTime++;
+        if(energy.insertEnergy(20, true) > 0)
+          canGenerate = false;
         energy.insertEnergy(20, false);
         world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
         this.markDirty();
+        this.sendGuiInfo();
       }
+      else if(bTime == BurnTime)
+      {
+        BurnTime = 0;
+        bTime = 0;
+        world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
+        this.markDirty();
+        this.sendGuiInfo();
+      }
+      else if(!canGenerate && energy.getEnergyStored() <= 9500)
+      {
+        canGenerate = true;
+      }
+      sendEnergy();
     }
-    else if(bTime != BurnTime && canGenerate)
-    {
-      bTime++;
-      if(energy.insertEnergy(20, true) > 0)
-        canGenerate = false;
-      energy.insertEnergy(20, false);
-      world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
-      this.markDirty();
-    }
-    else if(bTime == BurnTime)
-    {
-      BurnTime = 0;
-      bTime = 0;
-      world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
-      this.markDirty();
-    }
-    else if(!canGenerate && energy.getEnergyStored() <= 9500)
-    {
-      canGenerate = true;
-    }
-    sendEnergy();
   }
 
   int getBurnTime(ItemStack is)
@@ -72,6 +87,14 @@ public class GeneratorEntity extends TileEntity implements ITickable
   public int getBTime()
   {
     return bTime;
+  }
+
+  public int getPercentage(int barWidth)
+  {
+    if(BurnTime == 0)
+      return 0;
+    int percentageOfProgress = (bTime * 100) / BurnTime;
+    return barWidth - ((percentageOfProgress * barWidth) / 100);
   }
 
   void sendEnergy()
@@ -93,6 +116,7 @@ public class GeneratorEntity extends TileEntity implements ITickable
             es.receiveEnergy(energy.extractEnergy(500, false), false);
             world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
             this.markDirty();
+            this.sendGuiInfo();
           }
         }
       }
@@ -166,5 +190,14 @@ public class GeneratorEntity extends TileEntity implements ITickable
   public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newSate)
   {
     return (oldState.getBlock() != newSate.getBlock());
+  }
+
+  void sendGuiInfo() { SonosPacketHandler.INSTANCE.sendToAll(new ProgressUpdatePacket(bTime, BurnTime, 1500, energy.getEnergyStored(), pos)); }
+
+  public void updateGuiInfo(int BurnTime, int bTime, int eCap, int eStor)
+  {
+    this.BurnTime = BurnTime;
+    this.bTime = bTime;
+    this.energy = new SonosEnergy(eCap, 0, 500, eStor);
   }
 }

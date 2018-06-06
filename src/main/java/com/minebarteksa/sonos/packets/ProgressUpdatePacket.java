@@ -1,5 +1,6 @@
 package com.minebarteksa.sonos.packets;
 
+import com.minebarteksa.sonos.tileentity.GeneratorEntity;
 import com.minebarteksa.sonos.tileentity.ResonatorEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.client.Minecraft;
@@ -13,11 +14,12 @@ public class ProgressUpdatePacket implements IMessage
 {
   public ProgressUpdatePacket() {}
 
-  public ProgressUpdatePacket(int progress, int totalProgress, int ePro, BlockPos pos)
+  public ProgressUpdatePacket(int progress, int totalProgress, int eCap, int eStor, BlockPos pos)
   {
     this.prog = progress;
     this.tProg = totalProgress;
-    this.energyPro = ePro;
+    this.energyCapacity = eCap;
+    this.energyStored = eStor;
     this.x = pos.getX();
     this.y = pos.getY();
     this.z = pos.getZ();
@@ -25,7 +27,8 @@ public class ProgressUpdatePacket implements IMessage
 
   private int prog;
   private int tProg;
-  private int energyPro;
+  private int energyCapacity;
+  private int energyStored;
   private int x, y, z;
 
   @Override
@@ -33,7 +36,8 @@ public class ProgressUpdatePacket implements IMessage
   {
     buf.writeInt(prog);
     buf.writeInt(tProg);
-    buf.writeInt(energyPro);
+    buf.writeInt(energyCapacity);
+    buf.writeInt(energyStored);
     buf.writeInt(x);
     buf.writeInt(y);
     buf.writeInt(z);
@@ -44,7 +48,8 @@ public class ProgressUpdatePacket implements IMessage
   {
     prog = buf.readInt();
     tProg = buf.readInt();
-    energyPro = buf.readInt();
+    energyCapacity = buf.readInt();
+    energyStored = buf.readInt();
     x = buf.readInt();
     y = buf.readInt();
     z = buf.readInt();
@@ -62,7 +67,11 @@ public class ProgressUpdatePacket implements IMessage
 
       if(te instanceof ResonatorEntity)
       {
-        ((ResonatorEntity)te).updateGuiInfo(message.prog, message.energyPro);
+        ((ResonatorEntity)te).updateGuiInfo(message.prog, message.energyCapacity, message.energyStored);
+      }
+      else if(te instanceof GeneratorEntity)
+      {
+        ((GeneratorEntity)te).updateGuiInfo(message.tProg, message.prog, message.energyCapacity, message.energyStored);
       }
 
       return null;

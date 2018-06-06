@@ -16,7 +16,7 @@ public class GeneratorContainer extends Container
   public GeneratorContainer(InventoryPlayer playerInv, final GeneratorEntity re)
   {
     IItemHandler iHand = re.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
-    addSlotToContainer(new SlotItemHandler(iHand, 0, 80, 35)
+    addSlotToContainer(new SlotItemHandler(iHand, 0, 80, 26)
     {
       @Override
       public void onSlotChanged() { re.markDirty(); }
