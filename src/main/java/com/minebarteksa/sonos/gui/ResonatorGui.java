@@ -22,6 +22,7 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 public class ResonatorGui extends GuiContainer
 {
   private static final ResourceLocation BackGroundImage = new ResourceLocation(Sonos.ModID, "textures/gui/resonator.png");
+  private static final ResourceLocation EnergyBar = new ResourceLocation(Sonos.ModID, "textures/gui/energy.png");
   private InventoryPlayer playerInv;
   private ResonatorEntity re;
   private static final int ProgressBarWidth = 22;
@@ -44,24 +45,23 @@ public class ResonatorGui extends GuiContainer
     drawTexturedModalRect(x + 80, y + 35, 177, 14, re.getProgressPercantage(ProgressBarWidth + 1), 16);
 
     GlStateManager.pushMatrix();
-    //GlStateManager.translate(x, y, 0);
-    //drawEnergyBar(x, y);
+    GlStateManager.translate(x, y, 0);
+    drawEnergyBar(5, 13);
     GlStateManager.popMatrix();
   }
 
   private void drawEnergyBar(int x, int y)
   {
     int a = getScaledEnergy();
-    //mc.getTextureManager().bindTexture(new ResourceLocation(CoreProps.PATH_ELEMENTS + "energy.png"));
-    mc.renderEngine.bindTexture(new ResourceLocation("cofh", "textures/gui/elements/energy.png"));
-    drawTexturedModalRect(x, y, 0, 0, 16, 42);
-    drawTexturedModalRect(x, y, 16 + 42 - a, 16, 42 - a, a);
+    mc.renderEngine.bindTexture(EnergyBar);
+    drawTexturedModalRect(x, y, 0, 0, 16, 53);
+    drawTexturedModalRect(x, y + (53 - a), 16, 53 - a, 16, a);
   }
 
   private int getScaledEnergy()
   {
     IEnergyStorage e = re.getEnergyStorage();
-    return (((e.getEnergyStored() * 100) / 1500) * 42) / 100;
+    return (((e.getEnergyStored() * 100) / 1500) * 53) / 100;
   }
 
   @Override
