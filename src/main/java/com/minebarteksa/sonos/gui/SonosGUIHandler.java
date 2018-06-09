@@ -1,5 +1,7 @@
 package com.minebarteksa.sonos.gui;
 
+import com.minebarteksa.sonos.Sonos;
+import net.minecraft.util.ResourceLocation;
 import com.minebarteksa.sonos.gui.containers.GeneratorContainer;
 import com.minebarteksa.sonos.tileentity.GeneratorEntity;
 import net.minecraft.inventory.Container;
@@ -13,6 +15,12 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 
 public class SonosGUIHandler implements IGuiHandler
 {
+  //Textures locations
+  public static final ResourceLocation ResonatorBack = new ResourceLocation(Sonos.ModID, "textures/gui/resonator.png");
+  public static final ResourceLocation GeneratorBack = new ResourceLocation(Sonos.ModID, "textures/gui/generator.png");
+  public static final ResourceLocation EnergyBar = new ResourceLocation(Sonos.ModID, "textures/gui/energy.png");
+
+  //Gui ID's
   public static final int ResonatorID = 0;
   public static final int GeneratorID = 1;
 

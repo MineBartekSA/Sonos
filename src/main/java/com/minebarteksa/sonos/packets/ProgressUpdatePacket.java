@@ -71,7 +71,7 @@ public class ProgressUpdatePacket implements IMessage
       }
       else if(te instanceof GeneratorEntity)
       {
-        ((GeneratorEntity)te).updateGuiInfo(message.tProg, message.prog, message.energyCapacity, message.energyStored);
+        ((GeneratorEntity)te).updateGuiInfo(message.tProg, message.prog, message.energyStored);
       }
 
       return null;

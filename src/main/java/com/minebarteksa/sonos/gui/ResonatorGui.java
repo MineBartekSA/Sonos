@@ -1,9 +1,6 @@
 package com.minebarteksa.sonos.gui;
 
 import net.minecraftforge.energy.IEnergyStorage;
-import cofh.core.init.CoreProps;
-import net.minecraft.client.Minecraft;
-import org.lwjgl.opengl.GL11;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.util.math.BlockPos;
@@ -12,8 +9,6 @@ import com.minebarteksa.sonos.tileentity.ResonatorEntity;
 import com.minebarteksa.sonos.blocks.SonosBlocks;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.renderer.GlStateManager;
-import com.minebarteksa.sonos.Sonos;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -21,8 +16,6 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 @SideOnly(Side.CLIENT)
 public class ResonatorGui extends GuiContainer
 {
-  private static final ResourceLocation BackGroundImage = new ResourceLocation(Sonos.ModID, "textures/gui/resonator.png");
-  private static final ResourceLocation EnergyBar = new ResourceLocation(Sonos.ModID, "textures/gui/energy.png");
   private InventoryPlayer playerInv;
   private ResonatorEntity re;
   private static final int ProgressBarWidth = 22;
@@ -38,7 +31,7 @@ public class ResonatorGui extends GuiContainer
   protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
   {
     GlStateManager.color(1, 1, 1, 1);
-    mc.getTextureManager().bindTexture(BackGroundImage);
+    mc.getTextureManager().bindTexture(SonosGUIHandler.ResonatorBack);
     int x = (width - xSize) / 2;
     int y = (height - ySize) / 2;
     drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
@@ -53,7 +46,7 @@ public class ResonatorGui extends GuiContainer
   private void drawEnergyBar(int x, int y)
   {
     int a = getScaledEnergy();
-    mc.renderEngine.bindTexture(EnergyBar);
+    mc.renderEngine.bindTexture(SonosGUIHandler.EnergyBar);
     drawTexturedModalRect(x, y, 0, 0, 16, 53);
     drawTexturedModalRect(x, y + (53 - a), 16, 53 - a, 16, a);
   }

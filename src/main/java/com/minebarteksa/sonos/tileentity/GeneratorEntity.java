@@ -89,6 +89,8 @@ public class GeneratorEntity extends TileEntity implements ITickable
     return bTime;
   }
 
+  public IEnergyStorage getEnergyStorage() { return energy; }
+
   public int getPercentage(int barWidth)
   {
     if(BurnTime == 0)
@@ -192,12 +194,12 @@ public class GeneratorEntity extends TileEntity implements ITickable
     return (oldState.getBlock() != newSate.getBlock());
   }
 
-  void sendGuiInfo() { SonosPacketHandler.INSTANCE.sendToAll(new ProgressUpdatePacket(bTime, BurnTime, 1500, energy.getEnergyStored(), pos)); }
+  void sendGuiInfo() { SonosPacketHandler.INSTANCE.sendToAll(new ProgressUpdatePacket(bTime, BurnTime, 0, energy.getEnergyStored(), pos)); }
 
-  public void updateGuiInfo(int BurnTime, int bTime, int eCap, int eStor)
+  public void updateGuiInfo(int BurnTime, int bTime, int eStor)
   {
     this.BurnTime = BurnTime;
     this.bTime = bTime;
-    this.energy = new SonosEnergy(eCap, 0, 500, eStor);
+    this.energy = new SonosEnergy(50000, 0, 500, eStor);
   }
 }
