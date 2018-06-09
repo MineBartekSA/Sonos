@@ -1,11 +1,15 @@
 package com.minebarteksa.sonos.tileentity;
 
+import com.minebarteksa.sonos.Sonos;
+import com.minebarteksa.sonos.sound.SoundEvents.Chords;
+import com.minebarteksa.sonos.sound.SoundEvents.Notes;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
-import com.minebarteksa.sonos.SonosEnergy;
-import net.minecraftforge.energy.CapabilityEnergy;
+//import com.minebarteksa.sonos.SonosEnergy;
+//import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.util.math.BlockPos;
@@ -17,19 +21,23 @@ import net.minecraft.tileentity.TileEntity;
 
 public class CMEntity extends TileEntity implements ITickable
 {
-  protected SonosEnergy energy = new SonosEnergy(10000, 500);
+  //protected SonosEnergy energy = new SonosEnergy(10000, 500);
   private ItemStackHandler itemHand = new ItemStackHandler(2);
 
   @Override
   public void update()
   {
-    //
+    if(itemHand.getStackInSlot(0) != ItemStack.EMPTY && itemHand.getStackInSlot(0).hasTagCompound())
+    {
+      NBTTagCompound sonoTag = itemHand.getStackInSlot(0).getTagCompound();
+      Sonos.log.info("Note: " + Notes.getNote(sonoTag.getInteger("note")) + " Quality: " + Chords.getChord(sonoTag.getInteger("quality")) + " Sound type: " + sonoTag.getString("soundType"));
+    }
   }
 
   @Override
   public NBTTagCompound writeToNBT(NBTTagCompound compound)
   {
-    compound.setTag("energystorage", energy.serNBT());
+    //compound.setTag("energystorage", energy.serNBT());
     compound.setTag("items", itemHand.serializeNBT());
     return super.writeToNBT(compound);
   }
@@ -37,7 +45,7 @@ public class CMEntity extends TileEntity implements ITickable
   @Override
   public void readFromNBT(NBTTagCompound compound)
   {
-    energy.deNBT(compound.getCompoundTag("energystorage"));
+    //energy.deNBT(compound.getCompoundTag("energystorage"));
     itemHand.deserializeNBT(compound.getCompoundTag("items"));
     super.readFromNBT(compound);
   }
@@ -45,8 +53,8 @@ public class CMEntity extends TileEntity implements ITickable
   @Override
   public boolean hasCapability(Capability<?> capability, EnumFacing facing)
   {
-    if(capability == CapabilityEnergy.ENERGY)
-      return true;
+    //if(capability == CapabilityEnergy.ENERGY)
+    //  return true;
     if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
       return true;
     return super.hasCapability(capability, facing);
@@ -55,8 +63,8 @@ public class CMEntity extends TileEntity implements ITickable
   @Override
   public <T> T getCapability(Capability<T> capability, EnumFacing facing)
   {
-    if(capability == CapabilityEnergy.ENERGY)
-      return (T)energy;
+    //if(capability == CapabilityEnergy.ENERGY)
+    //  return (T)energy;
     if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
       return (T)itemHand;
     return super.getCapability(capability, facing);

@@ -46,7 +46,7 @@ public class ResonatorEntity extends TileEntity implements ITickable
           {
             processTime = 0;
             ItemStack in = itemHand.extractItem(0, 1, false);
-            itemHand.insertItem(1, new ItemStack(SonosItems.getSonoPrimaFormNote(((Sono)in.getItem()).note), 1), false);
+            itemHand.insertItem(1, SonoPrima.setNBTTags(new ItemStack(SonosItems.getSonoPrimaFormNote(((Sono)in.getItem()).note), 1)), false);
           }
           world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
           this.sendGuiInfo();
@@ -165,7 +165,7 @@ public class ResonatorEntity extends TileEntity implements ITickable
   }
 
   void sendGuiInfo() { SonosPacketHandler.INSTANCE.sendToAll(new ProgressUpdatePacket(processTime, totalProcessTime, 1500, energy.getEnergyStored(), pos)); }
-
+  // TO REWRITE!!!! URGENT!!!
   public void updateGuiInfo(int progress, int eCap, int eStor)
   {
     this.processTime = progress;

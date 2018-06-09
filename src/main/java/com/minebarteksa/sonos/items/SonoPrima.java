@@ -81,4 +81,26 @@ public class SonoPrima extends ItemBase
     super.setCreativeTab(tab);
     return this;
   }
+
+  public static ItemStack setNBTTags(ItemStack stack)
+  {
+    if(!stack.hasTagCompound())
+    {
+      NBTTagCompound tags = new NBTTagCompound();
+      tags.setInteger("note", ((SonoPrima)stack.getItem()).note.Number());
+      tags.setInteger("quality", 0);
+      tags.setString("soundType", "Sonar");
+      stack.setTagCompound(tags);
+    }
+    else
+    {
+      if(!stack.getTagCompound().hasKey("note"))
+        stack.getTagCompound().setInteger("note", ((SonoPrima)stack.getItem()).note.Number());
+      if(!stack.getTagCompound().hasKey("quality"))
+        stack.getTagCompound().setInteger("quality", 0);
+      if(!stack.getTagCompound().hasKey("soundType"))
+        stack.getTagCompound().setString("soundType", "Sonar");
+    }
+    return stack;
+  }
 }

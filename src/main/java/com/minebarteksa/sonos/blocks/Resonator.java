@@ -19,6 +19,8 @@ public class Resonator extends TileEntityBlockBase<ResonatorEntity>
   public Resonator(String name)
   {
     super(Material.ROCK, name);
+    this.setHardness(3f);
+		this.setResistance(5f);
   }
 
   @Override
@@ -45,6 +47,8 @@ public class Resonator extends TileEntityBlockBase<ResonatorEntity>
     {
       if(!playerIn.isSneaking())
         playerIn.openGui(Sonos.instance, SonosGUIHandler.ResonatorID, worldIn, pos.getX(), pos.getY(), pos.getZ());
+      else
+        return false;
     }
     return true;
   }

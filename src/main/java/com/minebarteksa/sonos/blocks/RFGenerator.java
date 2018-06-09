@@ -17,6 +17,8 @@ public class RFGenerator extends TileEntityBlockBase<GeneratorEntity>
   public RFGenerator(String name)
   {
     super(Material.IRON, name);
+    this.setHardness(3f);
+		this.setResistance(5f);
   }
 
   @Override
@@ -26,6 +28,8 @@ public class RFGenerator extends TileEntityBlockBase<GeneratorEntity>
     {
       if(!playerIn.isSneaking())
         playerIn.openGui(Sonos.instance, SonosGUIHandler.GeneratorID, worldIn, pos.getX(), pos.getY(), pos.getZ());
+      else
+        return false;
     }
     return true;
   }

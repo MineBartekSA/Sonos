@@ -12,6 +12,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
 public class ProgressUpdatePacket implements IMessage
 {
+  // TO REWRITE!!!! URGENT!!!
+
   public ProgressUpdatePacket() {}
 
   public ProgressUpdatePacket(int progress, int totalProgress, int eCap, int eStor, BlockPos pos)
