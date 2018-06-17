@@ -52,8 +52,8 @@ public class Guide extends Item implements IGuideBook
     guide.setAuthor("& Circl3s and MineBartekSA");
     guide.setColor(Color.BLUE);
     guide.setCreativeTab(Sonos.cTab);
-    guide.setGuideTitle("Sonos guide");
-    guide.setItemName("Sonos guide");
+    guide.setGuideTitle("Libro de Sonos");
+    guide.setItemName("Libro de Sonos");
     guide.setSpawnWithBook();
     guide.addCategory(new CategoryItemStack(entries, "My Category", new ItemStack(Blocks.COMMAND_BLOCK)));
 
