@@ -35,7 +35,6 @@ public class CriterionListeners<Instance extends CriterionInstance>
 
   public void trigger(Object state, Class<?> type)
   {
-    Sonos.log.info("MinedSonosOreNew trigger listener!");
     List<ICriterionTrigger.Listener<Instance>> list = null;
 
     for (ICriterionTrigger.Listener<Instance> listener : this.listeners)
@@ -55,7 +54,6 @@ public class CriterionListeners<Instance extends CriterionInstance>
     {
       for (ICriterionTrigger.Listener<Instance> listener1 : list)
       {
-        Sonos.log.info("MinedSonosOreNew grant!");
         listener1.grantCriterion(this.playerAdvancements);
       }
     }

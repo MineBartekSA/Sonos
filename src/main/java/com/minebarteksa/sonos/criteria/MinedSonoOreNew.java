@@ -39,7 +39,6 @@ public class MinedSonoOreNew extends CriterionBase<MinedSonoOreNew.Instance, Min
 
   public void trigger(EntityPlayerMP parPlayer, IBlockState f)
   {
-    Sonos.log.info("MinedSonosOreNew Triggered!");
     CriterionListeners<MinedSonoOreNew.Instance> enterblocktrigger$listeners = this.listeners.get(parPlayer.getAdvancements());
 
     if (enterblocktrigger$listeners != null)
@@ -63,7 +62,6 @@ public class MinedSonoOreNew extends CriterionBase<MinedSonoOreNew.Instance, Min
       if(type != IBlockState.class)
         return false;
       IBlockState state = (IBlockState)obj;
-      Sonos.log.info("Test " + (state.getBlock() == block));
       if(state.getBlock() == block)
         return true;
       return false;

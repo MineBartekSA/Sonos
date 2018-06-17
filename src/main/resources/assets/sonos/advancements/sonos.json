@@ -1,17 +1,15 @@
 {
     "display": {
         "title": "Sonos",
-        "description": "A placeholder for now",
+        "description": "You've opened yourself a book of sounds",
         "icon": {
             "item": "guideapi:sonos-guidebook"
         },
-        "background": "minecraft:textures/gui/advancements/backgrounds/stone.png",
-        "show_toast": false,
-        "announce_to_chat": false
+        "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
     },
     "criteria": {
         "placeholder": {
-            "trigger": "minecraft:tick"
+            "trigger": "sonos:openguide"
         }
     }
 }

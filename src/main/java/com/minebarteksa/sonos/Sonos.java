@@ -1,5 +1,10 @@
 package com.minebarteksa.sonos;
 
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraft.util.ResourceLocation;
+import amerifrance.guideapi.api.GuideAPI;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import com.minebarteksa.sonos.packets.SonosPacketHandler;
 import java.util.Random;
 import com.minebarteksa.sonos.sound.SoundEvents.Notes;
@@ -94,6 +99,36 @@ public class Sonos
     public static void registerSounds(RegistryEvent.Register<SoundEvent> event)
     {
       SoundEvents.registerSounds(event.getRegistry());
+    }
+
+    @SubscribeEvent
+    public static void playerInteractEvent(PlayerInteractEvent.RightClickItem event)
+    {
+      log.info("PlayerInteractEvent.RightClickItem");
+      if(event.getSide() == Side.SERVER)
+        openGuideTrigger(event.getItemStack(), (EntityPlayerMP)event.getEntityPlayer());
+    }
+
+    @SubscribeEvent
+    public static void playerInteractEvent(PlayerInteractEvent.RightClickBlock event)
+    {
+      log.info("PlayerInteractEvent.RightClickBlock");
+      if(event.getSide() == Side.SERVER)
+        openGuideTrigger(event.getItemStack(), (EntityPlayerMP)event.getEntityPlayer());
+    }
+
+    @SubscribeEvent
+    public static void playerInteractEvent(PlayerInteractEvent.EntityInteract event)
+    {
+      log.info("PlayerInteractEvent.EntityInteract");
+      if(event.getSide() == Side.SERVER)
+        openGuideTrigger(event.getItemStack(), (EntityPlayerMP)event.getEntityPlayer());
+    }
+
+    static void openGuideTrigger(ItemStack item, EntityPlayerMP player)
+    {
+      if(item.getItem() == GuideAPI.getStackFromBook(GuideAPI.getBooks().get(new ResourceLocation(Sonos.ModID, "guidebook"))).getItem())
+        SonosCriteria.OG.trigger(player);
     }
   }
 }
