@@ -1,6 +1,5 @@
 package com.minebarteksa.sonos.packets;
 
-import com.minebarteksa.sonos.packets.SoundSSPacket.SoundSSPacketHandler;
 import com.minebarteksa.sonos.packets.ProgressUpdatePacket.ProgressUpdatePacketHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.network.NetworkRegistry;

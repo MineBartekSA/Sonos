@@ -1,6 +1,5 @@
 package com.minebarteksa.sonos.criteria;
 
-import com.minebarteksa.sonos.Sonos;
 import com.google.common.collect.Lists;
 import java.util.List;
 import com.google.common.collect.Sets;

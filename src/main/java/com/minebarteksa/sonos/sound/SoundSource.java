@@ -1,6 +1,5 @@
 package com.minebarteksa.sonos.sound;
 
-import com.minebarteksa.sonos.tileentity.SonoOreEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.SoundCategory;

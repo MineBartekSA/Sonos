@@ -66,7 +66,7 @@ public class Sonos
   @Mod.EventHandler
   public void init(FMLInitializationEvent event)
   {
-    log.info("Hello Sonos here!");
+    log.info("Sonos init!");
     SonosItems.initOreDictionary();
     SonosItems.registerItemColors();
     SonosCriteria.registerCriteria();
@@ -104,7 +104,6 @@ public class Sonos
     @SubscribeEvent
     public static void playerInteractEvent(PlayerInteractEvent.RightClickItem event)
     {
-      log.info("PlayerInteractEvent.RightClickItem");
       if(event.getSide() == Side.SERVER)
         openGuideTrigger(event.getItemStack(), (EntityPlayerMP)event.getEntityPlayer());
     }
@@ -112,7 +111,6 @@ public class Sonos
     @SubscribeEvent
     public static void playerInteractEvent(PlayerInteractEvent.RightClickBlock event)
     {
-      log.info("PlayerInteractEvent.RightClickBlock");
       if(event.getSide() == Side.SERVER)
         openGuideTrigger(event.getItemStack(), (EntityPlayerMP)event.getEntityPlayer());
     }
@@ -120,7 +118,6 @@ public class Sonos
     @SubscribeEvent
     public static void playerInteractEvent(PlayerInteractEvent.EntityInteract event)
     {
-      log.info("PlayerInteractEvent.EntityInteract");
       if(event.getSide() == Side.SERVER)
         openGuideTrigger(event.getItemStack(), (EntityPlayerMP)event.getEntityPlayer());
     }

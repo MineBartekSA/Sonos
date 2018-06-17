@@ -122,6 +122,7 @@ public class ResonatorEntity extends TileEntity implements ITickable
     return super.hasCapability(capability, facing);
   }
 
+  @SuppressWarnings("unchecked")
   @Override
   public <T> T getCapability(Capability<T> capability, EnumFacing facing)
   {
