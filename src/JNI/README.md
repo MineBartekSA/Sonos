@@ -65,4 +65,4 @@ You can just initialize it in the definition but i recommend to initialize it in
 
 ***
 
-If you need something you can just ask me @MineBartekSA
+If you need something you can just ask me [MineBartekSA](https://github.com/minebarteksa)
