@@ -6,3 +6,8 @@ include_directories(${JNI_INCLUDE_DIRS})
 set(CMAKE_CXX_FLAGS "${CMAKE_CSS_FLAGS} -std=c++11")
 set(SOURCE_FILES stdioport.cpp)
 add_Library(stdioport SHARED ${SOURCE_FILES})
+add_custom_command(
+	TARGET stdioport POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy
+		${CMAKE_CURRENT_BINARY_DIR}/*.so
+		${CMAKE_SOURCE_DIR})

@@ -30,12 +30,16 @@ public class stdio
 }
 ```
 
+Also please encapsulate native functions to prevent Minecraft crashes!
+
+You should also make an `public static void DownloadLib()` function.
+
 * **Step 3 - Preparation for port**
 Now we will setup an place where you will be porting that Library.
 
 Go the the `src/JNI` (the place where this guide is) and make a new folder where you will be that port.
 Copy to it everything form `base` folder and rename the `yourPort.cpp` to your linking, but i suggest the name of that folder.
-Next edit the `CMakeLists.txt`, and in line `set(SOURCE_FILES yourPort.cpp)` change the `yourPort.cpp` part to the name of the file you just renamed.
+Next edit the `CMakeLists.txt`, and everywhere you see `yourPort` chnage it using the same name of the file you just renamed.
 
 After that go to the `src/main/java` and run this command `javah com.minebarteksa.sonos.jni.classname`.
 By `classname` i mean the class name that you crated in the Step 2.
@@ -51,7 +55,7 @@ After you're finished with writing the port you need to build the port for Java 
 
 The important file will be named like this `lib<Your cpp file name>.so`.
 
-Go to the `build` folder and run this command `cmake ..` it will generate what you will need to build it now and in the feature (as long you don't edit the `CMakeLists.txt` file).
+Go to or create `build` folder and run this command `cmake ..` it will generate what you will need to build it now and in the feature (as long you don't edit the `CMakeLists.txt` file).
 To build you just run this command `make`, and your done!
 
 After you've go the port in nice lib you have to make one more change in the Sonos code in order to make it work.
