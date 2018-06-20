@@ -6,14 +6,17 @@ In order to port an Library to use in Java you have to follow few steps.
 This Guide is for Linux users, but i will work on making it for Windows users too.
 
 For this you will need
+
 * CMake - Version 2.8 or newer
+
 * Make - Any version
+
 * Java - Of course, because Sonos and Minecraft are written in Java
 
-* **Step 1 - Get the Library and it header**
+## **Step 1 - Get the Library and it header**
 Fist of all you have to know the list of function you will need.
 
-* **Step 2 - Make Java class with all the function from Step 1**
+## **Step 2 - Make Java class with all the function from Step 1**
 To start we will need an class with every function form that Library that you will need.
 It will be useful for two things, first for the header that we well generate in next step, and second is for use in code.
 
@@ -34,7 +37,7 @@ Also please encapsulate native functions to prevent Minecraft crashes!
 
 You should also make an `public static void DownloadLib()` function.
 
-* **Step 3 - Preparation for port**
+## **Step 3 - Preparation for port**
 Now we will setup an place where you will be porting that Library.
 
 Go the the `src/JNI` (the place where this guide is) and make a new folder where you will be that port.
@@ -47,10 +50,10 @@ This command will generate an important header file that contains all the native
 To those function you will be writing some code in the next step.
 Move that file to the folder you created in `src/JNI`.
 
-* **Step 4 - Writing the port**
+## **Step 4 - Writing the port**
 From now on you can look to that `.cpp` file and write the port.
 
-* **Step 5 - Building the port**
+## **Step 5 - Building the port**
 After you're finished with writing the port you need to build the port for Java to access it.
 
 The important file will be named like this `lib<Your cpp file name>.so`.
@@ -66,4 +69,4 @@ You can just initialize it in the definition but i recommend to initialize it in
 
 ***
 
-If you need something you can just ask me @MineBartekSA
+If you need something you can just ask me [MineBartekSA](https://github.com/minebarteksa)
