@@ -9,7 +9,7 @@
 
   "key": {
     "g": { "item": "minecraft:gold_ingot" },
-    "s": { "item": "sonos:sono_ds" }
+    "s": { "item": "sonos:sonovessel_ds" }
   },
 
   "result": { "item": "sonos:sonoring_ds" }

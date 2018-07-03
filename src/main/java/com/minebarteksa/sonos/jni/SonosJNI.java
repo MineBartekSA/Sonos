@@ -1,8 +1,5 @@
 package com.minebarteksa.sonos.jni;
 
-import com.minebarteksa.sonos.Sonos;
-import java.io.File;
-
 public class SonosJNI
 {
   public static final String libDir = System.getProperty("user.dir") + "/mods/SonosLibs";
@@ -12,14 +9,12 @@ public class SonosJNI
 
   public static void JNInit()
   {
-    if(!new File(libDir).exists())
-    {
-      Sonos.log.info("No SonosLibs directory! Creating one!");
-      new File(libDir).mkdir();
-      //Libs Download
-      stdio.DownloadLib();
-      return;
-    }
+    LibDownloader.AddLib(stdio.getLib());
+    LibDownloader.AddLib(new LibDownloader.Lib("test.txt", "/base/directory-list-2.3-medium.txt"));
+    LibDownloader.AddLib(new LibDownloader.Lib("wrong", "LOLTHATSWRONG"));
+
+    LibDownloader.Donwload();
+
     std = new stdio();
     std.printf("Hello there!");
   }

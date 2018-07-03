@@ -1,5 +1,12 @@
 package com.minebarteksa.sonos.items;
 
+import net.minecraft.util.EnumActionResult;
+import baubles.api.BaublesApi;
+import baubles.api.cap.IBaublesItemHandler;
+import net.minecraft.util.EnumHand;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
+import net.minecraft.util.ActionResult;
 import com.minebarteksa.sonos.sound.SoundEvents.Notes;
 import com.minebarteksa.sonos.sound.SoundEvents;
 import net.minecraft.entity.EntityLivingBase;
@@ -28,11 +35,32 @@ public class SonoRing extends ItemBase implements IBauble
   }
 
   @Override
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
+  {
+		if(!world.isRemote)
+    {
+			IBaublesItemHandler baubles = BaublesApi.getBaublesHandler(player);
+			for(int i = 0; i < baubles.getSlots(); i++)
+				if((baubles.getStackInSlot(i) == null || baubles.getStackInSlot(i).isEmpty()) && baubles.isItemValidForSlot(i, player.getHeldItem(hand), player))
+        {
+					baubles.setStackInSlot(i, player.getHeldItem(hand).copy());
+					if(!player.capabilities.isCreativeMode)
+          {
+						player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+					}
+					onEquipped(player.getHeldItem(hand), player);
+					break;
+				}
+		}
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
+	}
+
+  @Override
 	public void onWornTick(ItemStack itemstack, EntityLivingBase player)
   {
 		if (itemstack.getItemDamage() == 0 && player.ticksExisted % 39 == 0)
     {
-			player.addPotionEffect(new PotionEffect(SoundEvents.getNoteEffect(note), 40, 0, true, false));
+			player.addPotionEffect(new PotionEffect(SoundEvents.getNoteEffect(note), 40, 0, true, false)); //Rewrite
 		}
 	}
 

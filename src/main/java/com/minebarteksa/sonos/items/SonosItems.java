@@ -13,6 +13,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class SonosItems
 {
+	//Notes color
 	public static final int color_c = 0x01ff03;
 	public static final int color_cs = 0x01ffbb;
 	public static final int color_d = 0x019dff;
@@ -68,12 +69,27 @@ public class SonosItems
 	public static SonoRing asRing = new SonoRing("sonoring_as", Notes.ASharp).setCreativeTab(Sonos.cTab);
 	public static SonoRing bRing = new SonoRing("sonoring_b", Notes.B).setCreativeTab(Sonos.cTab);
 
+	//SonoVessel
+	public static SonoVessel cVessel = new SonoVessel("sonovessel_c", Notes.C).setCreativeTab(Sonos.cTab);
+	public static SonoVessel csVessel = new SonoVessel("sonovessel_cs", Notes.CSharp).setCreativeTab(Sonos.cTab);
+	public static SonoVessel dVessel = new SonoVessel("sonovessel_d", Notes.D).setCreativeTab(Sonos.cTab);
+	public static SonoVessel dsVessel = new SonoVessel("sonovessel_ds", Notes.DSharp).setCreativeTab(Sonos.cTab);
+	public static SonoVessel eVessel = new SonoVessel("sonovessel_e", Notes.E).setCreativeTab(Sonos.cTab);
+	public static SonoVessel fVessel = new SonoVessel("sonovessel_f", Notes.F).setCreativeTab(Sonos.cTab);
+	public static SonoVessel fsVessel = new SonoVessel("sonovessel_fs", Notes.FSharp).setCreativeTab(Sonos.cTab);
+	public static SonoVessel gVessel = new SonoVessel("sonovessel_g", Notes.G).setCreativeTab(Sonos.cTab);
+	public static SonoVessel gsVessel = new SonoVessel("sonovessel_gs", Notes.GSharp).setCreativeTab(Sonos.cTab);
+	public static SonoVessel aVessel = new SonoVessel("sonovessel_a", Notes.A).setCreativeTab(Sonos.cTab);
+	public static SonoVessel asVessel = new SonoVessel("sonovessel_as", Notes.ASharp).setCreativeTab(Sonos.cTab);
+	public static SonoVessel bVessel = new SonoVessel("sonovessel_b", Notes.B).setCreativeTab(Sonos.cTab);
+
 	public static void register(IForgeRegistry<Item> registry)
 	{
 		registry.registerAll(
 		sono_c, sono_cs, sono_d, sono_ds, sono_e, sono_f, sono_fs, sono_g, sono_gs, sono_a, sono_as, sono_b,
 		sono_prima_c, sono_prima_cs, sono_prima_d, sono_prima_ds, sono_prima_e, sono_prima_f, sono_prima_fs, sono_prima_g, sono_prima_gs, sono_prima_a, sono_prima_as, sono_prima_b,
-		cRing, csRing, dRing, dsRing, eRing, fRing, fsRing, gRing, gsRing, aRing, asRing, bRing
+		cRing, csRing, dRing, dsRing, eRing, fRing, fsRing, gRing, gsRing, aRing, asRing, bRing,
+		cVessel, csVessel, dVessel, dsVessel, eVessel, fVessel, fsVessel, gVessel, gsVessel, aVessel, asVessel, bVessel
 		);
 	}
 
@@ -115,6 +131,18 @@ public class SonosItems
 		aRing.registerItemModel();
 		asRing.registerItemModel();
 		bRing.registerItemModel();
+		cVessel.registerItemModel();
+		csVessel.registerItemModel();
+		dVessel.registerItemModel();
+		dsVessel.registerItemModel();
+		eVessel.registerItemModel();
+		fVessel.registerItemModel();
+		fsVessel.registerItemModel();
+		gVessel.registerItemModel();
+		gsVessel.registerItemModel();
+		aVessel.registerItemModel();
+		asVessel.registerItemModel();
+		bVessel.registerItemModel();
 	}
 
 	public static void registerItemColors()
@@ -326,5 +354,18 @@ public class SonosItems
 		OreDictionary.registerOre("sonoPrima", sono_prima_a);
 		OreDictionary.registerOre("sonoPrima", sono_prima_as);
 		OreDictionary.registerOre("sonoPrima", sono_prima_b);
+
+		OreDictionary.registerOre("sonoVessel", cVessel);
+		OreDictionary.registerOre("sonoVessel", csVessel);
+		OreDictionary.registerOre("sonoVessel", dVessel);
+		OreDictionary.registerOre("sonoVessel", dsVessel);
+		OreDictionary.registerOre("sonoVessel", eVessel);
+		OreDictionary.registerOre("sonoVessel", fVessel);
+		OreDictionary.registerOre("sonoVessel", fsVessel);
+		OreDictionary.registerOre("sonoVessel", gVessel);
+		OreDictionary.registerOre("sonoVessel", gsVessel);
+		OreDictionary.registerOre("sonoVessel", aVessel);
+		OreDictionary.registerOre("sonoVessel", asVessel);
+		OreDictionary.registerOre("sonoVessel", bVessel);
 	}
 }
