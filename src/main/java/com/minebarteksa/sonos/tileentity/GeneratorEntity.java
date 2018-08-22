@@ -17,13 +17,13 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import com.minebarteksa.sonos.SonosEnergy;
+import com.minebarteksa.orion.OrionEnergy;
 import net.minecraft.util.ITickable;
 import net.minecraft.tileentity.TileEntity;
 
 public class GeneratorEntity extends TileEntity implements ITickable
 {
-  protected SonosEnergy energy = new SonosEnergy(50000, 0, 500);
+  protected OrionEnergy energy = new OrionEnergy(50000, 0, 500);
   private ItemStackHandler itemHand = new ItemStackHandler(1);
   private int BurnTime;
   private int bTime;
@@ -201,6 +201,6 @@ public class GeneratorEntity extends TileEntity implements ITickable
   {
     this.BurnTime = BurnTime;
     this.bTime = bTime;
-    this.energy = new SonosEnergy(50000, 0, 500, eStor);
+    this.energy = new OrionEnergy(50000, 0, 500, eStor);
   }
 }

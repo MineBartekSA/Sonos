@@ -1,5 +1,7 @@
 package com.minebarteksa.sonos.items;
 
+import com.minebarteksa.sonos.Sonos;
+import com.minebarteksa.orion.items.ItemBase;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundCategory;
 import com.minebarteksa.sonos.sound.SoundEvents;
@@ -20,7 +22,7 @@ public class Sono extends ItemBase
 
 	public Sono(String name, Notes note, String info)
 	{
-		super(name);
+		super(name, Sonos.ModID);
 		this.note = note;
 		this.info = info;
 	}

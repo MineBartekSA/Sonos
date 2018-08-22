@@ -1,5 +1,6 @@
 package com.minebarteksa.sonos.blocks;
 
+import com.minebarteksa.orion.blocks.TileEntityBlockBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import com.minebarteksa.sonos.criteria.SonosCriteria;
 import mcjty.theoneprobe.api.IProbeInfoAccessor;
@@ -30,7 +31,7 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity> implements IProb
 
   public SonoOre(String name, Notes note)
   {
-    super(Material.ROCK, name);
+    super(Material.ROCK, name, Sonos.ModID);
     this.setHardness(3f);
 		this.setResistance(5f);
     this.setTickRandomly(true);

@@ -1,5 +1,6 @@
 package com.minebarteksa.sonos.items;
 
+import com.minebarteksa.orion.items.ItemBase;
 import com.minebarteksa.sonos.Sonos;
 import net.minecraft.entity.Entity;
 import net.minecraft.client.util.ITooltipFlag;
@@ -21,7 +22,7 @@ public class SonoPrima extends ItemBase
 
   public SonoPrima(String name, Notes note)
   {
-    super(name);
+    super(name, Sonos.ModID);
     this.note = note;
   }
 

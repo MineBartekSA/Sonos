@@ -1,5 +1,7 @@
 package com.minebarteksa.sonos.items;
 
+import com.minebarteksa.sonos.Sonos;
+import com.minebarteksa.orion.items.ItemBase;
 import net.minecraft.util.EnumActionResult;
 import baubles.api.BaublesApi;
 import baubles.api.cap.IBaublesItemHandler;
@@ -22,7 +24,7 @@ public class SonoRing extends ItemBase implements IBauble
 
   public SonoRing(String name, Notes n)
   {
-    super(name);
+    super(name, Sonos.ModID);
     this.setMaxStackSize(1);
     this.setMaxDamage(0);
     note = n;

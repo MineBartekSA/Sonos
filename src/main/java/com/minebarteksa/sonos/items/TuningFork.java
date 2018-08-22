@@ -1,12 +1,14 @@
 package com.minebarteksa.sonos.items;
 
+import com.minebarteksa.sonos.Sonos;
+import com.minebarteksa.orion.items.ItemBase;
 import net.minecraft.creativetab.CreativeTabs;
 
 public class TuningFork extends ItemBase
 {
   public TuningFork(String name)
   {
-    super(name);
+    super(name, Sonos.ModID);
     this.setMaxStackSize(1);
     this.setMaxDamage(0);
   }

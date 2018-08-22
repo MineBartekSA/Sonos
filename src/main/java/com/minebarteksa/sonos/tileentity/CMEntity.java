@@ -8,7 +8,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
-//import com.minebarteksa.sonos.SonosEnergy;
+//import com.minebarteksa.orion.OrionEnergy;
 //import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -21,7 +21,7 @@ import net.minecraft.tileentity.TileEntity;
 
 public class CMEntity extends TileEntity implements ITickable
 {
-  //protected SonosEnergy energy = new SonosEnergy(10000, 500);
+  //protected OrionEnergy energy = new OrionEnergy(10000, 500);
   private ItemStackHandler itemHand = new ItemStackHandler(2);
 
   @Override

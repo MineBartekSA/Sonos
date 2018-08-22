@@ -1,5 +1,6 @@
 package com.minebarteksa.sonos.blocks;
 
+import com.minebarteksa.orion.blocks.TileEntityBlockBase;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,7 +17,7 @@ public class RFGenerator extends TileEntityBlockBase<GeneratorEntity>
 {
   public RFGenerator(String name)
   {
-    super(Material.IRON, name);
+    super(Material.IRON, name, Sonos.ModID);
     this.setHardness(3f);
 		this.setResistance(5f);
   }

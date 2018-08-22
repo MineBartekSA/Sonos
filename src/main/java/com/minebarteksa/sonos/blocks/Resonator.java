@@ -1,5 +1,6 @@
 package com.minebarteksa.sonos.blocks;
 
+import com.minebarteksa.orion.blocks.TileEntityBlockBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.entity.EntityLivingBase;
 import com.minebarteksa.sonos.gui.SonosGUIHandler;
@@ -18,7 +19,7 @@ public class Resonator extends TileEntityBlockBase<ResonatorEntity>
 {
   public Resonator(String name)
   {
-    super(Material.ROCK, name);
+    super(Material.ROCK, name, Sonos.ModID);
     this.setHardness(3f);
 		this.setResistance(5f);
   }

@@ -1,5 +1,7 @@
 package com.minebarteksa.sonos.items;
 
+import com.minebarteksa.sonos.Sonos;
+import com.minebarteksa.orion.items.ItemBase;
 import net.minecraft.potion.PotionEffect;
 import com.minebarteksa.sonos.sound.SoundEvents;
 import net.minecraft.util.EnumHand;
@@ -16,7 +18,7 @@ public class SonoVessel extends ItemBase
 
   public SonoVessel(String name, Notes n)
   {
-    super(name);
+    super(name, Sonos.ModID);
     this.note = n;
   }
 

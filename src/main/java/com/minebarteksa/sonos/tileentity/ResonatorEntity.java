@@ -15,7 +15,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import com.minebarteksa.sonos.SonosEnergy;
+import com.minebarteksa.orion.OrionEnergy;
 import com.minebarteksa.sonos.items.SonoPrima;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -25,7 +25,7 @@ import net.minecraft.tileentity.TileEntity;
 
 public class ResonatorEntity extends TileEntity implements ITickable
 {
-  private SonosEnergy energy = new SonosEnergy(1500, 100);
+  private OrionEnergy energy = new OrionEnergy(1500, 100);
   private ItemStackHandler itemHand = new ItemStackHandler(2);
   public int processTime = 0;
   private int lastEnergy = 0;
@@ -170,6 +170,6 @@ public class ResonatorEntity extends TileEntity implements ITickable
   public void updateGuiInfo(int progress, int eCap, int eStor)
   {
     this.processTime = progress;
-    this.energy = new SonosEnergy(eCap, 100, 100, eStor);
+    this.energy = new OrionEnergy(eCap, 100, 100, eStor);
   }
 }

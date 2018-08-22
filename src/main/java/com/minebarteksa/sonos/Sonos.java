@@ -37,7 +37,7 @@ public class Sonos
   public static final String Name = "Sonos";
   public static final String ModID = "sonos";
   public static final String Version = "1.0.0";
-  public static final String Deps = "required-after:baubles; before:guideapi; before:cofhcore;";
+  public static final String Deps = "required-after:baubles; required-after:liborion; before:guideapi; before:cofhcore;";
 
   @Mod.Instance(ModID)
   public static Sonos instance;
@@ -62,6 +62,8 @@ public class Sonos
     GameRegistry.registerWorldGenerator(new WorldGen(), 3);
     NetworkRegistry.INSTANCE.registerGuiHandler(this, new SonosGUIHandler());
     SonosPacketHandler.registerPackets();
+    SonosItems.register();
+    SonosBlocks.register();
   }
 
   @Mod.EventHandler
@@ -77,26 +79,6 @@ public class Sonos
   @Mod.EventBusSubscriber
   public static class RegistrationHandler
   {
-	  @SubscribeEvent
-	  public static void registerItems(RegistryEvent.Register<Item> event)
-	  {
-		  SonosItems.register(event.getRegistry());
-		  SonosBlocks.registerItemBlock(event.getRegistry());
-	  }
-
-    @SubscribeEvent
-	  public static void registerItems(ModelRegistryEvent event)
-	  {
-		  SonosItems.registerModels();
-		  SonosBlocks.registerModels();
-	  }
-
-	  @SubscribeEvent
-	  public static void registerBlocks(RegistryEvent.Register<Block> event)
-	  {
-		  SonosBlocks.register(event.getRegistry());
-	  }
-
     @SubscribeEvent
     public static void registerSounds(RegistryEvent.Register<SoundEvent> event)
     {

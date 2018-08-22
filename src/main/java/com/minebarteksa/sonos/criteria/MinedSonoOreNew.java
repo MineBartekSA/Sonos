@@ -1,5 +1,8 @@
 package com.minebarteksa.sonos.criteria;
 
+import com.minebarteksa.orion.criteria.CriterionInstance;
+import com.minebarteksa.orion.criteria.CriterionListeners;
+import com.minebarteksa.orion.criteria.CriterionBase;
 import net.minecraft.advancements.PlayerAdvancements;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonDeserializationContext;

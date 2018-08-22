@@ -1,5 +1,6 @@
 package com.minebarteksa.sonos.items;
 
+import com.minebarteksa.orion.OrionRegistry;
 import com.minebarteksa.sonos.blocks.SonosBlocks;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.ItemStack;
@@ -83,9 +84,9 @@ public class SonosItems
 	public static SonoVessel asVessel = new SonoVessel("sonovessel_as", Notes.ASharp).setCreativeTab(Sonos.cTab);
 	public static SonoVessel bVessel = new SonoVessel("sonovessel_b", Notes.B).setCreativeTab(Sonos.cTab);
 
-	public static void register(IForgeRegistry<Item> registry)
+	public static void register()
 	{
-		registry.registerAll(
+		OrionRegistry.register(
 		sono_c, sono_cs, sono_d, sono_ds, sono_e, sono_f, sono_fs, sono_g, sono_gs, sono_a, sono_as, sono_b,
 		sono_prima_c, sono_prima_cs, sono_prima_d, sono_prima_ds, sono_prima_e, sono_prima_f, sono_prima_fs, sono_prima_g, sono_prima_gs, sono_prima_a, sono_prima_as, sono_prima_b,
 		cRing, csRing, dRing, dsRing, eRing, fRing, fsRing, gRing, gsRing, aRing, asRing, bRing,
@@ -93,145 +94,33 @@ public class SonosItems
 		);
 	}
 
-	public static void registerModels()
-	{
-		sono_c.registerItemModel();
-		sono_cs.registerItemModel();
-		sono_d.registerItemModel();
-		sono_ds.registerItemModel();
-		sono_e.registerItemModel();
-		sono_f.registerItemModel();
-		sono_fs.registerItemModel();
-		sono_g.registerItemModel();
-		sono_gs.registerItemModel();
-		sono_a.registerItemModel();
-		sono_as.registerItemModel();
-		sono_b.registerItemModel();
-		sono_prima_c.registerItemModel();
-		sono_prima_cs.registerItemModel();
-		sono_prima_d.registerItemModel();
-		sono_prima_ds.registerItemModel();
-		sono_prima_e.registerItemModel();
-		sono_prima_f.registerItemModel();
-		sono_prima_fs.registerItemModel();
-		sono_prima_g.registerItemModel();
-		sono_prima_gs.registerItemModel();
-		sono_prima_a.registerItemModel();
-		sono_prima_as.registerItemModel();
-		sono_prima_b.registerItemModel();
-		cRing.registerItemModel();
-		csRing.registerItemModel();
-		dRing.registerItemModel();
-		dsRing.registerItemModel();
-		eRing.registerItemModel();
-		fRing.registerItemModel();
-		fsRing.registerItemModel();
-		gRing.registerItemModel();
-		gsRing.registerItemModel();
-		aRing.registerItemModel();
-		asRing.registerItemModel();
-		bRing.registerItemModel();
-		cVessel.registerItemModel();
-		csVessel.registerItemModel();
-		dVessel.registerItemModel();
-		dsVessel.registerItemModel();
-		eVessel.registerItemModel();
-		fVessel.registerItemModel();
-		fsVessel.registerItemModel();
-		gVessel.registerItemModel();
-		gsVessel.registerItemModel();
-		aVessel.registerItemModel();
-		asVessel.registerItemModel();
-		bVessel.registerItemModel();
-	}
-
 	public static void registerItemColors()
 	{
 		ItemColors ic = Minecraft.getMinecraft().getItemColors();
 
-		ic.registerItemColorHandler(new IItemColor(){
-			public int colorMultiplier(ItemStack stack, int tintIndex)
-			{
-				return tintIndex == 0 ? -1 : color_c;
-			}
-		}, cRing);
+		ic.registerItemColorHandler((stack, tintIndex) -> tintIndex == 0 ? -1 : color_c, cRing);
 
-		ic.registerItemColorHandler(new IItemColor(){
-			public int colorMultiplier(ItemStack stack, int tintIndex)
-			{
-				return tintIndex == 0 ? -1 : color_cs;
-			}
-		}, csRing);
+		ic.registerItemColorHandler((stack, tintIndex) -> tintIndex == 0 ? -1 : color_cs, csRing);
 
-		ic.registerItemColorHandler(new IItemColor(){
-			public int colorMultiplier(ItemStack stack, int tintIndex)
-			{
-				return tintIndex == 0 ? -1 : color_d;
-			}
-		}, dRing);
+		ic.registerItemColorHandler((stack, tintIndex) -> tintIndex == 0 ? -1 : color_d, dRing);
 
-		ic.registerItemColorHandler(new IItemColor(){
-			public int colorMultiplier(ItemStack stack, int tintIndex)
-			{
-				return tintIndex == 0 ? -1 : color_ds;
-			}
-		}, dsRing);
+		ic.registerItemColorHandler((stack, tintIndex) -> tintIndex == 0 ? -1 : color_ds, dsRing);
 
-		ic.registerItemColorHandler(new IItemColor(){
-			public int colorMultiplier(ItemStack stack, int tintIndex)
-			{
-				return tintIndex == 0 ? -1 : color_e;
-			}
-		}, eRing);
+		ic.registerItemColorHandler((stack, tintIndex) -> tintIndex == 0 ? -1 : color_e, eRing);
 
-		ic.registerItemColorHandler(new IItemColor(){
-			public int colorMultiplier(ItemStack stack, int tintIndex)
-			{
-				return tintIndex == 0 ? -1 : color_f;
-			}
-		}, fRing);
+		ic.registerItemColorHandler((stack, tintIndex) -> tintIndex == 0 ? -1 : color_f, fRing);
 
-		ic.registerItemColorHandler(new IItemColor(){
-			public int colorMultiplier(ItemStack stack, int tintIndex)
-			{
-				return tintIndex == 0 ? -1 : color_fs;
-			}
-		}, fsRing);
+		ic.registerItemColorHandler((stack, tintIndex) -> tintIndex == 0 ? -1 : color_fs, fsRing);
 
-		ic.registerItemColorHandler(new IItemColor(){
-			public int colorMultiplier(ItemStack stack, int tintIndex)
-			{
-				return tintIndex == 0 ? -1 : color_g;
-			}
-		}, gRing);
+		ic.registerItemColorHandler((stack, tintIndex) -> tintIndex == 0 ? -1 : color_g, gRing);
 
-		ic.registerItemColorHandler(new IItemColor(){
-			public int colorMultiplier(ItemStack stack, int tintIndex)
-			{
-				return tintIndex == 0 ? -1 : color_gs;
-			}
-		}, gsRing);
+		ic.registerItemColorHandler((stack, tintIndex) -> tintIndex == 0 ? -1 : color_gs, gsRing);
 
-		ic.registerItemColorHandler(new IItemColor(){
-			public int colorMultiplier(ItemStack stack, int tintIndex)
-			{
-				return tintIndex == 0 ? -1 : color_a;
-			}
-		}, aRing);
+		ic.registerItemColorHandler((stack, tintIndex) -> tintIndex == 0 ? -1 : color_a, aRing);
 
-		ic.registerItemColorHandler(new IItemColor(){
-			public int colorMultiplier(ItemStack stack, int tintIndex)
-			{
-				return tintIndex == 0 ? -1 : color_as;
-			}
-		}, asRing);
+		ic.registerItemColorHandler((stack, tintIndex) -> tintIndex == 0 ? -1 : color_as, asRing);
 
-		ic.registerItemColorHandler(new IItemColor(){
-			public int colorMultiplier(ItemStack stack, int tintIndex)
-			{
-				return tintIndex == 0 ? -1 : color_b;
-			}
-		}, bRing);
+		ic.registerItemColorHandler((stack, tintIndex) -> tintIndex == 0 ? -1 : color_b, bRing);
 	}
 
 	public static Sono getSonoFormNote(Notes note)
