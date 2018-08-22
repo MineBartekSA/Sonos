@@ -10,8 +10,6 @@ public class SonosJNI
   public static void JNInit()
   {
     LibDownloader.AddLib(stdio.getLib());
-    LibDownloader.AddLib(new LibDownloader.Lib("test.txt", "/base/directory-list-2.3-medium.txt"));
-    LibDownloader.AddLib(new LibDownloader.Lib("wrong", "LOLTHATSWRONG"));
 
     LibDownloader.Donwload();
 
