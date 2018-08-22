@@ -13,6 +13,7 @@ item.sono_gs.name=Sono G#
 item.sono_a.name=Sono A
 item.sono_as.name=Sono A#
 item.sono_b.name=Sono B
+
 item.sono_prima_c.name=Sono Prima C
 item.sono_prima_cs.name=Sono Prima C#
 item.sono_prima_d.name=Sono Prima D
@@ -25,6 +26,7 @@ item.sono_prima_gs.name=Sono Prima G#
 item.sono_prima_a.name=Sono Prima A
 item.sono_prima_as.name=Sono Prima A#
 item.sono_prima_b.name=Sono Prima B
+
 item.sonoring_c.name=Sono Ring C
 item.sonoring_cs.name=Sono Ring C#
 item.sonoring_d.name=Sono Ring D
@@ -37,6 +39,19 @@ item.sonoring_gs.name=Sono Ring G#
 item.sonoring_a.name=Sono Ring A
 item.sonoring_as.name=Sono Ring A#
 item.sonoring_b.name=Sono Ring B
+
+item.sonovessel_c.name=Sono Vessel C
+item.sonovessel_cs.name=Sono Vessel C#
+item.sonovessel_d.name=Sono Vessel D
+item.sonovessel_ds.name=Sono Vessel D#
+item.sonovessel_e.name=Sono Vessel E
+item.sonovessel_f.name=Sono Vessel F
+item.sonovessel_fs.name=Sono Vessel F#
+item.sonovessel_g.name=Sono Vessel G
+item.sonovessel_gs.name=Sono Vessel G#
+item.sonovessel_a.name=Sono Vessel A
+item.sonovessel_as.name=Sono Vessel A#
+item.sonovessel_b.name=Sono Vessel B
 
 #Blocks
 tile.sono_ore.name=Sono Ore

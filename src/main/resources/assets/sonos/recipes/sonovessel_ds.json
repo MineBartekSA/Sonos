@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+
+  "pattern":
+  [
+    " e ",
+    " s ",
+    " g "
+  ],
+
+  "key": {
+    "g": { "item": "minecraft:gold_ingot" },
+    "s": { "item": "sonos:sono_ds" },
+    "e": { "item": "minecraft:emerald"}
+  },
+
+  "result": { "item": "sonos:sonovessel_ds" }
+}
