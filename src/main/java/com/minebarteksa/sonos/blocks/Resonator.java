@@ -72,4 +72,10 @@ public class Resonator extends TileEntityBlockBase<ResonatorEntity>
     super.setCreativeTab(tab);
     return this;
   }
+
+  @Override
+  public boolean isOpaqueCube(IBlockState state)
+  {
+    return false;
+  }
 }
