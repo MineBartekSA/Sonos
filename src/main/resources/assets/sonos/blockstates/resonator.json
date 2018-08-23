@@ -3,12 +3,12 @@
   "defaults": {
     "model": "sonos:resonator",
     "textures": {
-  		"0": "blocks/furnace_side",
-  		"1": "blocks/furnace_top",
+      "0": "blocks/wool_colored_black",
+  		"1": "blocks/concrete_black",
   		"2": "blocks/iron_block",
-  		"3": "blocks/glass",
-  		"4": "blocks/stone_slab_top",
-  		"particle": "blocks/furnace_side"
+  		"3": "blocks/quartz_block_lines",
+  		"4": "blocks/quartz_block_top",
+  		"particle": "blocks/quartz_block_top"
     }
   },
   "variants": {
