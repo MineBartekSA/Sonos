@@ -41,14 +41,8 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity> implements IProb
   public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
   {
     if(!worldIn.isRemote)
-    {
-      SonoOreEntity soe = (SonoOreEntity)worldIn.getTileEntity(pos);
-      int rand = 1;
-      do
-        rand = worldIn.rand.nextInt(12);
-      while (rand >= 12);
-      soe.note = rand;
-    }
+        ((SonoOreEntity)worldIn.getTileEntity(pos)).note = worldIn.rand.nextInt(12);
+
   }
 
   @Override

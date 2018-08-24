@@ -56,8 +56,6 @@ public class SonoOreEntity extends TileEntity implements ITickable
                 StartPlaying();
             if(stopSound)
                 StopPlaying();
-            if(isPlaying && !Minecraft.getMinecraft().getSoundHandler().isSoundPlaying(sound))
-                StartPlaying();
         }
     }
 
@@ -81,7 +79,7 @@ public class SonoOreEntity extends TileEntity implements ITickable
         Minecraft.getMinecraft().getSoundHandler().stopSound(sound);
     }
 
-    public void scheduleDeactivation() { deactivateOnTick = 30 * (r.nextInt(30) + 1); }
+    public void scheduleDeactivation() { deactivateOnTick = 10 * (r.nextInt(56) + 1); }
 
 
   public void SSSound(boolean switchTo)
