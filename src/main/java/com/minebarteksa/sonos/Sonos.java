@@ -43,11 +43,8 @@ public class Sonos
   public static Sonos instance;
 
   public static CreativeTabs cTab = new CreativeTabs("sonos") {
-	    @Override
-	    public ItemStack getTabIconItem() {
-		      Item i = SonosItems.getSonoFormNote(Notes.getNote(new Random().nextInt(12)));
-          return new ItemStack(i);
-	    }
+      @Override
+      public ItemStack getTabIconItem() { return new ItemStack(SonosItems.sono_c); }
   };
 
   @SidedProxy(serverSide = "com.minebarteksa.sonos.sonosproxy.SonosCommon", clientSide = "com.minebarteksa.sonos.sonosproxy.SonosClient")

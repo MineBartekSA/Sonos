@@ -12,6 +12,6 @@ public class SonosPacketHandler
   public static void registerPackets()
   {
     INSTANCE.registerMessage(ProgressUpdatePacketHandler.class, ProgressUpdatePacket.class, 0, Side.CLIENT);
-    //INSTANCE.registerMessage(SoundSSPacketHandler.class, SoundSSPacket.class, 1, Side.CLIENT);
+    INSTANCE.registerMessage(SoundSSPacket.SoundSSPacketHandler.class, SoundSSPacket.class, 1, Side.CLIENT);
   }
 }

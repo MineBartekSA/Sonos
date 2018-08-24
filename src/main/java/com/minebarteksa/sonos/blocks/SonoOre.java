@@ -33,8 +33,7 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity> implements IProb
   {
     super(Material.ROCK, name, Sonos.ModID);
     this.setHardness(3f);
-		this.setResistance(5f);
-    this.setTickRandomly(true);
+    this.setResistance(5f);
     this.setDefaultState(this.getBlockState().getBaseState().withProperty(LitAF, 0));
   }
 
@@ -63,37 +62,38 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity> implements IProb
       if(world.getBlockState(pos).getValue(LitAF) != soe.getNote() + 1)
       {
         world.setBlockState(pos, this.getBlockState().getBaseState().withProperty(LitAF, 1 + soe.getNote()));
-        soe.StartPlaying();
+        soe.SSSound(true);
+        soe.scheduleDeactivation();
       }
     }
   }
 
-  @Override
-  public int getLightValue(IBlockState state)
+  public void deactivate(World worldIn, BlockPos pos)
   {
-    if(state.getValue(LitAF) != 0)
-      return 5;
-    else
-      return 0;
-  }
-
-  @Override
-  public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
-  {
-    if(state.getValue(LitAF) != 0 && !worldIn.isRemote)
+    if(worldIn.getBlockState(pos).getValue(LitAF) != 0 && !worldIn.isRemote)
     {
       SonoOreEntity soe = (SonoOreEntity)worldIn.getTileEntity(pos);
-      Sonos.log.info("SonoOre updateTick! OnSide: " + (worldIn.isRemote ? "Client" : "Server"));
+      Sonos.log.info("SonoOre updateTick!");
       worldIn.setBlockState(pos, this.getDefaultState());
-      soe.StopPlaying();
+      soe.SSSound(false);
     }
   }
+
+    @Override
+    public int getLightValue(IBlockState state)
+    {
+        if(state.getValue(LitAF) != 0)
+            return 5;
+        else
+            return 0;
+    }
 
   @Override
   public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
   {
-    if(!worldIn.isRemote)
-      SonosCriteria.MSON.trigger((EntityPlayerMP)player, state);
+    if(worldIn.isRemote)
+        return;
+    SonosCriteria.MSON.trigger((EntityPlayerMP)player, state);
   }
 
   @Override

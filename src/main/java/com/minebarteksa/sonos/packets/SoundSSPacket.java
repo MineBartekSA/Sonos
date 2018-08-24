@@ -55,9 +55,9 @@ public class SoundSSPacket implements IMessage
       {
         SonoOreEntity soe = (SonoOreEntity)te;
         if(message.switchT)
-          soe.StartPlaying();
+          soe.playSound = true;
         else
-          soe.StopPlaying();
+          soe.stopSound = true;
       }
 
       return null;
