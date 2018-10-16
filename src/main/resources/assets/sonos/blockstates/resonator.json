@@ -1,8 +1,10 @@
 {
   "forge_marker": 1,
-  "defaults": {
+  "defaults":
+  {
     "model": "sonos:resonator",
-    "textures": {
+    "textures":
+    {
       "0": "blocks/wool_colored_black",
   		"1": "blocks/concrete_black",
   		"2": "blocks/iron_block",
@@ -11,8 +13,13 @@
   		"particle": "blocks/quartz_block_top"
     }
   },
-  "variants": {
+  "variants":
+  {
     "normal": [{}],
-    "inventory": [{}]
+    "inventory": [{}],
+    "facing=north": { "model": "sonos:resonator" },
+    "facing=south": { "model": "sonos:resonator", "y": 180 },
+    "facing=west":  { "model": "sonos:resonator", "y": 270 },
+    "facing=east":  { "model": "sonos:resonator", "y": 90 }
   }
 }

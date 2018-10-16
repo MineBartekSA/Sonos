@@ -1,6 +1,6 @@
 package com.minebarteksa.sonos.blocks;
 
-import com.minebarteksa.orion.blocks.TileEntityBlockBase;
+import com.minebarteksa.orion.blocks.TileEntityBlockBaseWithFacing;
 import net.minecraft.item.ItemStack;
 import net.minecraft.entity.EntityLivingBase;
 import com.minebarteksa.sonos.gui.SonosGUIHandler;
@@ -15,30 +15,13 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.material.Material;
 import com.minebarteksa.sonos.tileentity.ResonatorEntity;
 
-public class Resonator extends TileEntityBlockBase<ResonatorEntity>
+public class Resonator extends TileEntityBlockBaseWithFacing<ResonatorEntity>
 {
   public Resonator(String name)
   {
     super(Material.ROCK, name, Sonos.ModID);
     this.setHardness(3f);
 		this.setResistance(5f);
-  }
-
-  @Override
-  public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
-  {
-    Sonos.log.info("Placer rotaion yaw: " + placer.rotationYaw);
-    EnumFacing axis = EnumFacing.NORTH;
-
-    if(placer.rotationYaw >= -45f && placer.rotationYaw <= 45f)
-      axis = EnumFacing.SOUTH;
-    else if(placer.rotationYaw > -135f && placer.rotationYaw < -45f)
-      axis = EnumFacing.EAST;
-    else if(placer.rotationYaw > 45f && placer.rotationYaw < 135f)
-      axis = EnumFacing.WEST;
-
-    this.rotateBlock(worldIn, pos, axis);
-    super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
   }
 
   @Override

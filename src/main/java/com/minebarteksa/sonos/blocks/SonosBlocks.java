@@ -11,5 +11,9 @@ public class SonosBlocks
 	public static RFGenerator rf = new RFGenerator("generator").setCreativeTab(Sonos.cTab);
 	public static ChordManipulator cm = new ChordManipulator("chord_manipulator").setCreativeTab(Sonos.cTab);
 
-	public static void register(){OrionRegistry.register(SO, re, rf, cm); /* TileEntity */ }
+	public static void register()
+	{
+		OrionRegistry.register(SO, rf, cm); // TileEntity
+		OrionRegistry.register(re);         // TileEntityWithFacing
+	}
 }

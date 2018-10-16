@@ -76,7 +76,7 @@ public class SoundEvents
 		}
 	}
 
-	public static enum Notes
+	public enum Notes
 	{
 		C (0), CSharp (1), D (2), DSharp (3), E (4), F (5), FSharp (6), G (7), GSharp (8), A (9), ASharp (10), B (11), None (12);
 
@@ -121,7 +121,7 @@ public class SoundEvents
 		}
 	}
 
-	public static enum Chords
+	public enum Chords
 	{
 		Root (0), Sus2 (1), Minor (2), Major (3), Sus4 (4);
 
@@ -177,29 +177,29 @@ public class SoundEvents
 		switch(note.toString())
 		{
 			case "C":
-        return MobEffects.SPEED;
-      case "CSharp":
-        return MobEffects.HASTE;
-      case "D":
-        return MobEffects.STRENGTH;
-      case "DSharp":
-        return MobEffects.RESISTANCE;
-      case "E":
-        return MobEffects.HEALTH_BOOST;
-      case "F":
-        return MobEffects.REGENERATION;
-      case "FSharp":
-        return MobEffects.INSTANT_HEALTH;
-      case "G":
-        return MobEffects.SATURATION;
-      case "GSharp":
-        return MobEffects.LUCK;
-      case "A":
-        return MobEffects.FIRE_RESISTANCE;
-      case "ASharp":
-        return MobEffects.NIGHT_VISION;
-      case "B":
-        return MobEffects.JUMP_BOOST;
+        		return MobEffects.SPEED;
+      		case "CSharp":
+        		return MobEffects.HASTE;
+      		case "D":
+        		return MobEffects.STRENGTH;
+      		case "DSharp":
+        		return MobEffects.RESISTANCE;
+      		case "E":
+        		return MobEffects.HEALTH_BOOST;
+      		case "F":
+        		return MobEffects.REGENERATION;
+      		case "FSharp":
+        		return MobEffects.INSTANT_HEALTH; // Single tick in 5 seconds period
+      		case "G":
+        		return MobEffects.SATURATION; // Single tick in 5 seconds period
+      		case "GSharp":
+        		return MobEffects.LUCK;
+      		case "A":
+        		return MobEffects.FIRE_RESISTANCE;
+      		case "ASharp":
+        		return MobEffects.NIGHT_VISION; // 10 seconds
+      		case "B":
+        		return MobEffects.JUMP_BOOST;
 			default:
 				return MobEffects.UNLUCK;
 		}
