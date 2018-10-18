@@ -58,7 +58,9 @@ public class SonoOreEntity extends TileEntity implements ITickable
                 StopPlaying();
         }
     }
-
+    /*
+     * This function starts playing sound
+     */
     public void StartPlaying()
     {
         playSound = false;
@@ -68,7 +70,9 @@ public class SonoOreEntity extends TileEntity implements ITickable
         sound = new SoundSource(this, SoundEvents.getSound(Notes.getNote(note), "hum"), 1.0f, 1.0f, true);
         Minecraft.getMinecraft().getSoundHandler().playSound(sound);
     }
-
+    /*
+     * This function stops playing sound
+     */
     public void StopPlaying()
     {
         stopSound = false;
@@ -121,7 +125,10 @@ public class SonoOreEntity extends TileEntity implements ITickable
   }
 
   public int getNote() { return note; }
-
+  
+  /*
+   * @return true in case when sound is playing
+   */
   public boolean isPlaying() { return isPlaying; }
 
   @Override
