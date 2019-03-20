@@ -44,30 +44,26 @@ public class GeneratorContainer extends Container
 
     if(slot != null && slot.getHasStack())
     {
-      ItemStack itemstack1 = slot.getStack();
-      item = itemstack1.copy();
+        ItemStack itemstack1 = slot.getStack();
+        item = itemstack1.copy();
 
-			int containerSlots = inventorySlots.size() - playerIn.inventory.mainInventory.size();
+        int containerSlots = inventorySlots.size() - playerIn.inventory.mainInventory.size();
 
-			if (index < containerSlots) {
-				if (!this.mergeItemStack(itemstack1, containerSlots, inventorySlots.size(), true)) {
-					return ItemStack.EMPTY;
-				}
-			} else if (!this.mergeItemStack(itemstack1, 0, containerSlots, false)) {
+        if (index < containerSlots)
+            if (!this.mergeItemStack(itemstack1, containerSlots, inventorySlots.size(), true))
+                return ItemStack.EMPTY;
+            else if (!this.mergeItemStack(itemstack1, 0, containerSlots, false))
 				return ItemStack.EMPTY;
-			}
 
-			if (itemstack1.getCount() == 0) {
-				slot.putStack(ItemStack.EMPTY);
-			} else {
-				slot.onSlotChanged();
-			}
+        if (itemstack1.getCount() == 0)
+            slot.putStack(ItemStack.EMPTY);
+        else
+            slot.onSlotChanged();
 
-			if (itemstack1.getCount() == item.getCount()) {
-				return ItemStack.EMPTY;
-			}
+        if (itemstack1.getCount() == item.getCount())
+            return ItemStack.EMPTY;
 
-			slot.onTake(playerIn, itemstack1);
+        slot.onTake(playerIn, itemstack1);
     }
 
     return item;

@@ -1,8 +1,6 @@
 package com.minebarteksa.sonos.blocks;
 
 import com.minebarteksa.orion.blocks.TileEntityBlockBaseWithFacing;
-import net.minecraft.item.ItemStack;
-import net.minecraft.entity.EntityLivingBase;
 import com.minebarteksa.sonos.gui.SonosGUIHandler;
 import com.minebarteksa.sonos.Sonos;
 import net.minecraft.util.EnumFacing;

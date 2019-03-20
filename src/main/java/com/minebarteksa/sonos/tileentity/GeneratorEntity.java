@@ -196,7 +196,7 @@ public class GeneratorEntity extends TileEntity implements ITickable
   }
 
   void sendGuiInfo() { SonosPacketHandler.INSTANCE.sendToAll(new ProgressUpdatePacket(bTime, BurnTime, 0, energy.getEnergyStored(), pos)); }
-  // TO REWRITE!!!! URGENT!!!
+  // ToDo: TO REWRITE!!!! URGENT!!!
   public void updateGuiInfo(int BurnTime, int bTime, int eStor)
   {
     this.BurnTime = BurnTime;

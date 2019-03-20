@@ -3,10 +3,6 @@ package com.minebarteksa.sonos.blocks;
 import com.minebarteksa.orion.blocks.TileEntityBlockBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import com.minebarteksa.sonos.criteria.SonosCriteria;
-import mcjty.theoneprobe.api.IProbeInfoAccessor;
-import mcjty.theoneprobe.api.IProbeHitData;
-import mcjty.theoneprobe.api.IProbeInfo;
-import mcjty.theoneprobe.api.ProbeMode;
 import com.minebarteksa.sonos.items.SonosItems;
 import net.minecraft.item.Item;
 import net.minecraft.entity.Entity;
@@ -22,10 +18,9 @@ import net.minecraft.world.World;
 import com.minebarteksa.sonos.sound.SoundEvents.Notes;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraftforge.fml.common.Optional;
 
-@Optional.Interface(modid="theoneprobe", iface="mcjty.theoneprobe.api.IProbeInfoAccessor")
-public class SonoOre extends TileEntityBlockBase<SonoOreEntity> implements IProbeInfoAccessor
+@Deprecated
+public class SonoOre extends TileEntityBlockBase<SonoOreEntity>
 {
   public static final PropertyInteger LitAF = PropertyInteger.create("lit_af", 0, 12);
 
@@ -41,8 +36,7 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity> implements IProb
   public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
   {
     if(!worldIn.isRemote)
-        ((SonoOreEntity)worldIn.getTileEntity(pos)).note = worldIn.rand.nextInt(12);
-
+      ((SonoOreEntity) worldIn.getTileEntity(pos)).note = worldIn.rand.nextInt(12);
   }
 
   @Override
@@ -91,15 +85,6 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity> implements IProb
   }
 
   @Override
-  @Optional.Method(modid = "theoneprobe")
-  public void addProbeInfo(ProbeMode arg0, IProbeInfo probeInfo, EntityPlayer arg2, World worldIn, IBlockState arg4, IProbeHitData data)
-  {
-    SonoOreEntity soe = (SonoOreEntity)worldIn.getTileEntity(data.getPos());
-    probeInfo.text("Note: " + Notes.getNote(soe.getNote()));
-    probeInfo.text("IsPlaying: " + soe.isPlaying());
-  }
-
-  @Override
   public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn)
   {
     this.activate(worldIn, pos);
@@ -114,7 +99,7 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity> implements IProb
   }
 
   @Override
-	protected BlockStateContainer createBlockState()
+  protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, LitAF);
 	}

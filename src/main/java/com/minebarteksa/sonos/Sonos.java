@@ -7,10 +7,8 @@ import net.minecraft.util.ResourceLocation;
 import amerifrance.guideapi.api.GuideAPI;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import com.minebarteksa.sonos.packets.SonosPacketHandler;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -56,6 +54,7 @@ public class Sonos
     SonosPacketHandler.registerPackets();
     SonosItems.register();
     SonosBlocks.register();
+    SoundEvents.registerSounds();
   }
 
   @Mod.EventHandler
@@ -71,12 +70,6 @@ public class Sonos
   @Mod.EventBusSubscriber
   public static class RegistrationHandler
   {
-    @SubscribeEvent
-    public static void registerSounds(RegistryEvent.Register<SoundEvent> event)
-    {
-      SoundEvents.registerSounds(event.getRegistry());
-    }
-
     @SubscribeEvent
     public static void playerInteractEvent(PlayerInteractEvent.RightClickItem event)
     {

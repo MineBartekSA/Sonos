@@ -1,5 +1,6 @@
 package com.minebarteksa.sonos.sound;
 
+import com.minebarteksa.orion.OrionRegistry;
 import net.minecraft.init.MobEffects;
 import net.minecraft.potion.Potion;
 import javax.annotation.Nullable;
@@ -8,7 +9,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.entity.player.EntityPlayer;
 import com.minebarteksa.sonos.Sonos;
-import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 
@@ -22,17 +22,17 @@ public class SoundEvents
 
 	public static SoundEvent ring_c = new SoundEvent(new ResourceLocation(Sonos.ModID, "ring_c")).setRegistryName("ring_c");
 
-	public static void registerSounds(IForgeRegistry<SoundEvent> registry)
+	public static void registerSounds()
 	{
-		registry.registerAll(ring_c);
-		registerSoundsForNotes("sonar", registry);
-		registerSoundsForNotes("hum", registry);
-		registerSoundsForNotes("ghost", registry);
-		registerSoundsForNotes("machine", registry);
-		registerSoundsForNotes("magic", registry);
+		OrionRegistry.register(ring_c);
+		registerSoundsForNotes("sonar");
+		registerSoundsForNotes("hum");
+		registerSoundsForNotes("ghost");
+		registerSoundsForNotes("machine");
+		registerSoundsForNotes("magic");
 	}
 
-	public static void registerSoundsForNotes(String name, IForgeRegistry<SoundEvent> reg)
+	public static void registerSoundsForNotes(String name)
 	{
 		for(Notes n : Notes.values())
 		{
@@ -40,7 +40,7 @@ public class SoundEvents
 			{
 				String note = n.toString().replace("harp", "").toLowerCase();
 				Sonos.log.info("Registering " + name + "_" + note + " sound");
-				reg.register(new SoundEvent(new ResourceLocation(Sonos.ModID, name + "_" + note)).setRegistryName(name + "_" + note));
+				OrionRegistry.register(new SoundEvent(new ResourceLocation(Sonos.ModID, name + "_" + note)).setRegistryName(name + "_" + note));
 			}
 		}
 	}
@@ -189,15 +189,15 @@ public class SoundEvents
       		case "F":
         		return MobEffects.REGENERATION;
       		case "FSharp":
-        		return MobEffects.INSTANT_HEALTH; // Single tick in 5 seconds period
+        		return MobEffects.INSTANT_HEALTH; // Note: Single tick in 5 seconds period
       		case "G":
-        		return MobEffects.SATURATION; // Single tick in 5 seconds period
+        		return MobEffects.SATURATION; // Note: Single tick in 5 seconds period
       		case "GSharp":
         		return MobEffects.LUCK;
       		case "A":
         		return MobEffects.FIRE_RESISTANCE;
       		case "ASharp":
-        		return MobEffects.NIGHT_VISION; // 10 seconds
+        		return MobEffects.NIGHT_VISION; // Note: 10 seconds
       		case "B":
         		return MobEffects.JUMP_BOOST;
 			default:

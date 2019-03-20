@@ -1,6 +1,7 @@
 package com.minebarteksa.sonos.tileentity;
 
-import com.minebarteksa.sonos.Sonos;
+import com.minebarteksa.orion.integrations.IOrionInfoProvider;
+import com.minebarteksa.orion.integrations.infoprovider.IPData;
 import com.minebarteksa.sonos.blocks.SonoOre;
 import com.minebarteksa.sonos.packets.SoundSSPacket;
 import com.minebarteksa.sonos.packets.SonosPacketHandler;
@@ -17,11 +18,10 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
-public class SonoOreEntity extends TileEntity implements ITickable
+@Deprecated
+public class SonoOreEntity extends TileEntity implements ITickable, IOrionInfoProvider
 {
   protected SoundSource sound;
   private Timer t;
@@ -107,7 +107,16 @@ public class SonoOreEntity extends TileEntity implements ITickable
       }
   }
 
-  @Override
+    @Override
+    public List<String> addInfo(IPData data)
+    {
+        List<String> r = new ArrayList<>();
+        r.add("Note: " + Notes.getNote(note));
+        r.add("Is playing:" + isPlaying);
+        return r;
+    }
+
+    @Override
   public NBTTagCompound writeToNBT(NBTTagCompound compound)
   {
     if(!compound.hasKey("note"))
