@@ -23,153 +23,153 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraft.tileentity.TileEntity;
 
-public class ResonatorEntity extends TileEntity implements ITickable
+public class ResonatorEntity extends TileEntity implements ITickable // ToDo: Rewrite!
 {
-  private OrionEnergy energy = new OrionEnergy(1500, 100);
-  private ItemStackHandler itemHand = new ItemStackHandler(2);
-  public int processTime = 0;
-  private int lastEnergy = 0;
-  public static final int totalProcessTime = 100;
+    private OrionEnergy energy = new OrionEnergy(1500, 100);
+    private ItemStackHandler itemHand = new ItemStackHandler(2);
+    public static final int totalProcessTime = 100;
+    public int processTime = 0;
+    private int lastEnergy = 0;
 
-  @Override
-  public void update()
-  {
-    if(!world.isRemote)
+    @Override
+    public void update()
     {
-      if(itemHand.getStackInSlot(0) != ItemStack.EMPTY)
-      {
-        if(itemHand.getStackInSlot(1).getCount() != 64 && energy.extractEnergy(10, true) == 10 && checkOut())
+        if(!world.isRemote)
         {
-          energy.extractEnergy(10, false);
-          processTime++;
-          if(processTime == totalProcessTime)
-          {
-            processTime = 0;
-            ItemStack in = itemHand.extractItem(0, 1, false);
-            itemHand.insertItem(1, SonoPrima.setNBTTags(new ItemStack(SonosItems.getSonoPrimaFormNote(((Sono)in.getItem()).note), 1)), false);
-          }
-          world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
-          this.sendGuiInfo();
-          this.markDirty();
+            if(itemHand.getStackInSlot(0) != ItemStack.EMPTY)
+            {
+                if(itemHand.getStackInSlot(1).getCount() != 64 && energy.extractEnergy(10, true) == 10 && checkOut())
+                {
+                    energy.extractEnergy(10, false);
+                    processTime++;
+                    if(processTime == totalProcessTime)
+                    {
+                        processTime = 0;
+                        ItemStack in = itemHand.extractItem(0, 1, false);
+                        itemHand.insertItem(1, SonoPrima.setNBTTags(new ItemStack(SonosItems.getSonoPrimaFormNote(((Sono)in.getItem()).note), 1)), false);
+                    }
+                    world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
+                    this.sendGuiInfo();
+                    this.markDirty();
+                }
+            }
+            else if(processTime != 0)
+            {
+                processTime = 0;
+                world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
+                this.sendGuiInfo();
+                this.markDirty();
+            }
+            if(lastEnergy != energy.getEnergyStored())
+            {
+                world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
+                this.sendGuiInfo();
+                this.markDirty();
+                lastEnergy = energy.getEnergyStored();
+            }
         }
-      }
-      else if(processTime != 0)
-      {
-        processTime = 0;
-        world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
-        this.sendGuiInfo();
-        this.markDirty();
-      }
-      if(lastEnergy != energy.getEnergyStored())
-      {
-        world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
-        this.sendGuiInfo();
-        this.markDirty();
-        lastEnergy = energy.getEnergyStored();
-      }
     }
-  }
 
-  private boolean checkOut()
-  {
-    if(itemHand.getStackInSlot(1).getItem() instanceof ItemAir)
-      return true;
-    else if(itemHand.getStackInSlot(1) != ItemStack.EMPTY && ((Sono)itemHand.getStackInSlot(0).getItem()).note == ((SonoPrima)itemHand.getStackInSlot(1).getItem()).note)
-      return true;
-    else if(itemHand.getStackInSlot(1) == ItemStack.EMPTY)
-      return true;
-    else
-      return false;
-  }
+    private boolean checkOut()
+    {
+        if(itemHand.getStackInSlot(1).getItem() instanceof ItemAir)
+            return true;
+        else if(itemHand.getStackInSlot(1) != ItemStack.EMPTY && ((Sono)itemHand.getStackInSlot(0).getItem()).note == ((SonoPrima)itemHand.getStackInSlot(1).getItem()).note)
+            return true;
+        else if(itemHand.getStackInSlot(1) == ItemStack.EMPTY)
+            return true;
+        else
+            return false;
+    }
 
-  public int getProcess() { return this.processTime; }
+    public int getProcess() { return this.processTime; }
 
-  public int getProgressPercantage(int barWidth)
-  {
-    int percentageOfProgress = (processTime * 100) / ResonatorEntity.totalProcessTime;
-    return (percentageOfProgress * barWidth) / 100;
-  }
+    public int getProgressPercantage(int barWidth)
+    {
+        int percentageOfProgress = (processTime * 100) / ResonatorEntity.totalProcessTime;
+        return (percentageOfProgress * barWidth) / 100;
+    }
 
-  //public int getEnergy(int barHeight) { return (energyPercentage * barHeight) / 100; }
+    //public int getEnergy(int barHeight) { return (energyPercentage * barHeight) / 100; }
 
-  public IEnergyStorage getEnergyStorage() { return energy; }
+    public IEnergyStorage getEnergyStorage() { return energy; }
 
-  @Override
-  public NBTTagCompound writeToNBT(NBTTagCompound compound)
-  {
-    compound.setTag("energystorage", energy.serNBT());
-    compound.setTag("items", itemHand.serializeNBT());
-    compound.setInteger("processTime", processTime);
-    return super.writeToNBT(compound);
-  }
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound)
+    {
+        compound.setTag("energystorage", energy.serNBT());
+        compound.setTag("items", itemHand.serializeNBT());
+        compound.setInteger("processTime", processTime);
+        return super.writeToNBT(compound);
+    }
 
-  @Override
-  public void readFromNBT(NBTTagCompound compound)
-  {
-    energy.deNBT(compound.getCompoundTag("energystorage"));
-    itemHand.deserializeNBT(compound.getCompoundTag("items"));
-    processTime = compound.getInteger("processTime");
-    super.readFromNBT(compound);
-  }
+    @Override
+    public void readFromNBT(NBTTagCompound compound)
+    {
+        energy.deNBT(compound.getCompoundTag("energystorage"));
+        itemHand.deserializeNBT(compound.getCompoundTag("items"));
+        processTime = compound.getInteger("processTime");
+        super.readFromNBT(compound);
+    }
 
-  @Override
-  public boolean hasCapability(Capability<?> capability, EnumFacing facing)
-  {
-    if(capability == CapabilityEnergy.ENERGY)
-      return true;
-    if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-      return true;
-    return super.hasCapability(capability, facing);
-  }
+    @Override
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing)
+    {
+        if(capability == CapabilityEnergy.ENERGY)
+            return true;
+        if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+            return true;
+        return super.hasCapability(capability, facing);
+    }
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public <T> T getCapability(Capability<T> capability, EnumFacing facing)
-  {
-    if(capability == CapabilityEnergy.ENERGY)
-      return (T)energy;
-    if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-      return (T)itemHand;
-    return super.getCapability(capability, facing);
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing)
+    {
+        if(capability == CapabilityEnergy.ENERGY)
+            return (T)energy;
+        if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+            return (T)itemHand;
+        return super.getCapability(capability, facing);
+    }
 
-  @Override
-  public SPacketUpdateTileEntity getUpdatePacket()
-  {
-    NBTTagCompound nbtTagCompound = new NBTTagCompound();
-		writeToNBT(nbtTagCompound);
-    nbtTagCompound.setInteger("pr", processTime);
-		int metadata = 0;
-    return new SPacketUpdateTileEntity(this.pos, metadata, nbtTagCompound);
-  }
+    @Override
+    public SPacketUpdateTileEntity getUpdatePacket()
+    {
+        NBTTagCompound nbtTagCompound = new NBTTagCompound();
+        writeToNBT(nbtTagCompound);
+        nbtTagCompound.setInteger("pr", processTime);
+        int metadata = 0;
+        return new SPacketUpdateTileEntity(this.pos, metadata, nbtTagCompound);
+    }
 
-  @Override
-  public NBTTagCompound getUpdateTag()
-  {
-    NBTTagCompound blockNBT = new NBTTagCompound();
-    writeToNBT(blockNBT);
-    blockNBT.setInteger("pr", processTime);
-    return blockNBT;
-  }
+    @Override
+    public NBTTagCompound getUpdateTag()
+    {
+        NBTTagCompound blockNBT = new NBTTagCompound();
+        writeToNBT(blockNBT);
+        blockNBT.setInteger("pr", processTime);
+        return blockNBT;
+    }
 
-  @Override
-	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
-  {
-		readFromNBT(pkt.getNbtCompound());
-    processTime = pkt.getNbtCompound().getInteger("pr");
-  }
+    @Override
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
+    {
+        readFromNBT(pkt.getNbtCompound());
+        processTime = pkt.getNbtCompound().getInteger("pr");
+    }
 
-  @Override
-  public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newSate)
-  {
-    return (oldState.getBlock() != newSate.getBlock());
-  }
+    @Override
+    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newSate)
+    {
+        return (oldState.getBlock() != newSate.getBlock());
+    }
 
-  void sendGuiInfo() { SonosPacketHandler.INSTANCE.sendToAll(new ProgressUpdatePacket(processTime, totalProcessTime, 1500, energy.getEnergyStored(), pos)); }
-  // TO REWRITE!!!! URGENT!!!
-  public void updateGuiInfo(int progress, int eCap, int eStor)
-  {
-    this.processTime = progress;
-    this.energy = new OrionEnergy(eCap, 100, 100, eStor);
-  }
+    void sendGuiInfo() { SonosPacketHandler.INSTANCE.sendToAll(new ProgressUpdatePacket(processTime, totalProcessTime, 1500, energy.getEnergyStored(), pos)); }
+    // TO REWRITE!!!! URGENT!!!
+    public void updateGuiInfo(int progress, int eCap, int eStor)
+    {
+        this.processTime = progress;
+        this.energy = new OrionEnergy(eCap, 100, 100, eStor);
+    }
 }
