@@ -1,5 +1,6 @@
 package com.minebarteksa.sonos.gui;
 
+import com.minebarteksa.sonos.tileentity.ResonatorEntityNew;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -17,14 +18,14 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 public class ResonatorGui extends GuiContainer
 {
     private InventoryPlayer playerInv;
-    private ResonatorEntity re;
+    private ResonatorEntityNew re;
     private static final int ProgressBarWidth = 22;
 
     public ResonatorGui(Container cont, InventoryPlayer pl, BlockPos pos, World world)
     {
         super(cont);
         this.playerInv = pl;
-        re = (ResonatorEntity)world.getTileEntity(pos);
+        re = (ResonatorEntityNew)world.getTileEntity(pos);
     }
 
     @Override
@@ -35,7 +36,7 @@ public class ResonatorGui extends GuiContainer
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
-        drawTexturedModalRect(x + 80, y + 35, 177, 14, re.getProgressPercantage(ProgressBarWidth + 1), 16);
+        drawTexturedModalRect(x + 80, y + 35, 177, 14, re.getProcessPercentage(ProgressBarWidth + 1), 16);
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, 0);
@@ -45,16 +46,10 @@ public class ResonatorGui extends GuiContainer
 
     private void drawEnergyBar(int x, int y)
     {
-        int a = getScaledEnergy();
+        int a = re.getEnergyPercentage(53);
         mc.renderEngine.bindTexture(SonosGUIHandler.EnergyBar);
         drawTexturedModalRect(x, y, 0, 0, 16, 53);
         drawTexturedModalRect(x, y + (53 - a), 16, 53 - a, 16, a);
-    }
-
-    private int getScaledEnergy()
-    {
-        IEnergyStorage e = re.getEnergyStorage();
-        return (((e.getEnergyStored() * 100) / 1500) * 53) / 100;
     }
 
     @Override

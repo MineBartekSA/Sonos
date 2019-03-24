@@ -1,8 +1,10 @@
 package com.minebarteksa.sonos.blocks;
 
 import com.minebarteksa.orion.blocks.TileEntityBlockBase;
+import com.minebarteksa.orion.network.OrionPacketHandler;
 import com.minebarteksa.sonos.Sonos;
 import com.minebarteksa.sonos.criteria.SonosCriteria;
+import com.minebarteksa.sonos.packets.SonoOrePacket;
 import com.minebarteksa.sonos.sound.SoundEvents;
 import com.minebarteksa.sonos.tileentity.SonoOreNewEntity;
 import net.minecraft.block.material.Material;
@@ -75,7 +77,9 @@ public class SonoOreNew extends TileEntityBlockBase<SonoOreNewEntity>
     public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
     {
         if(!worldIn.isRemote)
-            SonosCriteria.MSON.trigger((EntityPlayerMP)player, state);
+            SonosCriteria.MSON.trigger((EntityPlayerMP) player, state);
+        else
+            ((SonoOreNewEntity)worldIn.getTileEntity(pos)).switchSound(((SonoOreNewEntity)worldIn.getTileEntity(pos)).getNote().Number());
     }
 
     @Override

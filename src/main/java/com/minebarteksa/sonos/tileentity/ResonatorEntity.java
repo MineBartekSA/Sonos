@@ -1,10 +1,7 @@
 package com.minebarteksa.sonos.tileentity;
 
 import net.minecraftforge.energy.IEnergyStorage;
-import com.minebarteksa.sonos.packets.ProgressUpdatePacket;
-import com.minebarteksa.sonos.packets.SonosPacketHandler;
 import net.minecraft.item.ItemAir;
-import com.minebarteksa.sonos.items.SonosItems;
 import com.minebarteksa.sonos.items.Sono;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ITickable;
@@ -23,6 +20,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraft.tileentity.TileEntity;
 
+@Deprecated
 public class ResonatorEntity extends TileEntity implements ITickable // ToDo: Rewrite!
 {
     private OrionEnergy energy = new OrionEnergy(1500, 100);
@@ -46,10 +44,10 @@ public class ResonatorEntity extends TileEntity implements ITickable // ToDo: Re
                     {
                         processTime = 0;
                         ItemStack in = itemHand.extractItem(0, 1, false);
-                        itemHand.insertItem(1, SonoPrima.setNBTTags(new ItemStack(SonosItems.getSonoPrimaFormNote(((Sono)in.getItem()).note), 1)), false);
+                        itemHand.insertItem(1, SonoPrima.setNBTTags(new ItemStack(SonoPrima.getFromNote(((Sono)in.getItem()).note), 1)), false);
                     }
                     world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
-                    this.sendGuiInfo();
+                    //this.sendGuiInfo();
                     this.markDirty();
                 }
             }
@@ -57,13 +55,13 @@ public class ResonatorEntity extends TileEntity implements ITickable // ToDo: Re
             {
                 processTime = 0;
                 world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
-                this.sendGuiInfo();
+                //this.sendGuiInfo();
                 this.markDirty();
             }
             if(lastEnergy != energy.getEnergyStored())
             {
                 world.scheduleBlockUpdate(getPos(), getBlockType(), 0, 1);
-                this.sendGuiInfo();
+                //this.sendGuiInfo();
                 this.markDirty();
                 lastEnergy = energy.getEnergyStored();
             }
@@ -97,7 +95,7 @@ public class ResonatorEntity extends TileEntity implements ITickable // ToDo: Re
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound)
     {
-        compound.setTag("energystorage", energy.serNBT());
+        compound.setTag("energystorage", energy.serializeNBT());
         compound.setTag("items", itemHand.serializeNBT());
         compound.setInteger("processTime", processTime);
         return super.writeToNBT(compound);
@@ -106,7 +104,7 @@ public class ResonatorEntity extends TileEntity implements ITickable // ToDo: Re
     @Override
     public void readFromNBT(NBTTagCompound compound)
     {
-        energy.deNBT(compound.getCompoundTag("energystorage"));
+        energy.deserializeNBT(compound.getCompoundTag("energystorage"));
         itemHand.deserializeNBT(compound.getCompoundTag("items"));
         processTime = compound.getInteger("processTime");
         super.readFromNBT(compound);
@@ -165,7 +163,7 @@ public class ResonatorEntity extends TileEntity implements ITickable // ToDo: Re
         return (oldState.getBlock() != newSate.getBlock());
     }
 
-    void sendGuiInfo() { SonosPacketHandler.INSTANCE.sendToAll(new ProgressUpdatePacket(processTime, totalProcessTime, 1500, energy.getEnergyStored(), pos)); }
+    //void sendGuiInfo() { /*SonosPacketHandler.INSTANCE.sendToAll(new ProgressUpdatePacket(processTime, totalProcessTime, 1500, energy.getEnergyStored(), pos));*/ }
     // TO REWRITE!!!! URGENT!!!
     public void updateGuiInfo(int progress, int eCap, int eStor)
     {

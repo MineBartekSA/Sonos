@@ -3,6 +3,7 @@ package com.minebarteksa.sonos.gui;
 import com.minebarteksa.sonos.gui.containers.CMContainer;
 import com.minebarteksa.sonos.tileentity.CMEntity;
 import com.minebarteksa.sonos.Sonos;
+import com.minebarteksa.sonos.tileentity.ResonatorEntityNew;
 import net.minecraft.util.ResourceLocation;
 import com.minebarteksa.sonos.gui.containers.GeneratorContainer;
 import com.minebarteksa.sonos.tileentity.GeneratorEntity;
@@ -33,7 +34,7 @@ public class SonosGUIHandler implements IGuiHandler
         switch(ID)
         {
             case ResonatorID:
-                return new ResonatorContainer(player.inventory, (ResonatorEntity)world.getTileEntity(new BlockPos(x, y, z)));
+                return new ResonatorContainer(player.inventory, (ResonatorEntityNew)world.getTileEntity(new BlockPos(x, y, z)));
             case GeneratorID:
                 return new GeneratorContainer(player.inventory, (GeneratorEntity)world.getTileEntity(new BlockPos(x, y, z)));
             case CMID:

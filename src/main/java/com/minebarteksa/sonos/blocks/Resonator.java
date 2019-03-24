@@ -3,6 +3,7 @@ package com.minebarteksa.sonos.blocks;
 import com.minebarteksa.orion.blocks.TileEntityBlockBaseWithFacing;
 import com.minebarteksa.sonos.gui.SonosGUIHandler;
 import com.minebarteksa.sonos.Sonos;
+import com.minebarteksa.sonos.tileentity.ResonatorEntityNew;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,13 +11,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.material.Material;
-import com.minebarteksa.sonos.tileentity.ResonatorEntity;
 
-public class Resonator extends TileEntityBlockBaseWithFacing<ResonatorEntity>
+public class Resonator extends TileEntityBlockBaseWithFacing<ResonatorEntityNew>
 {
     public Resonator() // ToDo: Recipe! We need a recipe!
     {
-        super(Material.IRON, "resonator", Sonos.ModID);
+        super(Material.ROCK, "resonator", Sonos.ModID);
         this.setHardness(3f);
         this.setResistance(5f);
     }
@@ -35,15 +35,15 @@ public class Resonator extends TileEntityBlockBaseWithFacing<ResonatorEntity>
     }
 
     @Override
-    public Class<ResonatorEntity> getTileEntityClass()
+    public Class<ResonatorEntityNew> getTileEntityClass()
     {
-        return ResonatorEntity.class;
+        return ResonatorEntityNew.class;
     }
 
     @Override
-    public ResonatorEntity createTileEntity(World world, IBlockState state)
+    public ResonatorEntityNew createTileEntity(World world, IBlockState state)
     {
-        return new ResonatorEntity();
+        return new ResonatorEntityNew();
     }
 
     @Override

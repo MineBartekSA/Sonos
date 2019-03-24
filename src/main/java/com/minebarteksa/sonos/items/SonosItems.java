@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.client.Minecraft;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.oredict.OreDictionary;
 import com.minebarteksa.sonos.sound.SoundEvents.Notes;
 import com.minebarteksa.sonos.Sonos;
@@ -151,39 +152,6 @@ public class SonosItems
         return sono_as;
       case "B":
         return sono_b;
-			default:
-				return null;
-		}
-	}
-
-	public static SonoPrima getSonoPrimaFormNote(Notes note)
-	{
-		switch(note.toString())
-		{
-			case "C":
-				return sono_prima_c;
-			case "CSharp":
-				return sono_prima_cs;
-			case "D":
-				return sono_prima_d;
-			case "DSharp":
-				return sono_prima_ds;
-			case "E":
-				return sono_prima_e;
-			case "F":
-				return sono_prima_f;
-			case "FSharp":
-				return sono_prima_fs;
-			case "G":
-				return sono_prima_g;
-			case "GSharp":
-				return sono_prima_gs;
-			case "A":
-				return sono_prima_a;
-			case "ASharp":
-				return sono_prima_as;
-			case "B":
-				return sono_prima_b;
 			default:
 				return null;
 		}

@@ -1,8 +1,6 @@
 package com.minebarteksa.sonos.tileentity;
 
 import net.minecraft.init.Items;
-import com.minebarteksa.sonos.packets.ProgressUpdatePacket;
-import com.minebarteksa.sonos.packets.SonosPacketHandler;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.item.ItemStack;
@@ -128,7 +126,7 @@ public class GeneratorEntity extends TileEntity implements ITickable
   @Override
   public NBTTagCompound writeToNBT(NBTTagCompound compound)
   {
-    compound.setTag("energystorage", energy.serNBT());
+    compound.setTag("energystorage", energy.serializeNBT());
     compound.setTag("items", itemHand.serializeNBT());
     compound.setInteger("bTiem", bTime);
     compound.setInteger("BurnTime", BurnTime);
@@ -138,7 +136,7 @@ public class GeneratorEntity extends TileEntity implements ITickable
   @Override
   public void readFromNBT(NBTTagCompound compound)
   {
-    energy.deNBT(compound.getCompoundTag("energystorage"));
+    energy.deserializeNBT(compound.getCompoundTag("energystorage"));
     itemHand.deserializeNBT(compound.getCompoundTag("items"));
     BurnTime = compound.getInteger("BurnTime");
     bTime = compound.getInteger("bTime");
@@ -195,7 +193,7 @@ public class GeneratorEntity extends TileEntity implements ITickable
     return (oldState.getBlock() != newSate.getBlock());
   }
 
-  void sendGuiInfo() { SonosPacketHandler.INSTANCE.sendToAll(new ProgressUpdatePacket(bTime, BurnTime, 0, energy.getEnergyStored(), pos)); }
+  void sendGuiInfo() { /*SonosPacketHandler.INSTANCE.sendToAll(new ProgressUpdatePacket(bTime, BurnTime, 0, energy.getEnergyStored(), pos));*/ }
   // ToDo: TO REWRITE!!!! URGENT!!!
   public void updateGuiInfo(int BurnTime, int bTime, int eStor)
   {

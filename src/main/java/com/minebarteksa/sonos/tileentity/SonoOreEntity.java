@@ -3,8 +3,6 @@ package com.minebarteksa.sonos.tileentity;
 import com.minebarteksa.orion.integrations.IOrionInfoProvider;
 import com.minebarteksa.orion.integrations.infoprovider.IPData;
 import com.minebarteksa.sonos.blocks.SonoOre;
-import com.minebarteksa.sonos.packets.SoundSSPacket;
-import com.minebarteksa.sonos.packets.SonosPacketHandler;
 import net.minecraft.client.Minecraft;
 import com.minebarteksa.sonos.sound.SoundEvents.Notes;
 import com.minebarteksa.sonos.sound.SoundEvents;
@@ -79,7 +77,7 @@ public class SonoOreEntity extends TileEntity implements ITickable, IOrionInfoPr
         if(sound == null)
             return;
         isPlaying = false;
-        sound.stop();
+        //sound.stop();
         Minecraft.getMinecraft().getSoundHandler().stopSound(sound);
     }
 
@@ -88,7 +86,7 @@ public class SonoOreEntity extends TileEntity implements ITickable, IOrionInfoPr
 
   public void SSSound(boolean switchTo)
   {
-    SonosPacketHandler.INSTANCE.sendToDimension(new SoundSSPacket(switchTo, pos), world.provider.getDimension());
+    /*SonosPacketHandler.INSTANCE.sendToDimension(new SoundSSPacket(switchTo, pos), world.provider.getDimension());*/
     isPlaying = switchTo;
   }
 

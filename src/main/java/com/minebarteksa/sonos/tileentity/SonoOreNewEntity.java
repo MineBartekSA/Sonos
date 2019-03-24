@@ -2,13 +2,18 @@ package com.minebarteksa.sonos.tileentity;
 
 import com.minebarteksa.orion.integrations.IOrionInfoProvider;
 import com.minebarteksa.orion.integrations.infoprovider.IPData;
+import com.minebarteksa.orion.network.OrionPacketHandler;
 import com.minebarteksa.sonos.blocks.SonoOreNew;
+import com.minebarteksa.sonos.packets.SonoOrePacket;
 import com.minebarteksa.sonos.sound.SoundEvents;
+import com.minebarteksa.sonos.sound.SoundSource;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.ISound;
+import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import java.util.ArrayList;
@@ -20,6 +25,7 @@ public class SonoOreNewEntity extends TileEntity implements IOrionInfoProvider, 
     protected SoundEvents.Notes note = SoundEvents.Notes.None;
     private int tick = 0;
     private boolean doTick = false;
+    private ISound sound;
 
     public void init()
     {
@@ -35,6 +41,7 @@ public class SonoOreNewEntity extends TileEntity implements IOrionInfoProvider, 
             if(tick == (duration * 20) + duration)
             {
                 this.world.setBlockState(pos, this.world.getBlockState(pos).getBlock().getDefaultState());
+                OrionPacketHandler.INSTANCE.sendToAll(new SonoOrePacket(pos, note.Number()));
                 doTick = false;
             }
             tick++;
@@ -53,7 +60,18 @@ public class SonoOreNewEntity extends TileEntity implements IOrionInfoProvider, 
         this.world.setBlockState(pos, this.world.getBlockState(pos).withProperty(SonoOreNew.LitAF, getNote().Number()));
         doTick = true;
         tick = 0;
-        world.playSound(null, pos, SoundEvents.getSound(note, "hum"), SoundCategory.BLOCKS, 1f, 1f);
+        OrionPacketHandler.INSTANCE.sendToAll(new SonoOrePacket(pos, note.Number()));
+    }
+
+    public void switchSound(int note)
+    {
+        if(sound == null)
+            sound = new SoundSource(this, SoundEvents.getSound(SoundEvents.Notes.getNote(note), "hum"), 1f, 1f, false);
+        SoundHandler sh = Minecraft.getMinecraft().getSoundHandler();
+        if(sh.isSoundPlaying(sound))
+            sh.stopSound(sound);
+        else
+            sh.playSound(sound);
     }
 
     @Override

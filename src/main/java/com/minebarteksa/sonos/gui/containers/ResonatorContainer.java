@@ -1,11 +1,11 @@
 package com.minebarteksa.sonos.gui.containers;
 
+import com.minebarteksa.sonos.tileentity.ResonatorEntityNew;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import com.minebarteksa.sonos.tileentity.ResonatorEntity;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -14,13 +14,16 @@ import net.minecraft.inventory.Container;
 
 public class ResonatorContainer extends Container
 {
-    public ResonatorContainer(InventoryPlayer playerInv, final ResonatorEntity re)
+    private final ResonatorEntityNew entity;
+
+    public ResonatorContainer(InventoryPlayer playerInv, final ResonatorEntityNew re)
     {
-        IItemHandler iHand = re.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
+        entity = re;
+        IItemHandler iHand = entity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
         addSlotToContainer(new SlotItemHandler(iHand, 0, 56, 35)
         {
             @Override
-            public void onSlotChanged() { re.markDirty(); }
+            public void onSlotChanged() { entity.markDirty(); }
 
             @Override
             public boolean isItemValid(ItemStack stack)
@@ -35,7 +38,7 @@ public class ResonatorContainer extends Container
         addSlotToContainer(new SlotItemHandler(iHand, 1, 116, 35)
         {
             @Override
-            public void onSlotChanged() { re.markDirty(); }
+            public void onSlotChanged() { entity.markDirty(); }
 
             @Override
             public boolean isItemValid(ItemStack stack) { return false; }
@@ -48,6 +51,13 @@ public class ResonatorContainer extends Container
 
         for (int k = 0; k < 9; k++)
             addSlotToContainer(new Slot(playerInv, k, 8 + k * 18, 142));
+    }
+
+    @Override
+    public void detectAndSendChanges()
+    {
+        super.detectAndSendChanges();
+
     }
 
     @Override

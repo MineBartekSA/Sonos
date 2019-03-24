@@ -18,5 +18,8 @@ public class ActivatorEntity extends MultiBlock
     }
 
     @Override
+    public void update() { }
+
+    @Override
     public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newSate) { return (oldState.getBlock() != newSate.getBlock()); }
 }

@@ -61,7 +61,7 @@ public class Sonos
   public void init(FMLInitializationEvent event)
   {
     log.info("Sonos init!");
-    SonosJNI.JNInit();
+    //SonosJNI.JNInit();
     SonosItems.initOreDictionary();
     SonosItems.registerItemColors();
     SonosCriteria.registerCriteria();
