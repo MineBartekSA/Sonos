@@ -1,6 +1,5 @@
 package com.minebarteksa.sonos;
 
-import com.minebarteksa.sonos.jni.SonosJNI;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraft.util.ResourceLocation;
@@ -61,7 +60,6 @@ public class Sonos
   public void init(FMLInitializationEvent event)
   {
     log.info("Sonos init!");
-    //SonosJNI.JNInit();
     SonosItems.initOreDictionary();
     SonosItems.registerItemColors();
     SonosCriteria.registerCriteria();

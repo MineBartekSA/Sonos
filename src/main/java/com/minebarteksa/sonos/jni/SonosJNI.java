@@ -9,11 +9,12 @@ public class SonosJNI
 
   public static void JNInit()
   {
-    LibDownloader.AddLib(stdio.getLib());
+    // Note: For now, it will be disabled
+    /*LibDownloader.AddLib(stdio.getLib());
 
     LibDownloader.Donwload();
 
     std = new stdio();
-    std.printf("Hello there!");
+    std.printf("Hello there!");*/
   }
 }
