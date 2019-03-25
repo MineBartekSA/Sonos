@@ -18,6 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 public class SonoOreNewEntity extends TileEntity implements IOrionInfoProvider, ITickable
 {
@@ -26,6 +27,7 @@ public class SonoOreNewEntity extends TileEntity implements IOrionInfoProvider, 
     private int tick = 0;
     private boolean doTick = false;
     private ISound sound;
+    private Function<Void, Void> soundStart = (Void) ->  null;
 
     public void init()
     {
@@ -41,11 +43,13 @@ public class SonoOreNewEntity extends TileEntity implements IOrionInfoProvider, 
             if(tick == (duration * 20) + duration)
             {
                 this.world.setBlockState(pos, this.world.getBlockState(pos).getBlock().getDefaultState());
-                OrionPacketHandler.INSTANCE.sendToAll(new SonoOrePacket(pos, note.Number()));
+                OrionPacketHandler.INSTANCE.sendToAll(new SonoOrePacket(pos, note.Number(), true));
                 doTick = false;
             }
             tick++;
         }
+        soundStart.apply(null);
+        soundStart = (Void) ->  null;
     }
 
     public SoundEvents.Notes getNote()
@@ -60,18 +64,21 @@ public class SonoOreNewEntity extends TileEntity implements IOrionInfoProvider, 
         this.world.setBlockState(pos, this.world.getBlockState(pos).withProperty(SonoOreNew.LitAF, getNote().Number()));
         doTick = true;
         tick = 0;
-        OrionPacketHandler.INSTANCE.sendToAll(new SonoOrePacket(pos, note.Number()));
+        OrionPacketHandler.INSTANCE.sendToAll(new SonoOrePacket(pos, note.Number(), false));
     }
 
-    public void switchSound(int note)
+    public void switchSound(int note, boolean halt)
     {
         if(sound == null)
             sound = new SoundSource(this, SoundEvents.getSound(SoundEvents.Notes.getNote(note), "hum"), 1f, 1f, false);
         SoundHandler sh = Minecraft.getMinecraft().getSoundHandler();
-        if(sh.isSoundPlaying(sound))
+        if(sh.isSoundPlaying(sound) && halt)
             sh.stopSound(sound);
         else
-            sh.playSound(sound);
+            soundStart = (Void) -> {
+                sh.playSound(sound);
+                return null;
+            };
     }
 
     @Override

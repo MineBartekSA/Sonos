@@ -36,7 +36,7 @@ public class ResonatorGui extends GuiContainer
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
-        drawTexturedModalRect(x + 80, y + 35, 177, 14, re.getProcessPercentage(ProgressBarWidth + 1), 16);
+        drawTexturedModalRect(x + 80, y + 35, 177, 14, re.getProgressPercentage(ProgressBarWidth + 1), 16);
 
         GlStateManager.pushMatrix();
         GlStateManager.translate(x, y, 0);

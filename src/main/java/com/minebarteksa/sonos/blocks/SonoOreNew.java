@@ -79,7 +79,7 @@ public class SonoOreNew extends TileEntityBlockBase<SonoOreNewEntity>
         if(!worldIn.isRemote)
             SonosCriteria.MSON.trigger((EntityPlayerMP) player, state);
         else
-            ((SonoOreNewEntity)worldIn.getTileEntity(pos)).switchSound(((SonoOreNewEntity)worldIn.getTileEntity(pos)).getNote().Number());
+            ((SonoOreNewEntity)worldIn.getTileEntity(pos)).switchSound(((SonoOreNewEntity)worldIn.getTileEntity(pos)).getNote().Number(), true);
     }
 
     @Override
