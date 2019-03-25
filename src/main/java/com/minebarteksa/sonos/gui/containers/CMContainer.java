@@ -1,7 +1,7 @@
 package com.minebarteksa.sonos.gui.containers;
 
+import com.minebarteksa.sonos.tileentity.ModulatorEntity;
 import net.minecraftforge.oredict.OreDictionary;
-import com.minebarteksa.sonos.tileentity.CMEntity;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -14,7 +14,7 @@ import net.minecraft.inventory.Container;
 
 public class CMContainer extends Container
 {
-    public CMContainer(InventoryPlayer playerInv, final CMEntity re)
+    public CMContainer(InventoryPlayer playerInv, final ModulatorEntity re)
     {
         IItemHandler iHand = re.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.UP);
         addSlotToContainer(new SlotItemHandler(iHand, 0, 80, 35)

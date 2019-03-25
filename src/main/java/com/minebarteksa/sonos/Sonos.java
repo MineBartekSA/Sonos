@@ -1,5 +1,6 @@
 package com.minebarteksa.sonos;
 
+import com.minebarteksa.sonos.items.SonoPrima;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraft.util.ResourceLocation;
@@ -23,6 +24,8 @@ import com.minebarteksa.sonos.gui.SonosGUIHandler;
 import com.minebarteksa.sonos.sonosproxy.SonosCommon;
 import com.minebarteksa.sonos.criteria.SonosCriteria;
 
+import java.util.Random;
+
 @Mod(modid = Sonos.ModID, name = Sonos.Name, version = Sonos.Version, dependencies = Sonos.Deps)
 public class Sonos
 {
@@ -35,8 +38,22 @@ public class Sonos
   public static Sonos instance;
 
   public static CreativeTabs cTab = new CreativeTabs("sonos") {
-      @Override
-      public ItemStack getTabIconItem() { return new ItemStack(SonosItems.sono_c); }
+      private int tick;
+      private ItemStack current;
+
+    @Override
+    public ItemStack getTabIconItem() { return null; }
+
+    @Override
+      public ItemStack getIconItemStack()
+      {
+          if(tick <= 0) {
+              current = new ItemStack(SonoPrima.getFromNote(SoundEvents.Notes.getNote(new Random().nextInt(12))));
+              tick = 80;
+          }
+          tick--;
+          return current;
+      }
   };
 
   @SidedProxy(serverSide = "com.minebarteksa.sonos.sonosproxy.SonosCommon", clientSide = "com.minebarteksa.sonos.sonosproxy.SonosClient")

@@ -4,6 +4,7 @@ import com.minebarteksa.orion.blocks.TileEntityBlockBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import com.minebarteksa.sonos.criteria.SonosCriteria;
 import com.minebarteksa.sonos.items.SonosItems;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.entity.Entity;
 import com.minebarteksa.sonos.tileentity.SonoOreEntity;
@@ -138,7 +139,7 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity>
   @Override
   public Item getItemDropped(IBlockState state, Random rand, int fortune)
   {
-    switch(Notes.getNote(state.getValue(LitAF) - 1).toString())
+    /*switch(Notes.getNote(state.getValue(LitAF) - 1).toString())
     {
       case "C":
         return SonosItems.sono_c;
@@ -166,6 +167,7 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity>
         return SonosItems.sono_b;
       default:
         return SonosItems.sono_c;
-    }
+    }*/
+    return Items.AIR;
   }
 }

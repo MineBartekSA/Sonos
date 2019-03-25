@@ -6,9 +6,9 @@ import net.minecraft.creativetab.CreativeTabs;
 
 public class TuningFork extends ItemBase
 {
-  public TuningFork(String name)
+  public TuningFork()
   {
-    super(name, Sonos.ModID);
+    super("fork", Sonos.ModID);
     this.setMaxStackSize(1);
     this.setMaxDamage(0);
   }

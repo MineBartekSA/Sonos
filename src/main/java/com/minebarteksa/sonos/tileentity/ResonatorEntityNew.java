@@ -1,12 +1,17 @@
 package com.minebarteksa.sonos.tileentity;
 
 import com.minebarteksa.orion.OrionEnergy;
+import com.minebarteksa.orion.blocks.TileEntityBlockBaseWithFacing;
 import com.minebarteksa.orion.tileentity.TileEntityMachine;
 import com.minebarteksa.sonos.items.Sono;
 import com.minebarteksa.sonos.items.SonoPrima;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.items.ItemStackHandler;
+import javax.annotation.Nullable;
 
 public class ResonatorEntityNew extends TileEntityMachine implements ITickable
 {
@@ -66,5 +71,24 @@ public class ResonatorEntityNew extends TileEntityMachine implements ITickable
         lastEnergy = energy.getEnergyStored();
         world.notifyBlockUpdate(pos, world.getBlockState(pos), world.getBlockState(pos), 1);
         this.markDirty();
+    }
+
+    private EnumFacing getFacing() { return world.getBlockState(pos).getValue(TileEntityBlockBaseWithFacing.FACING); }
+
+    @Override
+    public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing)
+    {
+        if(capability == CapabilityEnergy.ENERGY)
+            return (facing == EnumFacing.UP || facing == EnumFacing.DOWN || facing == getFacing());
+        return super.hasCapability(capability, facing);
+    }
+
+    @Nullable
+    @Override
+    public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing)
+    {
+        if(capability == CapabilityEnergy.ENERGY)
+            return (facing == EnumFacing.UP || facing == EnumFacing.DOWN || facing == getFacing()) ? (T)energy : null;
+        return super.getCapability(capability, facing);
     }
 }

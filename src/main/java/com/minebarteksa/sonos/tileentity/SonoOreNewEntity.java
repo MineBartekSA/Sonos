@@ -43,7 +43,7 @@ public class SonoOreNewEntity extends TileEntity implements IOrionInfoProvider, 
             if(tick == (duration * 20) + duration)
             {
                 this.world.setBlockState(pos, this.world.getBlockState(pos).getBlock().getDefaultState());
-                OrionPacketHandler.INSTANCE.sendToAll(new SonoOrePacket(pos, note.Number(), true));
+                OrionPacketHandler.INSTANCE.sendToAll(new SonoOrePacket(pos, note.number(), true));
                 doTick = false;
             }
             tick++;
@@ -61,10 +61,10 @@ public class SonoOreNewEntity extends TileEntity implements IOrionInfoProvider, 
 
     public void setTimeOut()
     {
-        this.world.setBlockState(pos, this.world.getBlockState(pos).withProperty(SonoOreNew.LitAF, getNote().Number()));
+        this.world.setBlockState(pos, this.world.getBlockState(pos).withProperty(SonoOreNew.LitAF, getNote().number()));
         doTick = true;
         tick = 0;
-        OrionPacketHandler.INSTANCE.sendToAll(new SonoOrePacket(pos, note.Number(), false));
+        OrionPacketHandler.INSTANCE.sendToAll(new SonoOrePacket(pos, note.number(), false));
     }
 
     public void switchSound(int note, boolean halt)
@@ -101,7 +101,7 @@ public class SonoOreNewEntity extends TileEntity implements IOrionInfoProvider, 
     public NBTTagCompound writeToNBT(NBTTagCompound compound)
     {
         super.writeToNBT(compound);
-        compound.setInteger("note", note.Number());
+        compound.setInteger("note", note.number());
         return compound;
     }
 

@@ -2,53 +2,31 @@ package com.minebarteksa.sonos.items;
 
 import com.minebarteksa.sonos.Sonos;
 import com.minebarteksa.orion.items.ItemBase;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.item.Item;
+import net.minecraft.util.*;
 import com.minebarteksa.sonos.sound.SoundEvents;
-import net.minecraft.client.util.ITooltipFlag;
-import java.util.List;
 import com.minebarteksa.sonos.sound.SoundEvents.Notes;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
 public class Sono extends ItemBase
 {
 	public Notes note;
-	public String info = "";
 
-	public Sono(String name, Notes note, String info)
+	public Sono(Notes note)
 	{
-		super(name, Sonos.ModID);
+		super("sono_" + note.getSimpler(), Sonos.ModID);
 		this.note = note;
-		this.info = info;
 	}
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
 	{
-		if(worldIn.isRemote)
-		{
-			SoundEvent e = SoundEvents.getSound(note, "sonar");
-			worldIn.playSound(playerIn, playerIn.posX, playerIn.posY, playerIn.posZ, e, SoundCategory.PLAYERS, 1.0f, 1.0f);
-		}
+		SoundEvent e = SoundEvents.getSound(note, "sonar");
+		worldIn.playSound(playerIn, playerIn.posX, playerIn.posY, playerIn.posZ, e, SoundCategory.PLAYERS, 1.0f, 1.0f);
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}
 
-	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
-	{
-		if(info != "")
-			tooltip.add(info);
-	}
-
-	@Override
-	public Sono setCreativeTab(CreativeTabs tab)
-	{
-		super.setCreativeTab(tab);
-		return this;
-	}
+	public static Sono getFromNote(Notes note) { return (Sono) Item.REGISTRY.getObject(new ResourceLocation(Sonos.ModID, "sono_" + note.getSimpler())); }
 }

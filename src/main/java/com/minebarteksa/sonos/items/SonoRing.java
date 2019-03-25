@@ -18,7 +18,6 @@ import com.minebarteksa.sonos.sound.SoundEvents.Notes;
 import com.minebarteksa.sonos.sound.SoundEvents;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.creativetab.CreativeTabs;
 import baubles.api.BaubleType;
 import net.minecraft.item.ItemStack;
 import baubles.api.IBauble;
@@ -29,9 +28,9 @@ public class SonoRing extends ItemBase implements IBauble
 {
   private Notes note;
 
-  public SonoRing(String name, Notes n)
+  public SonoRing(Notes n)
   {
-    super(name, Sonos.ModID);
+    super("sonoring_" + n.getSimpler(), Sonos.ModID);
     this.setMaxStackSize(1);
     this.setMaxDamage(0);
     note = n;
@@ -59,7 +58,7 @@ public class SonoRing extends ItemBase implements IBauble
                   break;
               }
       }
-      return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
+      return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
   }
 
   @Override
@@ -99,13 +98,6 @@ public class SonoRing extends ItemBase implements IBauble
           else
               player.addPotionEffect(new PotionEffect(effect, 20, 0, true, false));
       }
-  }
-
-  @Override
-  public SonoRing setCreativeTab(CreativeTabs tab)
-  {
-    super.setCreativeTab(tab);
-    return this;
   }
 
   @Override

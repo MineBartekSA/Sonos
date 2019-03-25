@@ -38,7 +38,7 @@ public class SoundEvents
 		{
 			if(n != Notes.None)
 			{
-				String note = n.toString().replace("harp", "").toLowerCase();
+				String note = n.getSimpler();
 				Sonos.log.info("Registering " + name + "_" + note + " sound");
 				OrionRegistry.register(new SoundEvent(new ResourceLocation(Sonos.ModID, name + "_" + note)).setRegistryName(name + "_" + note));
 			}
@@ -47,9 +47,7 @@ public class SoundEvents
 
 	public static SoundEvent getSound(Notes note, String type)
 	{
-		String n = note.toString();
-		n = n.replace("harp", "");
-		n = n.toLowerCase();
+		String n = note.getSimpler();
 		Sonos.log.info("Requested Sound: " + type + "_" + n);
 		return SoundEvent.REGISTRY.getObject(new ResourceLocation(Sonos.ModID, type + "_" + n));
 	}
@@ -66,7 +64,7 @@ public class SoundEvents
 		else
 		{
 			Sonos.log.info("Trying to play " + note + " " + Chords.getChord(quality) + " chord");
-			int[] chord = Chords.getChordNotes(note.Number(), quality);
+			int[] chord = Chords.getChordNotes(note.number(), quality);
 			SoundEvent e1 = SoundEvents.getSound(Notes.getNote(chord[0]), noteType);
 			SoundEvent e2 = SoundEvents.getSound(Notes.getNote(chord[1]), noteType);
 			SoundEvent e3 = SoundEvents.getSound(Notes.getNote(chord[2]), noteType);
@@ -86,7 +84,8 @@ public class SoundEvents
 		{
 			this.number = note;
 		}
-		public int Number() { return number; }
+		public int number() { return number; }
+		public String getSimpler() { return this.toString().replace("harp", "").toLowerCase(); }
 		public static Notes getNote(int num)
 		{
 			switch(num)

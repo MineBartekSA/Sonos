@@ -11,6 +11,6 @@
   "credits": "",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": ["baubles", "guideapi", "cofhcore"]
+  "dependencies": ["baubles", "guideapi", "liborion"]
 }
 ]

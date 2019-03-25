@@ -19,84 +19,88 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.util.ITickable;
 import net.minecraft.tileentity.TileEntity;
 
+@Deprecated
 public class CMEntity extends TileEntity implements ITickable
 {
-  //protected OrionEnergy energy = new OrionEnergy(10000, 500);
-  private ItemStackHandler itemHand = new ItemStackHandler(2);
+    //protected OrionEnergy energy = new OrionEnergy(10000, 500);
+    private ItemStackHandler itemHand = new ItemStackHandler(2);
 
-  @Override
-  public void update()
-  {
-    if(itemHand.getStackInSlot(0) != ItemStack.EMPTY && itemHand.getStackInSlot(0).hasTagCompound())
+    @Override
+    public void update()
     {
-      NBTTagCompound sonoTag = itemHand.getStackInSlot(0).getTagCompound();
-      Sonos.log.info("Note: " + Notes.getNote(sonoTag.getInteger("note")) + " Quality: " + Chords.getChord(sonoTag.getInteger("quality")) + " Sound type: " + sonoTag.getString("soundType"));
+        if(!world.isRemote)
+        {
+            if (itemHand.getStackInSlot(0) != ItemStack.EMPTY && itemHand.getStackInSlot(0).hasTagCompound())
+            {
+                NBTTagCompound sonoTag = itemHand.getStackInSlot(0).getTagCompound();
+                Sonos.log.info("Note: " + Notes.getNote(sonoTag.getInteger("note")) + " Quality: " + Chords.getChord(sonoTag.getInteger("quality")) + " Sound type: " + sonoTag.getString("soundType"));
+            }
+        }
     }
-  }
 
-  @Override
-  public NBTTagCompound writeToNBT(NBTTagCompound compound)
-  {
-    //compound.setTag("energystorage", energy.serNBT());
-    compound.setTag("items", itemHand.serializeNBT());
-    return super.writeToNBT(compound);
-  }
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound)
+    {
+        //compound.setTag("energystorage", energy.serNBT());
+        compound.setTag("items", itemHand.serializeNBT());
+        return super.writeToNBT(compound);
+    }
 
-  @Override
-  public void readFromNBT(NBTTagCompound compound)
-  {
-    //energy.deNBT(compound.getCompoundTag("energystorage"));
-    itemHand.deserializeNBT(compound.getCompoundTag("items"));
-    super.readFromNBT(compound);
-  }
+    @Override
+    public void readFromNBT(NBTTagCompound compound)
+    {
+        //energy.deNBT(compound.getCompoundTag("energystorage"));
+        itemHand.deserializeNBT(compound.getCompoundTag("items"));
+        super.readFromNBT(compound);
+    }
 
-  @Override
-  public boolean hasCapability(Capability<?> capability, EnumFacing facing)
-  {
-    //if(capability == CapabilityEnergy.ENERGY)
-    //  return true;
-    if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-      return true;
-    return super.hasCapability(capability, facing);
-  }
+    @Override
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing)
+    {
+        //if(capability == CapabilityEnergy.ENERGY)
+        //  return true;
+        if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+            return true;
+        return super.hasCapability(capability, facing);
+    }
 
-  @SuppressWarnings("unchecked")
-  @Override
-  public <T> T getCapability(Capability<T> capability, EnumFacing facing)
-  {
-    //if(capability == CapabilityEnergy.ENERGY)
-    //  return (T)energy;
-    if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-      return (T)itemHand;
-    return super.getCapability(capability, facing);
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing)
+    {
+        //if(capability == CapabilityEnergy.ENERGY)
+        //  return (T)energy;
+        if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+            return (T)itemHand;
+        return super.getCapability(capability, facing);
+    }
 
-  @Override
-  public SPacketUpdateTileEntity getUpdatePacket()
-  {
-    NBTTagCompound nbtTagCompound = new NBTTagCompound();
-		writeToNBT(nbtTagCompound);
-		int metadata = 0;
-    return new SPacketUpdateTileEntity(this.pos, metadata, nbtTagCompound);
-  }
+    @Override
+    public SPacketUpdateTileEntity getUpdatePacket()
+    {
+        NBTTagCompound nbtTagCompound = new NBTTagCompound();
+        writeToNBT(nbtTagCompound);
+        int metadata = 0;
+        return new SPacketUpdateTileEntity(this.pos, metadata, nbtTagCompound);
+    }
 
-  @Override
-  public NBTTagCompound getUpdateTag()
-  {
-    NBTTagCompound blockNBT = new NBTTagCompound();
-    writeToNBT(blockNBT);
-    return blockNBT;
-  }
+    @Override
+    public NBTTagCompound getUpdateTag()
+    {
+        NBTTagCompound blockNBT = new NBTTagCompound();
+        writeToNBT(blockNBT);
+        return blockNBT;
+    }
 
-  @Override
-	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
-  {
-		readFromNBT(pkt.getNbtCompound());
-  }
+    @Override
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
+    {
+        readFromNBT(pkt.getNbtCompound());
+    }
 
-  @Override
-  public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newSate)
-  {
-    return (oldState.getBlock() != newSate.getBlock());
-  }
+    @Override
+    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newSate)
+    {
+        return (oldState.getBlock() != newSate.getBlock());
+    }
 }
