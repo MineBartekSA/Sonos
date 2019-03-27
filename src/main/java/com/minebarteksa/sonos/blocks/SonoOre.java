@@ -82,7 +82,7 @@ public class SonoOre extends TileEntityBlockBase<SonoOreEntity>
   {
     if(worldIn.isRemote)
         return;
-    SonosCriteria.MSON.trigger((EntityPlayerMP)player, state);
+    SonosCriteria.MSON.trigger((EntityPlayerMP)player);
   }
 
   @Override

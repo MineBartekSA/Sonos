@@ -4,14 +4,12 @@ import net.minecraft.advancements.CriteriaTriggers;
 
 public class SonosCriteria
 {
-  //public static MinedSonoOre MSO = new MinedSonoOre();
-  public static MinedSonoOreNew MSON = new MinedSonoOreNew();
-  public static OpenGuide OG = new OpenGuide();
+    public static MinedSonoOre MSON = new MinedSonoOre();
+    public static OpenGuide OG = new OpenGuide();
 
-  public static void registerCriteria()
-  {
-    //CriteriaTriggers.register(MSO);
-    CriteriaTriggers.register(MSON);
-    CriteriaTriggers.register(OG);
-  }
+    public static void registerCriteria()
+    {
+        CriteriaTriggers.register(MSON);
+        CriteriaTriggers.register(OG);
+    }
 }

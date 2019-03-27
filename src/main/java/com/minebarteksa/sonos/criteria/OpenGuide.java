@@ -1,71 +1,27 @@
 package com.minebarteksa.sonos.criteria;
 
-import com.minebarteksa.orion.criteria.CriterionInstance;
-import com.minebarteksa.orion.criteria.CriterionListeners;
 import com.minebarteksa.orion.criteria.CriterionBase;
-import net.minecraft.entity.player.EntityPlayerMP;
+import com.minebarteksa.orion.criteria.CriterionInstanceBase;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.minebarteksa.sonos.Sonos;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.advancements.PlayerAdvancements;
 
-public class OpenGuide extends CriterionBase<OpenGuide.Instance, OpenGuide.Listeners>
+public class OpenGuide extends CriterionBase<OpenGuide.Instance>
 {
-  public OpenGuide()
-  {
-    super(new ResourceLocation(Sonos.ModID, "openguide"));
-  }
-
-  @Override
-  public OpenGuide.Instance deserializeInstance(JsonObject json, JsonDeserializationContext context)
-  {
-    return new OpenGuide.Instance();
-  }
-
-  @Override
-  public void addListener(PlayerAdvancements playerAdvancementsIn, Listener<Instance> listener)
-  {
-    OpenGuide.Listeners consumeitemtrigger$listeners = this.listeners.get(playerAdvancementsIn);
-
-		if (consumeitemtrigger$listeners == null)
-    {
-			consumeitemtrigger$listeners = new OpenGuide.Listeners(playerAdvancementsIn);
-			this.listeners.put(playerAdvancementsIn, consumeitemtrigger$listeners);
-		}
-
-    consumeitemtrigger$listeners.add(listener);
-  }
-
-  public void trigger(EntityPlayerMP parPlayer)
-  {
-    CriterionListeners<OpenGuide.Instance> enterblocktrigger$listeners = this.listeners.get(parPlayer.getAdvancements());
-
-    if (enterblocktrigger$listeners != null)
-    {
-      enterblocktrigger$listeners.trigger(null, null);
-    }
-  }
-
-  public class Instance extends CriterionInstance
-  {
-    public Instance()
-    {
-      super(ID);
-    }
+    public OpenGuide() { super(new ResourceLocation(Sonos.ModID, "openguide")); }
 
     @Override
-    public boolean test(Object obj, Class<?> type)
-    {
-      return true;
-    }
-  }
+    public Instance deserializeInstance(JsonObject json, JsonDeserializationContext context) { return new Instance(getId()); }
 
-  public static class Listeners extends CriterionListeners<Instance>
-  {
-    public Listeners(PlayerAdvancements pAdv)
+    public void trigger(EntityPlayerMP player) { this.trigger(player, (i) -> true); }
+
+    public class Instance extends CriterionInstanceBase
     {
-      super(pAdv);
+        public Instance(ResourceLocation id) { super(id); }
+
+        @Override
+        public CriterionInstanceBase deserialize(JsonObject jsonObject) { return this; }
     }
-  }
 }
