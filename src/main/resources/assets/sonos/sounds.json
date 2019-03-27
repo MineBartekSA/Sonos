@@ -1,7 +1,7 @@
 {
   "sonar_c":{
     "category": "player",
-    "sounds": [ { "name": "sonos:sonar/sonar_c" } ]
+    "sounds": [ { "name": "sonos:sonar/sonar_c", "stream": true } ]
   },
 
   "sonar_cs":{
@@ -279,5 +279,158 @@
   "magic_b":{
     "category": "player",
     "sounds": [ { "name": "sonos:magic/magic_b", "stream": true } ]
+  },
+
+
+
+  "orbital_charge_c":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:orbital_charge/orbital_charge_c", "stream": true } ]
+  },
+  "orbital_charge_cs":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:orbital_charge/orbital_charge_cs", "stream": true } ]
+  },
+  "orbital_charge_d":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:orbital_charge/orbital_charge_d", "stream": true } ]
+  },
+  "orbital_charge_ds":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:orbital_charge/orbital_charge_ds", "stream": true } ]
+  },
+  "orbital_charge_e":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:orbital_charge/orbital_charge_e", "stream": true } ]
+  },
+  "orbital_charge_f":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:orbital_charge/orbital_charge_f", "stream": true } ]
+  },
+  "orbital_charge_fs":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:orbital_charge/orbital_charge_fs", "stream": true } ]
+  },
+  "orbital_charge_g":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:orbital_charge/orbital_charge_g", "stream": true } ]
+  },
+  "orbital_charge_gs":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:orbital_charge/orbital_charge_gs", "stream": true } ]
+  },
+  "orbital_charge_a":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:orbital_charge/orbital_charge_a", "stream": true } ]
+  },
+  "orbital_charge_as":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:orbital_charge/orbital_charge_as", "stream": true } ]
+  },
+  "orbital_charge_b":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:orbital_charge/orbital_charge_b", "stream": true } ]
+  },
+
+
+
+  "orbital_strike_c":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:orbital_strike/orbital_strike_c", "stream": true } ]
+  },
+  "orbital_strike_cs":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:orbital_strike/orbital_strike_cs", "stream": true } ]
+  },
+  "orbital_strike_d":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:orbital_strike/orbital_strike_d", "stream": true } ]
+  },
+  "orbital_strike_ds":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:orbital_strike/orbital_strike_ds", "stream": true } ]
+  },
+  "orbital_strike_e":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:orbital_strike/orbital_strike_e", "stream": true } ]
+  },
+  "orbital_strike_f":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:orbital_strike/orbital_strike_f", "stream": true } ]
+  },
+  "orbital_strike_fs":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:orbital_strike/orbital_strike_fs", "stream": true } ]
+  },
+  "orbital_strike_g":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:orbital_strike/orbital_strike_g", "stream": true } ]
+  },
+  "orbital_strike_gs":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:orbital_strike/orbital_strike_gs", "stream": true } ]
+  },
+  "orbital_strike_a":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:orbital_strike/orbital_strike_a", "stream": true } ]
+  },
+  "orbital_strike_as":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:orbital_strike/orbital_strike_as", "stream": true } ]
+  },
+  "orbital_strike_b":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:orbital_strike/orbital_strike_b", "stream": true } ]
+  },
+
+
+
+  "resonator_c":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:resonator/resonator_c", "stream": true } ]
+  },
+  "resonator_cs":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:resonator/resonator_cs", "stream": true } ]
+  },
+  "resonator_d":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:resonator/resonator_d", "stream": true } ]
+  },
+  "resonator_ds":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:resonator/resonator_ds", "stream": true } ]
+  },
+  "resonator_e":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:resonator/resonator_e", "stream": true } ]
+  },
+  "resonator_f":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:resonator/resonator_f", "stream": true } ]
+  },
+  "resonator_fs":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:resonator/resonator_fs", "stream": true } ]
+  },
+  "resonator_g":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:resonator/resonator_g", "stream": true } ]
+  },
+  "resonator_gs":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:resonator/resonator_gs", "stream": true } ]
+  },
+  "resonator_a":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:resonator/resonator_a", "stream": true } ]
+  },
+  "resonator_as":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:resonator/resonator_as", "stream": true } ]
+  },
+  "resonator_b":{
+    "category": "blocks",
+    "sounds": [ { "name": "sonos:resonator/resonator_b", "stream": true } ]
   }
 }
