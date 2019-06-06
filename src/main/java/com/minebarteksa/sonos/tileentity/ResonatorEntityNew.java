@@ -3,8 +3,10 @@ package com.minebarteksa.sonos.tileentity;
 import com.minebarteksa.orion.OrionEnergy;
 import com.minebarteksa.orion.blocks.TileEntityBlockBaseWithFacing;
 import com.minebarteksa.orion.tileentity.TileEntityMachine;
+import com.minebarteksa.sonos.Sonos;
 import com.minebarteksa.sonos.items.Sono;
 import com.minebarteksa.sonos.items.SonoPrima;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
@@ -62,7 +64,9 @@ public class ResonatorEntityNew extends TileEntityMachine implements ITickable
             return true;
         else if(!(iHand.getStackInSlot(1).getItem() instanceof SonoPrima))
             return false;
-        return (((Sono)iHand.getStackInSlot(0).getItem()).note == ((SonoPrima)iHand.getStackInSlot(1).getItem()).note);
+        if(iHand.getStackInSlot(0).getItem() instanceof Sono && iHand.getStackInSlot(1).getItem() instanceof SonoPrima)
+            return (((Sono)iHand.getStackInSlot(0).getItem()).note == ((SonoPrima)iHand.getStackInSlot(1).getItem()).note);
+        return false;
     }
 
     private void updateBlock()
@@ -74,14 +78,6 @@ public class ResonatorEntityNew extends TileEntityMachine implements ITickable
     }
 
     private EnumFacing getFacing() { return world.getBlockState(pos).getValue(TileEntityBlockBaseWithFacing.FACING); }
-
-    @Override
-    public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing)
-    {
-        if(capability == CapabilityEnergy.ENERGY)
-            return (facing == EnumFacing.UP || facing == EnumFacing.DOWN || facing == getFacing());
-        return super.hasCapability(capability, facing);
-    }
 
     @Nullable
     @Override

@@ -46,6 +46,7 @@ public class SonosItems
     {
         for(Notes n : Notes.values())
         {
+            if(n == Notes.None) { continue; }
             OrionRegistry.register(new Sono(n).setCreativeTab(Sonos.cTab));
             OrionRegistry.register(new SonoPrima(n).setCreativeTab(Sonos.cTab));
             OrionRegistry.register(new SonoRing(n).setCreativeTab(Sonos.cTab));
@@ -57,8 +58,10 @@ public class SonosItems
     {
         ItemColors ic = Minecraft.getMinecraft().getItemColors();
 
-        for(Notes n : Notes.values())
+        for(Notes n : Notes.values()) {
+            if(n == Notes.None) { continue; }
             ic.registerItemColorHandler((stack, tintIndex) -> tintIndex == 0 ? -1 : colors[n.number()], Item.REGISTRY.getObject(new ResourceLocation(Sonos.ModID, "sonoring_" + n.getSimpler())));
+        }
     }
 
     public static void initOreDictionary()
@@ -66,6 +69,7 @@ public class SonosItems
         OreDictionary.registerOre("sonoOre", SonosBlocks.SO);
 
         for(Notes n : Notes.values()) {
+            if(n == Notes.None) { continue; }
             Item sono = Item.REGISTRY.getObject(new ResourceLocation(Sonos.ModID, "sono_" + n.getSimpler()));
             Item sonoPrima = Item.REGISTRY.getObject(new ResourceLocation(Sonos.ModID, "sono_prima_" + n.getSimpler()));
             Item sonoVessel = Item.REGISTRY.getObject(new ResourceLocation(Sonos.ModID, "sonovessel_" + n.getSimpler()));
