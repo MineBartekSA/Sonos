@@ -16,13 +16,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
 public class SonoOreNewEntity extends TileEntity implements IOrionInfoProvider, ITickable
 {
-    private final int duration = 14;
     protected SoundEvents.Notes note = SoundEvents.Notes.None;
     private int tick = 0;
     private boolean doTick = false;
@@ -40,7 +40,7 @@ public class SonoOreNewEntity extends TileEntity implements IOrionInfoProvider, 
     {
         if(doTick)
         {
-            if(tick == (duration * 20) + duration)
+            if(tick == (SoundEvents.humLength * 20) + SoundEvents.humLength)
             {
                 this.world.setBlockState(pos, this.world.getBlockState(pos).getBlock().getDefaultState());
                 OrionPacketHandler.INSTANCE.sendToAll(new SonoOrePacket(pos, note.number(), true));
