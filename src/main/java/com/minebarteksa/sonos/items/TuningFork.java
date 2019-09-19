@@ -6,17 +6,17 @@ import net.minecraft.creativetab.CreativeTabs;
 
 public class TuningFork extends ItemBase
 {
-  public TuningFork()
-  {
-    super("fork", Sonos.ModID);
-    this.setMaxStackSize(1);
-    this.setMaxDamage(0);
-  }
+    public TuningFork() // TODO: FUCKIN' write
+    {
+        super("fork", Sonos.ModID);
+        this.setMaxStackSize(1);
+        this.setMaxDamage(0);
+    }
 
-  @Override
-  public TuningFork setCreativeTab(CreativeTabs tab)
-  {
-    super.setCreativeTab(tab);
-    return this;
-  }
+    @Override
+    public TuningFork setCreativeTab(CreativeTabs tab)
+    {
+        super.setCreativeTab(tab);
+        return this;
+    }
 }

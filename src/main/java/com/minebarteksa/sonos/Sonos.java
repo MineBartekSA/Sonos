@@ -25,6 +25,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.Logger;
 
+import javax.annotation.Nonnull;
 import java.util.Comparator;
 import java.util.Random;
 
@@ -34,7 +35,7 @@ public class Sonos
     public static final String Name = "Sonos";
     public static final String ModID = "sonos";
     public static final String Version = "1.0.0";
-    public static final String Deps = "required-after:baubles; required-after:liborion; before:guideapi;";
+    static final String Deps = "required-after:baubles; required-after:liborion; before:guideapi;";
 
     @Mod.Instance(ModID)
     public static Sonos instance;
@@ -44,9 +45,11 @@ public class Sonos
         private ItemStack current;
 
         @Override
-        public ItemStack getTabIconItem() { return null; }
+        @Nonnull
+        public ItemStack getTabIconItem() { return ItemStack.EMPTY; }
 
         @Override
+        @Nonnull
         public ItemStack getIconItemStack()
         {
             if(tick <= 0) {
@@ -58,9 +61,9 @@ public class Sonos
         }
 
         @Override
-        public void displayAllRelevantItems(NonNullList<ItemStack> items) {
+        public void displayAllRelevantItems(@Nonnull NonNullList<ItemStack> items) {
             super.displayAllRelevantItems(items);
-            items.sort(Comparator.comparing(ItemStack::getDisplayName)); // ToDo: Better sorting
+            items.sort(Comparator.comparing(ItemStack::getDisplayName)); // TODO: Better sorting
         }
     };
 

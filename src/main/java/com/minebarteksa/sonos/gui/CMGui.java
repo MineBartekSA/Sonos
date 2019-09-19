@@ -13,7 +13,7 @@ public class CMGui extends GuiContainer
 {
     private InventoryPlayer playerInv;
 
-    public CMGui(Container arg0, InventoryPlayer pl, BlockPos pos, World world)
+    public CMGui(Container arg0, InventoryPlayer pl, BlockPos pos, World world) // TODO: make it look right
     {
         super(arg0);
         this.playerInv = pl;

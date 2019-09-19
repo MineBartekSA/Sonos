@@ -13,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import com.minebarteksa.sonos.sound.SoundEvents.Notes;
 import net.minecraft.item.ItemStack;
+import javax.annotation.Nonnull;
 
 public class SonoVessel extends ItemBase
 {
@@ -26,7 +27,8 @@ public class SonoVessel extends ItemBase
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
+    @Nonnull
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player,@Nonnull EnumHand hand) // TODO: Add overall cool downs.... and durability as it's indicator
     {
         Potion effect = SoundEvents.getNoteEffect(note);
         if(effect == MobEffects.INSTANT_HEALTH || effect == MobEffects.SATURATION)
