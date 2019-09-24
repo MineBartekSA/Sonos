@@ -65,10 +65,10 @@ public class SoundEvents
         else
         {
             Sonos.log.info("Trying to play " + note + " " + Chords.getChord(quality) + " chord");
-            int[] chord = Chords.getChordNotes(note.number(), quality);
-            SoundEvent e1 = SoundEvents.getSound(Notes.getNote(chord[0]), noteType);
-            SoundEvent e2 = SoundEvents.getSound(Notes.getNote(chord[1]), noteType);
-            SoundEvent e3 = SoundEvents.getSound(Notes.getNote(chord[2]), noteType);
+            Notes[] chord = Chords.getChordNotes(note.number(), quality);
+            SoundEvent e1 = SoundEvents.getSound(chord[0], noteType);
+            SoundEvent e2 = SoundEvents.getSound(chord[1], noteType);
+            SoundEvent e3 = SoundEvents.getSound(chord[2], noteType);
             world.playSound(play, pos.getX(), pos.getY(), pos.getZ(), e1, cat, 1.0f, 1.0f);
             world.playSound(play, pos.getX(), pos.getY(), pos.getZ(), e2, cat, 1.0f, 1.0f);
             world.playSound(play, pos.getX(), pos.getY(), pos.getZ(), e3, cat, 1.0f, 1.0f);
@@ -119,6 +119,58 @@ public class SoundEvents
                     return Notes.None;
             }
         }
+
+        public Potion getEffect()
+        {
+            switch(number)
+            {
+                case 0:
+                    return MobEffects.SPEED;
+                case 1:
+                    return MobEffects.HASTE;
+                case 2:
+                    return MobEffects.STRENGTH;
+                case 3:
+                    return MobEffects.RESISTANCE;
+                case 4:
+                    return MobEffects.HEALTH_BOOST;
+                case 5:
+                    return MobEffects.REGENERATION;
+                case 6:
+                    return MobEffects.INSTANT_HEALTH; // Note: Single tick in 5 seconds period
+                case 7:
+                    return MobEffects.SATURATION; // Note: Single tick in 5 seconds period
+                case 8:
+                    return MobEffects.LUCK;
+                case 9:
+                    return MobEffects.FIRE_RESISTANCE;
+                case 10:
+                    return MobEffects.NIGHT_VISION; // Note: 10 seconds
+                case 11:
+                    return MobEffects.JUMP_BOOST;
+                default:
+                    return MobEffects.UNLUCK;
+            }
+        }
+
+        public int getCooldown()
+        {
+            return number == 10 ? 15 : 5;
+        }
+
+        public int getEffectDuration()
+        {
+            switch (number)
+            {
+                case 6:
+                case 7:
+                    return 0;
+                case 10:
+                    return 10;
+                default:
+                    return 2;
+            }
+        }
     }
 
     public enum Chords
@@ -141,8 +193,6 @@ public class SoundEvents
         {
             switch(num)
             {
-                case 0:
-                    return Chords.Root;
                 case 1:
                     return Chords.Sus2;
                 case 2:
@@ -156,7 +206,7 @@ public class SoundEvents
             }
         }
 
-        public static int[] getChordNotes(int note, int quality)
+        public static Notes[] getChordNotes(int note, int quality)
         {
             int x;
             if(quality == 1)
@@ -167,41 +217,7 @@ public class SoundEvents
                 x = 4;
             else
                 x = 4;
-            int[] out = {note, (note + x) % 12, (note + 7) % 12};
-            return out;
-        }
-    }
-
-    public static Potion getNoteEffect(Notes note)
-    {
-        switch(note.toString())
-        {
-            case "C":
-                return MobEffects.SPEED;
-            case "CSharp":
-                return MobEffects.HASTE;
-            case "D":
-                return MobEffects.STRENGTH;
-            case "DSharp":
-                return MobEffects.RESISTANCE;
-            case "E":
-                return MobEffects.HEALTH_BOOST;
-            case "F":
-                return MobEffects.REGENERATION;
-            case "FSharp":
-                return MobEffects.INSTANT_HEALTH; // Note: Single tick in 5 seconds period
-            case "G":
-                return MobEffects.SATURATION; // Note: Single tick in 5 seconds period
-            case "GSharp":
-                return MobEffects.LUCK;
-            case "A":
-                return MobEffects.FIRE_RESISTANCE;
-            case "ASharp":
-                return MobEffects.NIGHT_VISION; // Note: 10 seconds
-            case "B":
-                return MobEffects.JUMP_BOOST;
-            default:
-                return MobEffects.UNLUCK;
+            return new Notes[] {Notes.getNote(note), Notes.getNote((note + x) % 12), Notes.getNote((note + 7) % 12)};
         }
     }
 }
