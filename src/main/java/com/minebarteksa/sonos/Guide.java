@@ -37,7 +37,7 @@ public class Guide extends Item implements IGuideBook
 
     @Nonnull
     @Override
-    public Book buildBook() // ToDo: Write this book
+    public Book buildBook() // TODO: Write this book
     {
         Map<ResourceLocation, EntryAbstract> entries = new LinkedHashMap<ResourceLocation, EntryAbstract>();
 
